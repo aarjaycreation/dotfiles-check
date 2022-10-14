@@ -1,5 +1,9 @@
 return {
-  ["lervag/vimtex"]= {},
+  ["lervag/vimtex"]= {
+    config = function ()
+      require "custom.plugins.vimtex"
+    end
+  },
 
   ["L3MON4D3/LuaSnip"] = {
     config = function()
