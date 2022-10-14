@@ -68,7 +68,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.75
+  opacity: 0.90
 
   # Startup Mode (changes require restart)
   #
@@ -110,16 +110,16 @@ window:
   #multiplier: 3
 
 # Font configuration
-font:
+#font:
   # Normal (roman) font face
-  normal:
+  #normal:
     # Font family
     #
     # Default:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FiraCode Nerd Font Mono
+    #family: monospace
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -377,7 +377,7 @@ font:
 #selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
-  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  #semantic_escape_chars: ",\u2502`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
@@ -388,7 +388,7 @@ font:
     # Cursor shape
     #
     # Values for `shape`:
-    #   - ▇ Block
+    #   - \u2587 Block
     #   - _ Underline
     #   - | Beam
     #shape: Block
@@ -506,7 +506,7 @@ font:
   #       Move the vi mode cursor to the beginning of the hint.
   #enabled:
   # - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
-  #           [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+  #           [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^\u27e8\u27e9`]+"
   #   hyperlinks: true
   #   command: xdg-open
   #   post_processing: true
@@ -893,38 +893,4 @@ font:
 
   # Highlight window damage information.
   #highlight_damage: false
-
-colors:
-  # COLORSCHEME: base16-gruvbox-dark-soft.yml
-  # Default colors
-  primary:
-    background: '0x32302f'
-    foreground: '0xd5c4a1'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x32302f'
-    cursor: '0xd5c4a1'
-
-  # Normal colors
-  normal:
-    black: '0x32302f'
-    red: '0xfb4934'
-    green: '0xb8bb26'
-    yellow: '0xfabd2f'
-    blue: '0x83a598'
-    magenta: '0xd3869b'
-    cyan: '0x8ec07c'
-    white: '0xd5c4a1'
-
-  # Bright colors
-  bright:
-    black: '0x665c54'
-    red: '0xfe8019'
-    green: '0x3c3836'
-    yellow: '0x504945'
-    blue: '0xbdae93'
-    magenta: '0xebdbb2'
-    cyan: '0xd65d0e'
-    white: '0xfbf1c7'
 
