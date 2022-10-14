@@ -1,4 +1,6 @@
 return {
+  ["lervag/vimtex"]= {},
+
   ["L3MON4D3/LuaSnip"] = {
     config = function()
          require("plugins.configs.others").luasnip()
