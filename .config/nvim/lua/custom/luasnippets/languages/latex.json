@@ -1,0 +1,17 @@
+{
+  "Create Split": {
+        "prefix": ["split"],
+        "body": [
+            "\\langle $1 \\rangle$0"
+        ],
+        "description": "Create a Split"
+    },
+
+  "Use CP Rule": {
+        "prefix": ["rule"],
+        "body": [
+            "\\equiv \\{Propriedade\\ ${1:Numero_da_propriedade}\\}$0"
+        ],
+        "description": "Create a Split"
+    }
+}

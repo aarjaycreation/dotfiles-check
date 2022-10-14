@@ -1,0 +1,11 @@
+{
+  "name": "My Custom Snippets",
+  "contributes":{
+    "snippets":[
+      {
+        "language":["plaintex","tex"],
+        "path": "./languages/latex.json"
+      }
+    ]
+  }
+}
