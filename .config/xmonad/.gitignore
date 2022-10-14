@@ -1,0 +1,7 @@
+.ghc.*
+.stack-work
+stack.*
+xmonad
+xmonad-contrib
+xmonad.hi
+xmonad.o
