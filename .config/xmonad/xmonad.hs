@@ -21,7 +21,7 @@ import Data.Maybe (fromJust)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import Data.Monoid
-import Colors.DoomOne
+import Colors.Teal
 import System.Exit
 import XMonad.Util.SpawnOnce
 import XMonad.Layout.Spacing
@@ -30,7 +30,7 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 -- Personal Variables
 myTerminal      = "alacritty" 
-myTextEditor    = "leafpad"
+myTextEditor    = "vim"
 myWebBrowser    = "firefox"
 
 
@@ -68,9 +68,8 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#282c34"
-myFocusedBorderColor = "#46d9ff"
-
+myNormalBorderColor  = "#008080"
+myFocusedBorderColor = "#01F9C6"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -98,7 +97,7 @@ myKeys =
     ,("<xf86monbrightnessdown>", spawn "lux -s 10%")
     
     --CHANGE KEYBOARD LAYOUT
-    ,("M-<Space>", spawn "/bin/zsh /home/afonso/.config/xmonad/change-kb.sh")
+    ,("M-<Space>", spawn "/bin/bash /home/afonso/.config/xmonad/change-kb.sh")
 
     --brightness controls
     ,("M-n", spawn "kitty -e nmtui")
@@ -298,19 +297,19 @@ main = do
         logHook            = dynamicLogWithPP $ xmobarPP
               { ppOutput = \x -> hPutStrLn xmproc x   -- xmobar on monitor 1
                 -- Current workspace
-              , ppCurrent = xmobarColor color06 "" . wrap
-                            ("<box type=Bottom width=2 mb=2 color=" ++ color06 ++ ">") "</box>"
+              , ppCurrent = xmobarColor color02 "" . wrap
+                            ("<box type=Bottom width=2 mb=2 color=" ++ color02 ++ ">") "</box>"
                 -- Visible but not current workspace
-              , ppVisible = xmobarColor color06 "" . clickable
+              , ppVisible = xmobarColor color05 "" . clickable
                 -- Hidden workspace
-              , ppHidden = xmobarColor color05 "" . wrap
-                           ("<box type=Top width=2 mt=2 color=" ++ color05 ++ ">") "</box>" . clickable
+              , ppHidden = xmobarColor color01 "" . wrap
+                           ("<box type=Top width=2 mt=2 color=" ++ color01 ++ ">") "</box>" . clickable
                 -- Hidden workspaces (no windows)
-              , ppHiddenNoWindows = xmobarColor color05 ""  . clickable
+              , ppHiddenNoWindows = xmobarColor color01 ""  . clickable
                 -- Title of active window
-              , ppTitle = xmobarColor color16 "" . shorten 60
+              , ppTitle = xmobarColor color04 "" . shorten 60
                 -- Separator character
-              , ppSep =  "<fc=" ++ color09 ++ "> <fn=1>|</fn> </fc>"
+              , ppSep =  "<fc=" ++ color03 ++ "> <fn=1>|</fn> </fc>"
                 -- Urgent workspace
               , ppUrgent = xmobarColor color02 "" . wrap "!" "!"
                 -- Adding # of windows on current workspace to the bar
