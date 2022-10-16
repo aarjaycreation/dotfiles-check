@@ -1,0 +1,8 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ font: "FiraCode Nerd Font Mono 10";
+ combi-modi: "window,drun,ssh";
+ }
+@theme "~/.config/rofi/themes/teal.rasi"
+
+

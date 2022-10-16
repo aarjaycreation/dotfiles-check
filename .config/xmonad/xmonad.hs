@@ -78,8 +78,8 @@ myKeys =
     -- launch a terminal
     [ ("M-x" ,spawn myTerminal )
 
-    -- launch dmenu
-    , ("M-p", spawn "dmenu_run")
+    -- launch rofi
+    , ("M-p", spawn "rofi -show run")
 
     -- launch web browser
     , ("M-b", spawn myWebBrowser)
