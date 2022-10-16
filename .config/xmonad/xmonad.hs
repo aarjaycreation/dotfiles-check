@@ -87,6 +87,7 @@ myKeys =
     --Screenshot
     , ("<Print>", spawn "flameshot screen")
     , ("S-<Print>", spawn "flameshot gui")
+
     --AUDIO CONTROLS
     , ("<XF86AudioMute>", spawn "pamixer set --toggle-mute")
     , ("<XF86AudioLowerVolume>", spawn "pamixer -d 5")
@@ -99,8 +100,8 @@ myKeys =
     --CHANGE KEYBOARD LAYOUT
     ,("M-<Space>", spawn "/bin/bash /home/afonso/.config/xmonad/change-kb.sh")
 
-    --brightness controls
-    ,("M-n", spawn "kitty -e nmtui")
+    --network manager
+    ,("M-n", spawn $ myTerminal ++  " -e nmtui")
     
     -- close focused window
     , ("M-q", kill)
