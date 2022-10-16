@@ -10,5 +10,10 @@ return {
          require("plugins.configs.others").luasnip()
          require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.luasnippets_path })
       end
+  },
+  ["ggandor/leap.nvim"] = {
+    config = function ()
+        require('leap').add_default_mappings()
+    end
   }
 }

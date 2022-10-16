@@ -6,11 +6,10 @@
         ],
         "description": "Create a Split"
     },
-
   "Use CP Rule": {
         "prefix": ["rule"],
         "body": [
-            "\\equiv \\{Propriedade\\ ${1:Numero_da_propriedade}\\}\\\\$0"
+            "\\equiv \\{\\text{Propriedade ${1:Numero_da_propriedade}}\\\\}\\\\\\\\$0"
         ],
         "description": "Create a Split"
     },
