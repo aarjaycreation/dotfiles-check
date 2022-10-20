@@ -1,0 +1,36 @@
+snippet templateHs "Start file with template"
+\documentclass{article}
+
+%imports
+
+%include polycode.fmt
+\usepackage[all]{xy}
+\usepackage{mathtools}
+\usepackage{graphicx}
+
+\title{\Huge{Some Class}}
+\author{\huge{Afonso Franco}}
+\date{}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\pagebreak
+
+$1
+
+\end{document}
+endsnippet
+
+snippet rule "Add CP rule"
+\equiv \\{\text{Propriedade ${1:Nome/Numero}}\\}\\\\
+endsnippet
+
+snippet split "Add CP split"
+\langle $1 \rangle
+endsnippet
+
+

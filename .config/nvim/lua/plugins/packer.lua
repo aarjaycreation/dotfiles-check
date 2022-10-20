@@ -17,12 +17,6 @@ local plugins = packer.startup({function(use)
 	    	end
 	  }
   
-	use{  "L3MON4D3/LuaSnip",
-	       config = function()
-	   	   require "plugins.luasnip"
-	       end
-	  }
-	  
 	use {  "ggandor/leap.nvim",
 	    	config = function ()
 	    	    require('leap').add_default_mappings()
@@ -75,6 +69,7 @@ local plugins = packer.startup({function(use)
 	use {"neoclide/coc.nvim",
 		config = function() require("plugins.nvim-coc") end
 	}
+
 	end,
 
 	config = {

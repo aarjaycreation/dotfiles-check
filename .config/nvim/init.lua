@@ -19,10 +19,5 @@ Config = {
 	}
 }
 
--- Theme
-
-vim.wo.number=true
-vim.wo.relativenumber= true
-vim.g.luasnippets_path = "~/.config/nvim/lua/plugins/configs/luasnippets"
-
-
+-- Mapping
+require("mappings")
