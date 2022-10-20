@@ -11,9 +11,6 @@ end
 capabilities = vim.lsp.protocol.make_client_capabilities()
 
 
-lspconfig.hls.setup{
-on_attach = on_attach,
-capabilities = capabilities
-}
+lspconfig.hls.setup{}
 
 lspconfig.rust_analyzer.setup{}
