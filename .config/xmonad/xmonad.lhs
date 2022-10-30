@@ -236,23 +236,20 @@ Percent of screen to increment by when resizing panes
 \subsubsection{Startup Hook}
 \begin{code}
  myStartupHook = do
-       spawn "setxkbmap -layout us,pt"
-       spawn "setxkbmap -option grp:win_space_toggle"
-       spawn "setxkbmap -option caps:escape"
-       spawn "pasystray"
-       spawn ("killall trayer")
+       spawnOnce "setxkbmap -layout us,pt"
+       spawnOnce "setxkbmap -option grp:win_space_toggle"
+       spawnOnce "setxkbmap -option caps:escape"
+       spawnOnce "pasystray"
        spawnOnce "nitrogen --restore &"
        spawnOnce "picom &"
+       spawnOnce "optimus-manager-qt"
        setWMName "LG3D"
        spawnOnce "nm-applet"
-       spawn "mailspring"
+       spawnOnce "mailspring"
        spawnOnce "qjackctl"
-       spawn("xsetroot -cursor_name left_ptr")
-       spawn ("easyeffects --gapplication-service")
-       spawnOnce "optimus-manager-qt"
-       spawn ("sleep 2 && trayer --edge top --align right --widthtype request --margin 7 --padding 6 --SetDockType true --SetPartialStrut true --iconspacing 6 --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 24 --distance 50 --distancefrom right")
-       spawn ("albert")
-       spawnOn "web" "firefox"
+       spawnOnce("xsetroot -cursor_name left_ptr")
+       spawn ("killall trayer && sleep 1 && trayer --edge top --align right --widthtype request --margin 6 --padding 4 --SetDockType true --SetPartialStrut true --iconspacing 12 --expand true --monitor 0 --transparent true --alpha 0 " ++ colorTrayer ++ " --height 22 --distance 58 --distancefrom right")
+       spawnOn "web" myWebBrowser
        spawnOn "main" myTerminal
 \end{code}
 
