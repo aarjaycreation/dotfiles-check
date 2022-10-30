@@ -236,8 +236,10 @@ Percent of screen to increment by when resizing panes
 \subsubsection{Startup Hook}
 \begin{code}
  myStartupHook = do
-       spawn "setxkbmap -option 'grp:win_space_toggle'"
-       spawn "setxkbmap -option 'caps:escape'"
+       spawn "setxkbmap -layout us,pt"
+       spawn "setxkbmap -option grp:win_space_toggle"
+       spawn "setxkbmap -option caps:escape"
+       spawn "pasystray"
        spawn ("killall trayer")
        spawnOnce "nitrogen --restore &"
        spawnOnce "picom &"
