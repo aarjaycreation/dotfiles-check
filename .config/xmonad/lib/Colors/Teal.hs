@@ -16,3 +16,10 @@ color05 = "#02CB9E"
 
 colorTrayer :: String
 colorTrayer = "--tint 0x282c34"
+
+grey1  = "#2B2E37"
+grey2  = "#555E70"
+grey3  = "#697180"
+grey4  = "#8691A8"
+cyan   = "#8BABF0"
+orange = "#C45500"
