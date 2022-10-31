@@ -24,7 +24,7 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:h
        , iconRoot     = "/home/afonso/.config/xmobar/xpm/"  -- default: "."
        , commands = [
                         -- Cpu usage in percent
-                    Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+                       Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
                         -- Ram used number and percent
                     , Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
                         -- Disk space free
@@ -39,6 +39,8 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:h
                     , Run BatteryP ["BAT0"] ["-t", "<fn=2>\xf242</fn> AC:<acstatus> (<left>%)"] 360
                         -- Time and date
                     , Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M) " "date" 50
+		        -- Volume
+                    , Run Volume "default" "Master" [] 10
                         -- Script that dynamically adjusts xmobar padding depending on number of trayer icons.
                     , Run Com "/home/afonso/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
                         -- Prints out the left side items such as workspaces, layout, etc.
@@ -46,5 +48,5 @@ Config { font            = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:h
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <icon=logo.xpm/>  <fc=#666666>|</fc>  %UnsafeStdinReader% }{  <box type=Bottom width=2 mb=2 color=#ecbe7b><fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#ff6c6b><fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`alacritty -e htop`>%disku%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff>%date%</fc></box>   |   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548> <action=`alacritty -e sudo pacman -Syu`>%battery%</action></fc></box>   |    %trayerpad% "
+       , template = " <icon=logo.xpm/>  <fc=#666666>|</fc>  %UnsafeStdinReader% }{  <box type=Bottom width=2 mb=2 color=#ecbe7b><fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#ff6c6b><fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#a9a1e1><fc=#a9a1e1><action=`alacritty -e htop`>%disku%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#46d9ff><fc=#46d9ff>%date%</fc></box>   |   <box type=Bottom width=2 mb=2 color=#da8548><fc=#da8548> <action=`alacritty -e sudo pacman -Syu`>%battery%</action></fc></box>   |   <box type=Bottom width=2 mb=2 color=#a677f2><fc=#a677f2>%default:Master%</fc></box>   |    %trayerpad% "
        }
