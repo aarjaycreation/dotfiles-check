@@ -8,9 +8,8 @@ Config {font = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:hinting=true"
        , additionalFonts =
           [ "xft:Font Awesome 6 Free Solid:pixelsize=14"
           , "xft:Font Awesome 6 Free Solid:pixelsize=12:bold"
-          , "xft:Font Awesome 6 Free Solid:pixelsize=16"
-          , "xft:Hack Nerd Font Mono:pixelsize=21"
-          , "xft:Hack Nerd Font Mono:pixelsize=25"
+	  , "xft:FiraCode Nerd Font Mono:pixelsize=16"
+	  , "xft:FiraCode Nerd Font Mono:pixelsize=12"
           ]
        , bgColor      = "#2B2E37"
        , fgColor      = "#929AAD"
@@ -34,6 +33,7 @@ Config {font = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:hinting=true"
                     , Run Com "/home/afonso/.config/xmobar/scripts/volume.sh" [] "volume" 10
                     , Run Com "/home/afonso/.config/xmobar/scripts/bluetooth.sh" [] "bluetooth" 10
                     , Run Com "/home/afonso/.config/xmobar/scripts/network.sh" [] "network" 10
+		    , Run Com "/home/afonso/.config/xmobar/scripts/battery.sh" [] "battery" 20
                     , Run Com "/home/afonso/.config/xmobar/scripts/trayer-padding-icon.sh" [] "trayerpad" 20
                     ]
        , sepChar = "%"
@@ -62,6 +62,8 @@ Config {font = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:hinting=true"
 	    \%bluetooth%\
 	    \     \
 	    \%volume%\
+	    \     \
+	    \%battery%\
 	    \     \
 	    \|\
             \%trayerpad%"
