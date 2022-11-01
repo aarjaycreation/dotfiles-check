@@ -9,56 +9,56 @@ if [ $batLevel -le 20 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=4> $batLevel</fn>"
+		echo "<fn=4> </fn>"
 	fi
 elif [ $batLevel -le 30 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=4> $batLevel</fn>"
+		echo "<fn=4> </fn>"
 	fi
 elif [ $batLevel -le 40 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	fi
 elif [ $batLevel -le 60 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=4> $batLevel</fn>"
+		echo "<fn=4> </fn>"
 	fi
 elif [ $batLevel -le 80 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=4> $batLevel</fn>"
+		echo "<fn=4> </fn>"
 	fi
 elif [ $batLevel -le 95 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=4> $batLevel</fn>"
+		echo "<fn=4> </fn>"
 	fi
 elif [ $batLevel -g 95 ];
 then
 	if [ $charging == "on-line" ];
 	then
-		echo "<fn=3> $batLevel</fn>"
+		echo "<fn=3> </fn>"
 	else
-		echo "<fn=4> $batLevel</fn>"
+		echo "<fn=4> </fn>"
 	fi
 fi

@@ -15,4 +15,4 @@ do
     fi
 done
 
-echo "<fc=$COLOR><fn=4>$ICON</fn></fc>"
+echo "<fc=$COLOR><fn=3>$ICON</fn></fc>"

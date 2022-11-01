@@ -7,9 +7,10 @@
 Config {font = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:hinting=true"
        , additionalFonts =
           [ "xft:Font Awesome 6 Free Solid:pixelsize=14"
-          , "xft:Font Awesome 6 Free Solid:pixelsize=12:bold"
-	  , "xft:FiraCode Nerd Font Mono:pixelsize=16"
-	  , "xft:FiraCode Nerd Font Mono:pixelsize=12"
+          , "xft:Font Awesome 6 Free Solid:pixelsize=13:bold"
+	  , "xft:FiraCode Nerd Font Mono:pixelsize=21"
+	  , "xft:FiraCode Nerd Font Mono:pixelsize=14"
+	  , "xft:Font Awesome 6 Free Solid:pixelsize=21"
           ]
        , bgColor      = "#2B2E37"
        , fgColor      = "#929AAD"
@@ -56,6 +57,7 @@ Config {font = "xft:Ubuntu:weight=bold:pixelsize=14:antialias=true:hinting=true"
             \%gpu%\
 	    \     \
 	    \|\
+	    \     \
 	    \     \
 	    \%network%\
 	    \     \
