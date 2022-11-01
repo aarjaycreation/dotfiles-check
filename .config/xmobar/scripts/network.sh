@@ -7,7 +7,7 @@ for ((i = 0; i < "${#TYPES[@]}"; i++)); do
         if [[ ${TYPES[$i]} == *"wifi"* ]]; then
             echo "<fc=#DFDFDF><fn=3>直</fn></fc>"
         else
-            echo "<fc=#DFDFDF><fn=5>ﯱ</fn></fc>"
+            echo "<fc=#DFDFDF><fn=3>ﯱ</fn></fc>"
         fi
     fi
 done
