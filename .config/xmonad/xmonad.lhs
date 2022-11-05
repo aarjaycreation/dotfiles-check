@@ -248,9 +248,6 @@ Percent of screen to increment by when resizing panes
        spawn ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --widthtype request --padding 7 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 26 --distance 5 &")
        spawnOn "web" myWebBrowser
        spawnOn "main" myTerminal
-       spawn "setxkbmap -layout us,pt"
-       spawn "setxkbmap -option grp:win_space_toggle"
-       spawn "setxkbmap -option caps:escape"
 
 \end{code}
 
