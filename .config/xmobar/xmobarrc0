@@ -6,6 +6,7 @@ Config {font = "Ubuntu bold 10"
 	  , "FiraCode Nerd Font Mono 17"
 	  , "FiraCode Nerd Font Mono 10"
 	  , "Font Awesome 6 Free Solid 17"
+	  , "Font Awesome 6 Free Solid 13"
           ]
        , bgColor      = "#2B2E37"
        , fgColor      = "#929AAD"
@@ -22,12 +23,11 @@ Config {font = "Ubuntu bold 10"
        , iconRoot     = "/home/afonso/.config/xmobar/xpm/"  -- default: "."
        , commands = [
                       Run UnsafeXPropertyLog "_XMONAD_LOG_0"
-		    , Run Date "%a, %d %b   <fn=1></fn>   %H:%M:%S" "date" 10
+		    , Run Date "%a, %d %b   <fn=1></fn>   %H:%M" "date" 10
 		    , Run Mpris2 "playerctld" ["-t", "<fc=#AAC0F0><artist> - <title></fc>"] 10
-                    , Run Memory ["-t","Mem: <fc=#AAC0F0><usedratio></fc>%"] 10
+                    , Run Memory ["-t","<fn=6></fn> <fc=#AAC0F0><usedratio></fc>%"] 10
 		    , Run Com "/home/afonso/.config/xmobar/scripts/disk.sh" [] "disk" 10
                     , Run Com "/home/afonso/.config/xmobar/scripts/cpu_temp.sh" [] "cpu" 10
-                    , Run Com "/home/afonso/.config/xmobar/scripts/gpu_util.sh" [] "gpu" 10
                     , Run Com "/home/afonso/.config/xmobar/scripts/volume.sh" [] "volume" 10
                     , Run Com "/home/afonso/.config/xmobar/scripts/bluetooth.sh" [] "bluetooth" 10
                     , Run Com "/home/afonso/.config/xmobar/scripts/network.sh" [] "network" 10
@@ -49,16 +49,10 @@ Config {font = "Ubuntu bold 10"
             \     \
             \%memory%\
             \     \
-            \|\
             \     \
             \%cpu%\
             \     \
-            \|\
             \     \
-            \%gpu%\
-	    \     \
-	    \|\
-	    \     \
 	    \%disk%\
 	    \     \
 	    \|\
