@@ -100,8 +100,8 @@ AUDIO CONTROLS
 
 brightness controls
 
->    ,("<xf86monbrightnessup>", spawn "lux -a 10%")
->    ,("<xf86monbrightnessdown>", spawn "lux -s 10%")
+>    ,("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+>    ,("<XF86MonBrightnessDown>", spawn "lux -s 10%")
 
 network manager
 
