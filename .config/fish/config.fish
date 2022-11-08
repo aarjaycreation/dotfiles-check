@@ -21,9 +21,13 @@ function core
     sudo docker exec -it core core-gui
 end
 
+function i
+	sudo pacman -S $argv
+end
 
-set PATH $HOME/.cargo/bin $HOME/.local/bin $PATH
-
-#set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/afonso/.ghcup/bin $PATH # ghcup-env
+function u
+	sudo pacman -Syu $argv 
+end
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/afonso/.ghcup/bin $PATH # ghcup-env
+set PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.local/bin $PATH
