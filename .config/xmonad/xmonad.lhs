@@ -243,7 +243,6 @@ Percent of screen to increment by when resizing panes
        setWMName "LG3D"
        spawnOnce "nm-applet"
        spawnOnce "mailspring"
-       spawnOnce "qjackctl"
        spawnOnce("xsetroot -cursor_name left_ptr")
        spawn ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --widthtype request --padding 7 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 26 --distance 5 &")
        spawnOn "web" myWebBrowser
