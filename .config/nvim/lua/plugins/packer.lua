@@ -29,24 +29,41 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
+	use { "hrsh7th/nvim-cmp",
+		requires = {
+		'hrsh7th/cmp-nvim-lsp', -- lsp
+		'hrsh7th/cmp-buffer', --buffer completions
+		'hrsh7th/cmp-path', --path completions
+		'hrsh7th/cmp-cmdline' --cmdline completions
+		},
+		config = function()
+			require "plugins.cmp"
+		end
+	}
+	use {'stevearc/dressing.nvim'} -- Rename variable pop up 
+
+
+	use { "L3MON4D3/LuaSnip",
+		requires = {
+			"rafamadriz/friendly-snippets",
+			"saadparwaiz1/cmp_luasnip"
+		},
+	}
 	use {  "williamboman/mason.nvim",
 		config = function ()
 			require "plugins.mason"
 		end
 	}
 
+	use {'nvim-tree/nvim-tree.lua',
+  		requires = {
+    		'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  		},
+		require("nvim-tree").setup()
+	}
 	use {  "feline-nvim/feline.nvim" }
 
 	use {"joshdick/onedark.vim" } 
-
-	use {"nvim-tree/nvim-tree.lua",
-		requires = {
-			'nvim-tree/nvim-web-devicons',
-		},
-		config = function()
-			require("nvim-tree").setup()
-		end
-	}
 
 	use {"nvim-treesitter/nvim-treesitter",
 		config = function()
@@ -54,6 +71,7 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
+	--Tabs
 	use {'romgrk/barbar.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
 		config = function ()
@@ -61,24 +79,39 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
-	use {"windwp/nvim-autopairs",
-		config = function() require("nvim-autopairs").setup {} end
-	}
-
-	use {"neoclide/coc.nvim",
-		config = function() require("plugins.nvim-coc") end
-	}
-
+	--fuzzy file finding
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} },
 		config = function() require('plugins.telescope') end
 	}
-
+	--live share like functionality
 	use {"jbyuki/instant.nvim"}
-	end,
 
+	use {"narutoxy/silicon.lua",
+  		requires = { "nvim-lua/plenary.nvim" },
+  		config = function()
+    			require('silicon').setup({
+				font = "FiraCode Nerd Font Mono",
+				output = "~/Pictures/SILICON_${year}-${month}-${date}.png",
+				debug = true
+			})
+			require "plugins.silicon"
+  		end
+	}
+
+	use {"tpope/vim-surround"}
+
+	use {"startup-nvim/startup.nvim",
+		requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+     		config = function()
+       			require("startup").setup { theme = "dashboard" }
+     		end,
+	}
+	
+	end,
+	
 	config = {
 		auto_clean = true,
 		compile_on_sync = true,

@@ -52,3 +52,5 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 --NVimTree
 
 map('n', '<C-n>', '<Cmd>NvimTreeToggle<CR>',opts)
+
+
