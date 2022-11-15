@@ -1,0 +1,17 @@
+[user]
+ email = me@afonsofrancof.com
+ name = afonsofrancof
+ signingkey = D774F2EDAE844584699E6B01C459E0BB3DCEE899
+[filter "lfs"]
+ process = git-lfs filter-process
+ required = true
+ clean = git-lfs clean -- %f
+ smudge = git-lfs smudge -- %f
+[core]
+ autocrlf = input
+[commit]
+ gpgsign = true
+[gpg]
+ program = gpg2
+[tag]
+ gpgsign = true
