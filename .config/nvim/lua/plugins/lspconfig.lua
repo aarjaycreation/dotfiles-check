@@ -31,18 +31,25 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require('lspconfig')['hls'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
+local lsp = require "lspconfig"
+local coq = require "coq"
+
+lsp['hls'].setup{
+	on_attach = on_attach,
+	flags = lsp_flags,
 }
-require('lspconfig')['rust_analyzer'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {}
-    }
-}
+lsp['rust_analyzer'].setup{}
+
+lsp.rust_analyzer.setup(
+	coq.lsp_ensure_capabilities{
+		on_attach = on_attach,
+		flags = lsp_flags,
+		-- Server-specific settings...
+		settings = {
+			["rust-analyzer"] = {}
+		}
+	}
+)
 require('lspconfig')['texlab'].setup{
 	on_attach = on_attach,
 	flags = lsp_flags,
