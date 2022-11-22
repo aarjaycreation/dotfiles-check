@@ -33,6 +33,7 @@ function u
 	sudo pacman -Syu $argv 
 end
 
-set PATH /home/afonso/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin $PATH
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/afonso/.ghcup/bin $PATH # ghcup-env
-set PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.local/bin $PATH
+fish_add_path /home/afonso/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
+fish_add_path $HOME/.local/bin 
+fish_add_path $HOME/.cargo/bin 
