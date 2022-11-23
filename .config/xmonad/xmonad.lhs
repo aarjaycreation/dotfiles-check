@@ -32,7 +32,7 @@
  import System.Exit
  import XMonad.Util.SpawnOnce
  import XMonad.Layout.Spacing
- --import XMonad.Layout.Fullscreen
+ import XMonad.Hooks.WindowSwallowing
  import qualified XMonad.StackSet as W
  import qualified Data.Map        as M
 \end{code}
@@ -322,7 +322,7 @@ Percent of screen to increment by when resizing panes
       -- keys               = myKeys,
        layoutHook         = spacingWithEdge 10 $ myLayout,
        manageHook         = manageSpawn <+> myManageHook <+> manageHook def,
-       handleEventHook    = myEventHook <+> fullscreenEventHook,
+       handleEventHook    = myEventHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True) ,
        startupHook        = myStartupHook}
 \end{code}
 

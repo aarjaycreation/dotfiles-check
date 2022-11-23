@@ -29,26 +29,31 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
-	use { "hrsh7th/nvim-cmp",
-		requires = {
-		'hrsh7th/cmp-nvim-lsp', -- lsp
-		'hrsh7th/cmp-buffer', --buffer completions
-		'hrsh7th/cmp-path', --path completions
-		'hrsh7th/cmp-cmdline' --cmdline completions
-		},
-		config = function()
-			require "plugins.cmp"
+	use {"ms-jpq/coq_nvim",
+		branch = 'coq',
+		config = function ()
+			vim.g.coq_settings = { auto_start = 'shut-up'}
 		end
+
 	}
+
+	use {"ms-jpq/coq_nvim",
+		branch = 'artifacts',
+	}
+
 	use {'stevearc/dressing.nvim'} -- Rename variable pop up 
 
-
-	use { "L3MON4D3/LuaSnip",
-		requires = {
-			"rafamadriz/friendly-snippets",
-			"saadparwaiz1/cmp_luasnip"
-		},
+	use {"windwp/nvim-autopairs",
+    		config = function() require("nvim-autopairs").setup {} end
 	}
+
+
+----	use { "L3MON4D3/LuaSnip",
+--		requires = {
+--			"rafamadriz/friendly-snippets",
+----			"saadparwaiz1/cmp_luasnip"
+--		},
+--	}
 	use {  "williamboman/mason.nvim",
 		config = function ()
 			require "plugins.mason"
