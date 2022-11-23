@@ -16,6 +16,10 @@ function vim
 	nvim $argv
 end
 
+function launch-term
+	docker exec -it core xterm -bg black -fg white -fa 'DejaVu Sans Mono' -fs 16 -e vcmd -c /tmp/pycore.1/$argv -- /bin/bash
+end
+
 function core
     xhost +local:root
     sudo docker exec -it core core-gui
@@ -33,6 +37,6 @@ function u
 	sudo pacman -Syu $argv 
 end
 
-set PATH /home/afonso/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin $PATH
+set PATH /home/afonso/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin $PATH
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/afonso/.ghcup/bin $PATH # ghcup-env
 set PATH $HOME/.local/bin $HOME/.cargo/bin $HOME/.local/bin $PATH
