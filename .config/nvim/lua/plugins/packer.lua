@@ -37,7 +37,7 @@ local plugins = packer.startup({function(use)
 
 	}
 
-	use {"ms-jpq/coq_nvim",
+	use {"ms-jpq/coq.artifacts",
 		branch = 'artifacts',
 	}
 
