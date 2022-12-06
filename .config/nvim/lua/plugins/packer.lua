@@ -17,9 +17,31 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
+	-------------------------------------------------------QOL----------------------------------------------
+
 	use {  "ggandor/leap.nvim",
 		config = function ()
 			require('leap').add_default_mappings()
+		end
+	}
+
+	use {'stevearc/dressing.nvim'} -- Rename variable pop up 
+
+	use {"windwp/nvim-autopairs",
+		config = function() require("nvim-autopairs").setup {} 
+		end
+	}
+	-------------------------------------------------------LSP----------------------------------------------
+
+	use {  "williamboman/mason.nvim",
+		config = function ()
+			require "plugins.mason"
+		end
+	}
+
+	use {  "williamboman/mason-lspconfig.nvim",
+		config = function ()
+			require "plugins.mason-lspconfig"
 		end
 	}
 
@@ -29,42 +51,42 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
-	use {"ms-jpq/coq_nvim",
-		branch = 'coq',
-		config = function ()
-			vim.g.coq_settings = { auto_start = 'shut-up'}
-		end
-
+	use { "L3MON4D3/LuaSnip",
+		requires = {
+			"rafamadriz/friendly-snippets",
+			"saadparwaiz1/cmp_luasnip"
+		},
 	}
-
-	use {"ms-jpq/coq_nvim",
-		branch = 'artifacts',
-	}
-
-	use {'stevearc/dressing.nvim'} -- Rename variable pop up 
-
-	use {"windwp/nvim-autopairs",
-    		config = function() require("nvim-autopairs").setup {} end
-	}
-
-
-----	use { "L3MON4D3/LuaSnip",
---		requires = {
---			"rafamadriz/friendly-snippets",
-----			"saadparwaiz1/cmp_luasnip"
---		},
---	}
-	use {  "williamboman/mason.nvim",
-		config = function ()
-			require "plugins.mason"
+	--------------------------------------------------SUGGESTION BOX-----------------------------------------
+	use { "hrsh7th/nvim-cmp",
+		config = function()
+			require "plugins.cmp"
 		end
 	}
+	---	use {"ms-jpq/coq_nvim",
+	---		branch = 'coq',
+	---		config = function ()
+	---			vim.g.coq_settings = { auto_start = 'shut-up'}
+	---		end
+	---
+	---	}
+	---
+	--	use {"ms-jpq/coq_nvim",
+	--		branch = 'artifacts',
+	--	}
+	-------------------------------------------------------------------------------------------
+
+
+
+
 
 	use {'nvim-tree/nvim-tree.lua',
-  		requires = {
-    		'nvim-tree/nvim-web-devicons', -- optional, for file icons
-  		},
-		require("nvim-tree").setup()
+		requires = {
+			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+		},
+		config = function()
+			require("nvim-tree").setup()
+		end
 	}
 	use {  "feline-nvim/feline.nvim" }
 
@@ -95,28 +117,28 @@ local plugins = packer.startup({function(use)
 	use {"jbyuki/instant.nvim"}
 
 	use {"narutoxy/silicon.lua",
-  		requires = { "nvim-lua/plenary.nvim" },
-  		config = function()
-    			require('silicon').setup({
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require('silicon').setup({
 				font = "FiraCode Nerd Font Mono",
 				output = "~/Pictures/SILICON_${year}-${month}-${date}.png",
 				debug = true
 			})
 			require "plugins.silicon"
-  		end
+		end
 	}
 
 	use {"tpope/vim-surround"}
 
 	use {"startup-nvim/startup.nvim",
 		requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
-     		config = function()
-       			require("startup").setup { theme = "dashboard" }
-     		end,
+		config = function()
+			require("startup").setup { theme = "dashboard" }
+		end,
 	}
-	
+
 	end,
-	
+
 	config = {
 		auto_clean = true,
 		compile_on_sync = true,
