@@ -2,7 +2,6 @@
 vim.wo.number=true
 vim.wo.relativenumber= true
 vim.g.instant_username = "Afonso"
-vim.opt.clipboard= 'unnamedplus'
 vim.opt.hlsearch = false
 vim.opt.smartindent = true
 vim.opt.wrap = false

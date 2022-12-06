@@ -59,10 +59,17 @@ local plugins = packer.startup({function(use)
 	}
 	--------------------------------------------------SUGGESTION BOX-----------------------------------------
 	use { "hrsh7th/nvim-cmp",
+		requires = {
+			'hrsh7th/cmp-nvim-lsp', -- lsp
+			'hrsh7th/cmp-buffer', --buffer completions
+			'hrsh7th/cmp-path', --path completions
+			'hrsh7th/cmp-cmdline' --cmdline completions
+		},
 		config = function()
 			require "plugins.cmp"
 		end
 	}
+
 	---	use {"ms-jpq/coq_nvim",
 	---		branch = 'coq',
 	---		config = function ()
