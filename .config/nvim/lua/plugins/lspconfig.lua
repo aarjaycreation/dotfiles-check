@@ -8,8 +8,8 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
 	vim.keymap.set('n', '<space>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
+		end, bufopts)
 	vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 	vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 	vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
@@ -31,52 +31,9 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n',  '<space>ge', function () vim.diagnostic.goto_next() end, bufopts)
 	vim.keymap.set('n',  '<space>gE', function () vim.diagnostic.goto_prev() end, bufopts)
 	vim.keymap.set('n', '<space>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
-	vim.api.nvim_create_autocmd('BufWritePre', {
-		pattern = '<buffer>',
-		callback =  function() vim.lsp.buf.format({ async = true }) end
-	})
+	--	vim.api.nvim_create_autocmd('BufWritePre', {
+	--		pattern = '<buffer>',
+	--		callback =  function() vim.lsp.buf.format({ async = true }) end
+	--	})
 end
 
-local lsp = require "lspconfig"
-
-lsp['hls'].setup{
-	on_attach = on_attach,
-	flags = lsp_flags,
-}
-
-lsp['rust_analyzer'].setup{
-
-		on_attach = on_attach,
-		flags = lsp_flags,
-		-- Server-specific settings...
-		settings = {
-			["rust-analyzer"] = {}
-		}
-}
-lsp['texlab'].setup{
-	on_attach = on_attach,
-	flags = lsp_flags,
-}
-lsp['sumneko_lua'].setup{
-
-	 settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
