@@ -31,6 +31,16 @@ local plugins = packer.startup({function(use)
 		config = function() require("nvim-autopairs").setup {} 
 		end
 	}
+
+	use {'kyazdani42/nvim-web-devicons'}
+
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		config = function ()
+			require 'plugins.lualine'
+		end
+	}
 	-------------------------------------------------------LSP----------------------------------------------
 
 	use {  "williamboman/mason.nvim",
@@ -70,22 +80,6 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
-	---	use {"ms-jpq/coq_nvim",
-	---		branch = 'coq',
-	---		config = function ()
-	---			vim.g.coq_settings = { auto_start = 'shut-up'}
-	---		end
-	---
-	---	}
-	---
-	--	use {"ms-jpq/coq_nvim",
-	--		branch = 'artifacts',
-	--	}
-	-------------------------------------------------------------------------------------------
-
-
-
-
 
 	use {'nvim-tree/nvim-tree.lua',
 		requires = {
@@ -96,9 +90,11 @@ local plugins = packer.startup({function(use)
 		end
 	}
 	use {  "feline-nvim/feline.nvim" }
+	-------------------------------------------THEMES------------------------------------------
 
 	use {"joshdick/onedark.vim" } 
-
+	use {"catppuccin/nvim"}
+	-------------------------------------------------------------------------------------------
 	use {"nvim-treesitter/nvim-treesitter",
 		config = function()
 			require "plugins.treesitter"
