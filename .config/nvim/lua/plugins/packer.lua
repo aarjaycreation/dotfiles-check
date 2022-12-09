@@ -105,6 +105,12 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
+	use {"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require "plugins.treesitter-context"
+		end
+	}
+
 	--Tabs
 	use {'romgrk/barbar.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
@@ -119,20 +125,6 @@ local plugins = packer.startup({function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} },
 		config = function() require('plugins.telescope') end
-	}
-	--live share like functionality
-	use {"jbyuki/instant.nvim"}
-
-	use {"narutoxy/silicon.lua",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require('silicon').setup({
-				font = "FiraCode Nerd Font Mono",
-				output = "~/Pictures/SILICON_${year}-${month}-${date}.png",
-				debug = true
-			})
-			require "plugins.silicon"
-		end
 	}
 
 	use {"tpope/vim-surround"}
