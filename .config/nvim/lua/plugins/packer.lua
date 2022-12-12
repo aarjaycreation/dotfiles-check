@@ -31,6 +31,16 @@ local plugins = packer.startup({function(use)
 		config = function() require("nvim-autopairs").setup {} 
 		end
 	}
+
+	use {'kyazdani42/nvim-web-devicons'}
+
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		config = function ()
+			require 'plugins.lualine'
+		end
+	}
 	-------------------------------------------------------LSP----------------------------------------------
 
 	use {  "williamboman/mason.nvim",
@@ -66,22 +76,6 @@ local plugins = packer.startup({function(use)
 		end
 	}
 
-	---	use {"ms-jpq/coq_nvim",
-	---		branch = 'coq',
-	---		config = function ()
-	---			vim.g.coq_settings = { auto_start = 'shut-up'}
-	---		end
-	---
-	---	}
-	---
-	--	use {"ms-jpq/coq_nvim",
-	--		branch = 'artifacts',
-	--	}
-	-------------------------------------------------------------------------------------------
-
-
-
-
 
 	use {'nvim-tree/nvim-tree.lua',
 		requires = {
@@ -92,12 +86,20 @@ local plugins = packer.startup({function(use)
 		end
 	}
 	use {  "feline-nvim/feline.nvim" }
+	-------------------------------------------THEMES------------------------------------------
 
 	use {"joshdick/onedark.vim" } 
-
+	use {"catppuccin/nvim"}
+	-------------------------------------------------------------------------------------------
 	use {"nvim-treesitter/nvim-treesitter",
 		config = function()
 			require "plugins.treesitter"
+		end
+	}
+
+	use {"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require "plugins.treesitter-context"
 		end
 	}
 
@@ -115,20 +117,6 @@ local plugins = packer.startup({function(use)
 		-- or                            , branch = '0.1.x',
 		requires = { {'nvim-lua/plenary.nvim'} },
 		config = function() require('plugins.telescope') end
-	}
-	--live share like functionality
-	use {"jbyuki/instant.nvim"}
-
-	use {"narutoxy/silicon.lua",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require('silicon').setup({
-				font = "FiraCode Nerd Font Mono",
-				output = "~/Pictures/SILICON_${year}-${month}-${date}.png",
-				debug = true
-			})
-			require "plugins.silicon"
-		end
 	}
 
 	use {"tpope/vim-surround"}
