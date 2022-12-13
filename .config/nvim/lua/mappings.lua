@@ -6,6 +6,7 @@ vim.opt.hlsearch = false
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.g.mapleader = " "
+vim.opt.scrolloff = 10
 --TAB KEYBINDINGS
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }

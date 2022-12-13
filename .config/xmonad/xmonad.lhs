@@ -225,6 +225,8 @@ Percent of screen to increment by when resizing panes
    , className =? "main" --> doFloat
    , className =? "Mailspring"  --> doShift (myWorkspaces !! 5)
    , className =? "Xmessage" --> doFloat
+   , title     =? "Steam - News" --> doFloat
+   , title     =? "Friends List" --> doFloat
    , isFullscreen -->  doFullFloat]
 \end{code}
 

@@ -52,4 +52,5 @@ setxkbmap -layout us,pt
 setxkbmap -option grp:win_space_toggle
 setxkbmap -option caps:escape
 xrandr --output DP-0 --primary --left-of HDMI-0
+xscreensaver -no-splash &
 /home/afonso/.local/bin/xmonad
