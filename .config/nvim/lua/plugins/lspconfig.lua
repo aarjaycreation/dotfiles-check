@@ -1,9 +1,11 @@
 local mason_lspconfig = require "mason-lspconfig"
+local notify          = require "notify"
 
 mason_lspconfig.setup({
 	ensure_installed = { "sumneko_lua", "rust_analyzer", "texlab", "hls", "yamlls" },
 	automatic_installation = true
 })
+
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -46,7 +48,22 @@ local on_attach = function(client, bufnr)
 	end
 end
 
+local on_init = function (client, initialize_result)
+	-- Alert user that LSP finished loading
+	notify("Finished loading " ..client.name, "info", {title = "LSP"})
+end
+
 local lspconfig = require "lspconfig"
+
+-- ADD NVIM CMP AS A CAPABILITY
+local lsp_defaults = lspconfig.util.default_config
+
+local capabilities = vim.tbl_deep_extend(
+  'force',
+  lsp_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
+
 
 mason_lspconfig.setup_handlers {
 
@@ -54,7 +71,9 @@ mason_lspconfig.setup_handlers {
 	function(server_name)
 		lspconfig[server_name].setup {
 			on_attach = on_attach,
+			on_init = on_init,
 			flags = lsp_flags,
+			capabilities = capabilities,
 		}
 	end,
 }
