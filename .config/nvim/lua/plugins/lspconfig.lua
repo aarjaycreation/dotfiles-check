@@ -1,12 +1,11 @@
-
 local mason_lspconfig = require "mason-lspconfig"
 
 mason_lspconfig.setup({
-    ensure_installed = { "sumneko_lua", "rust_analyzer" , "texlab", "hls"},
-    automatic_installation = true
+	ensure_installed = { "sumneko_lua", "rust_analyzer", "texlab", "hls", "yamlls" },
+	automatic_installation = true
 })
 
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -20,7 +19,7 @@ local on_attach = function(client, bufnr)
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap=true, silent=true, buffer=bufnr }
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -30,29 +29,32 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
 	vim.keymap.set('n', '<space>wl', function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, bufopts)
+	end, bufopts)
 	vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
 	vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
 	vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-	vim.keymap.set('n',  '<space>ge', function () vim.diagnostic.goto_next() end, bufopts)
-	vim.keymap.set('n',  '<space>gE', function () vim.diagnostic.goto_prev() end, bufopts)
+	vim.keymap.set('n', '<space>ge', function() vim.diagnostic.goto_next() end, bufopts)
+	vim.keymap.set('n', '<space>gE', function() vim.diagnostic.goto_prev() end, bufopts)
 	vim.keymap.set('n', '<space>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
 	--	vim.api.nvim_create_autocmd('BufWritePre', {
 	--		pattern = '<buffer>',
 	--		callback =  function() vim.lsp.buf.format({ async = true }) end
 	--	})
+	if client.name == "yamlls" then
+		client.server_capabilities.document_formatting = true
+	end
 end
 
 local lspconfig = require "lspconfig"
 
 mason_lspconfig.setup_handlers {
 
-    -- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
-  function (server_name)
-    lspconfig[server_name].setup {
-      on_attach = on_attach,
-      flags = lsp_flags,
-    }
-  end,
+	-- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
+	function(server_name)
+		lspconfig[server_name].setup {
+			on_attach = on_attach,
+			flags = lsp_flags,
+		}
+	end,
 }

@@ -1,59 +1,70 @@
-
 local packer = require("packer")
 
-local plugins = packer.startup({function(use)
+local plugins = packer.startup({ function(use)
 
 	use {
 		"wbthomason/packer.nvim",
 		config = [[require("plugins.packer")]]
 	}
 
-	use{  "lewis6991/impatient.nvim"}
+	use { "lewis6991/impatient.nvim" }
 
 
-	use{  "lervag/vimtex",
-		config = function ()
+	use { "lervag/vimtex",
+		config = function()
 			require "plugins.vimtex"
 		end
 	}
 
 	-------------------------------------------------------QOL----------------------------------------------
 
-	use {  "ggandor/leap.nvim",
-		config = function ()
+	use { "ggandor/leap.nvim",
+		config = function()
 			require('leap').add_default_mappings()
 		end
 	}
 
-	use {'stevearc/dressing.nvim'} -- Rename variable pop up 
+	use { 'stevearc/dressing.nvim' } -- Rename variable pop up
 
-	use {"windwp/nvim-autopairs",
-		config = function() require("nvim-autopairs").setup {} 
+	use { "windwp/nvim-autopairs",
+		config = function() require("nvim-autopairs").setup {}
 		end
 	}
 
-	use {'kyazdani42/nvim-web-devicons'}
+	use { 'kyazdani42/nvim-web-devicons' }
 
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		config = function ()
+		config = function()
 			require 'plugins.lualine'
+		end
+	}
+
+	use { 'rcarriga/nvim-notify',
+		config = function()
+			vim.notify = require("notify")
 		end
 	}
 	-------------------------------------------------------LSP----------------------------------------------
 
-	use {  "williamboman/mason.nvim",
-		config = function ()
+	use { "williamboman/mason.nvim",
+		config = function()
 			require "plugins.mason"
 		end
 	}
 
-	use {"williamboman/mason-lspconfig.nvim"}
+	use { "williamboman/mason-lspconfig.nvim" }
 
-	use {  "neovim/nvim-lspconfig",
-		config = function ()
+	use { "neovim/nvim-lspconfig",
+		config = function()
 			require "plugins.lspconfig"
+		end
+	}
+
+	use { "jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require "plugins.null-ls"
 		end
 	}
 
@@ -77,7 +88,7 @@ local plugins = packer.startup({function(use)
 	}
 
 
-	use {'nvim-tree/nvim-tree.lua',
+	use { 'nvim-tree/nvim-tree.lua',
 		requires = {
 			'nvim-tree/nvim-web-devicons', -- optional, for file icons
 		},
@@ -85,28 +96,28 @@ local plugins = packer.startup({function(use)
 			require("nvim-tree").setup()
 		end
 	}
-	use {  "feline-nvim/feline.nvim" }
+	use { "feline-nvim/feline.nvim" }
 	-------------------------------------------THEMES------------------------------------------
 
-	use {"joshdick/onedark.vim" } 
-	use {"catppuccin/nvim"}
+	use { "joshdick/onedark.vim" }
+	use { "catppuccin/nvim" }
 	-------------------------------------------------------------------------------------------
-	use {"nvim-treesitter/nvim-treesitter",
+	use { "nvim-treesitter/nvim-treesitter",
 		config = function()
 			require "plugins.treesitter"
 		end
 	}
 
-	use {"nvim-treesitter/nvim-treesitter-context",
+	use { "nvim-treesitter/nvim-treesitter-context",
 		config = function()
 			require "plugins.treesitter-context"
 		end
 	}
 
 	--Tabs
-	use {'romgrk/barbar.nvim',
+	use { 'romgrk/barbar.nvim',
 		requires = 'kyazdani42/nvim-web-devicons',
-		config = function ()
+		config = function()
 			require "plugins.barbar"
 		end
 	}
@@ -115,20 +126,20 @@ local plugins = packer.startup({function(use)
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
 		-- or                            , branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} },
+		requires = { { 'nvim-lua/plenary.nvim' } },
 		config = function() require('plugins.telescope') end
 	}
 
-	use {"tpope/vim-surround"}
+	use { "tpope/vim-surround" }
 
-	use {"startup-nvim/startup.nvim",
-		requires = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+	use { "startup-nvim/startup.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		config = function()
 			require("startup").setup { theme = "dashboard" }
 		end,
 	}
 
-	end,
+end,
 
 	config = {
 		auto_clean = true,
@@ -140,6 +151,6 @@ local plugins = packer.startup({function(use)
 			done_sym = " ",
 			removed_sym = " ",
 			moved_sym = "",
-		},	
+		},
 	}
 })
