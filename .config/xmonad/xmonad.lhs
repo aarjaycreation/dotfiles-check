@@ -41,7 +41,7 @@
 \subsubsection{App Variables}
 \begin{code}
  myTerminal      = "alacritty" 
- myTextEditor    = "vim"
+ myTextEditor    = "nvim"
  myWebBrowser    = "firefox"
 \end{code}
 
