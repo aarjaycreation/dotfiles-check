@@ -24,36 +24,38 @@ local plugins = packer.startup({ function(use)
 		end
 	}
 
-	use { 'stevearc/dressing.nvim' } -- Rename variable pop up
+	use { "stevearc/dressing.nvim" } -- Rename variable pop up
 
 	use { "windwp/nvim-autopairs",
 		config = function() require("nvim-autopairs").setup {}
 		end
 	}
 
-	use { 'kyazdani42/nvim-web-devicons' }
+	use { "kyazdani42/nvim-web-devicons" }
 
 	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 		config = function()
 			require 'plugins.lualine'
 		end
 	}
 
-	use { 'rcarriga/nvim-notify',
-		config = function()
-			vim.notify = require("notify")
-		end
-	}
+    use {"j-hui/fidget.nvim",
+        config = function ()
+            require("fidget").setup{}
+        end
+    }
+
+	use {"voldikss/vim-floaterm"}
 
 	--------------------------------------------------SUGGESTION BOX-----------------------------------------
 	use { "hrsh7th/nvim-cmp",
 		requires = {
-			'hrsh7th/cmp-nvim-lsp', -- lsp
-			'hrsh7th/cmp-buffer', --buffer completions
-			'hrsh7th/cmp-path', --path completions
-			'hrsh7th/cmp-cmdline' --cmdline completions
+			"hrsh7th/cmp-nvim-lsp", -- lsp
+			"hrsh7th/cmp-buffer", --buffer completions
+			"hrsh7th/cmp-path", --path completions
+			"hrsh7th/cmp-cmdline" --cmdline completions
 		},
 		config = function()
 			require "plugins.cmp"
@@ -92,9 +94,9 @@ local plugins = packer.startup({ function(use)
 
 	------------------------------------------------------------------------------------------
 
-	use { 'nvim-tree/nvim-tree.lua',
+	use { "nvim-tree/nvim-tree.lua",
 		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icons
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
 		config = function()
 			require("nvim-tree").setup()
@@ -119,8 +121,8 @@ local plugins = packer.startup({ function(use)
 	}
 
 	--Tabs
-	use { 'romgrk/barbar.nvim',
-		requires = 'kyazdani42/nvim-web-devicons',
+	use { "romgrk/barbar.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
 			require "plugins.barbar"
 		end
@@ -128,9 +130,9 @@ local plugins = packer.startup({ function(use)
 
 	--fuzzy file finding
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		"nvim-telescope/telescope.nvim", tag = '0.1.0',
 		-- or                            , branch = '0.1.x',
-		requires = { { 'nvim-lua/plenary.nvim' } },
+		requires = { { "nvim-lua/plenary.nvim" } },
 		config = function() require('plugins.telescope') end
 	}
 

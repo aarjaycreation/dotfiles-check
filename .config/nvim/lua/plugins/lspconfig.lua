@@ -1,5 +1,4 @@
 local mason_lspconfig = require "mason-lspconfig"
-local notify          = require "notify"
 
 mason_lspconfig.setup({
 	ensure_installed = { "sumneko_lua", "rust_analyzer", "texlab", "hls", "yamlls" },
@@ -48,11 +47,6 @@ local on_attach = function(client, bufnr)
 	end
 end
 
-local on_init = function (client, initialize_result)
-	-- Alert user that LSP finished loading
-	notify("Finished loading " ..client.name, "info", {title = "LSP"})
-end
-
 local lspconfig = require "lspconfig"
 
 -- ADD NVIM CMP AS A CAPABILITY
@@ -71,7 +65,6 @@ mason_lspconfig.setup_handlers {
 	function(server_name)
 		lspconfig[server_name].setup {
 			on_attach = on_attach,
-			on_init = on_init,
 			flags = lsp_flags,
 			capabilities = capabilities,
 		}
