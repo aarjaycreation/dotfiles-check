@@ -17,7 +17,7 @@ function vim
 end
 
 function launch-term
-	docker exec -it core xterm -bg black -fg white -fa 'DejaVu Sans Mono' -fs 16 -e vcmd -c /tmp/pycore.1/$argv -- /bin/bash
+	docker exec -it core xterm -bg black -fg white -fa 'DejaVu Sans Mono' -fs 16 -e vcmd -c /tmp/pycore.1/$argv -- sh -c "cd /rust-cc && /bin/bash"
 end
 
 function core
@@ -37,8 +37,13 @@ function u
 	sudo pacman -Syu $argv 
 end
 
+function mónade
+	ghci $argv
+end 
+
 set -gx EDITOR vim
 
+fish_add_path /var/lib/snapd/snap/bin
 fish_add_path $HOME/.local/share/nvim/mason/bin
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/afonso/.ghcup/bin $PATH # ghcup-env
 fish_add_path /home/afonso/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin
