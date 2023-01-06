@@ -53,6 +53,8 @@ local plugins = packer.startup({ function(use)
 	use { "hrsh7th/nvim-cmp",
 		requires = {
 			"hrsh7th/cmp-nvim-lsp", -- lsp
+            "hrsh7th/cmp-nvim-lua", -- Nvim API completions
+            "hrsh7th/cmp-nvim-lsp-signature-help", -- Show function signatures
 			"hrsh7th/cmp-buffer", --buffer completions
 			"hrsh7th/cmp-path", --path completions
 			"hrsh7th/cmp-cmdline" --cmdline completions
@@ -60,6 +62,12 @@ local plugins = packer.startup({ function(use)
 		config = function()
 			require "plugins.cmp"
 		end
+	}
+
+	use { "L3MON4D3/LuaSnip",
+		requires = {
+			"saadparwaiz1/cmp_luasnip"
+		},
 	}
 	-------------------------------------------------------LSP----------------------------------------------
 	
@@ -70,8 +78,6 @@ local plugins = packer.startup({ function(use)
 	}
 
 	use { "williamboman/mason-lspconfig.nvim" }
-
-	use { "hrsh7th/cmp-nvim-lsp"}
 
 	use { "neovim/nvim-lspconfig",
 		config = function()
@@ -85,12 +91,6 @@ local plugins = packer.startup({ function(use)
 		end
 	}
 
-	use { "L3MON4D3/LuaSnip",
-		requires = {
-			"rafamadriz/friendly-snippets",
-			"saadparwaiz1/cmp_luasnip"
-		},
-	}
 
 	------------------------------------------------------------------------------------------
 
