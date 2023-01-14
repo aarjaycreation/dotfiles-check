@@ -1,0 +1,29 @@
+--Leader
+vim.g.mapleader = " "
+--termguicolors
+vim.opt.termguicolors = true
+--Relative line numbers
+vim.wo.number=true
+vim.wo.relativenumber= true
+--Remove search highlight
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.smartindent = true
+--Move lines
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+--Remove Wrap
+vim.opt.wrap = false
+--Not let cursor go bellow 10 chars.
+vim.opt.scrolloff = 10
+--4 space indent
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+--quickfix keybinds 
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+--Undo dir
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true

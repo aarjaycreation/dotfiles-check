@@ -42,6 +42,7 @@ function mónade
 end 
 
 set -gx EDITOR vim
+set -gx TERM 'xterm-256color'
 
 fish_add_path /var/lib/snapd/snap/bin
 fish_add_path $HOME/.local/share/nvim/mason/bin
