@@ -89,8 +89,7 @@
     
 Screenshot
 
->   , ("<Print>", spawn "flameshot screen")
->    , ("S-<Print>", spawn "flameshot gui")
+>   , ("<Print>", spawn "flameshot gui")
 
 AUDIO CONTROLS
 
@@ -258,21 +257,6 @@ Percent of screen to increment by when resizing panes
 
 \begin{code}
 
- actionPrefix, actionButton, actionSuffix :: [Char]
- actionPrefix = "<action=`xdotool key super+"
- actionButton = "` button="
- actionSuffix = "</action>"
- 
- addActions :: [(String, Int)] -> String -> String
- addActions [] ws = ws
- addActions (x:xs) ws = addActions xs (actionPrefix ++ k ++ actionButton ++ show b ++ ">" ++ ws ++ actionSuffix)
-    where k = fst x
-          b = snd x
-
- clickable :: [Char] -> [Char] -> [Char]
- clickable icon ws = addActions [ (show i, 1), ("q", 2), ("Left", 4), ("Right", 5) ] icon
-                    where i = fromJust $ M.lookup ws myWorkspaceIndices
-
  myStatusBarSpawner :: Applicative f => ScreenId -> f StatusBarConfig
  myStatusBarSpawner (S s) = do
                     pure $ statusBarPropTo ("_XMONAD_LOG_" ++ show s)
@@ -284,12 +268,12 @@ Percent of screen to increment by when resizing panes
  myXmobarPP s  =  def
   { ppSep = ""
   , ppWsSep = ""
-  , ppCurrent = xmobarColor cyan "" . clickable wsIconFull
-  , ppVisible = xmobarColor grey4 "" . clickable wsIconFull
-  , ppVisibleNoWindows = Just (xmobarColor grey4 "" . clickable wsIconFull)
-  , ppHidden = xmobarColor grey2 "" . clickable wsIconHidden
-  , ppHiddenNoWindows = xmobarColor grey2 "" . clickable wsIconEmpty
-  , ppUrgent = xmobarColor orange "" . clickable wsIconFull
+  , ppCurrent = xmobarColor cyan "" . const wsIconFull
+  , ppVisible = xmobarColor grey4 "" . const wsIconFull
+  , ppVisibleNoWindows = Just (xmobarColor grey4 "" . const wsIconFull)
+  , ppHidden = xmobarColor grey2 "" . const wsIconHidden
+  , ppHiddenNoWindows = xmobarColor grey2 "" . const wsIconEmpty
+  , ppUrgent = xmobarColor orange "" . const wsIconFull
   , ppOrder = \(ws : _ : _ : extras) -> ws : extras
   , ppExtras  = [ wrapL "    " "    " $ layoutColorIsActive s (logLayoutOnScreen s)
                 ,titleColorIsActive s (shortenL 81 $ logTitleOnScreen s)
