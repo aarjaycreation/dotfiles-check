@@ -9,7 +9,7 @@ lazy.setup({
     { 'catppuccin/nvim',
         lazy = false,
         priority = 1000,
-        config = function ()
+        config = function()
             require('plugins.catppuccin')
         end
     },
@@ -18,6 +18,14 @@ lazy.setup({
     { 'ggandor/leap.nvim',
         config = function()
             require('leap').add_default_mappings()
+        end
+    },
+
+    { 'folke/zen-mode.nvim',
+        config = function()
+            require("zen-mode").setup {
+                vim.keymap.set('n', '<leader>z', '<Cmd> ZenMode <CR>',{noremap=true,silent=true})
+            }
         end
     },
 
@@ -63,7 +71,11 @@ lazy.setup({
     --LSP Status
     { 'j-hui/fidget.nvim',
         config = function()
-            require('fidget').setup {}
+            require('fidget').setup {
+                window = {
+                    blend = 0,
+                }
+            }
         end
     },
 
@@ -115,12 +127,6 @@ lazy.setup({
             require("plugins.bufferline")
         end
     },
-    --{ 'romgrk/barbar.nvim',
-    --    dependencies = 'nvim-tree/nvim-web-devicons',
-    --    config = function()
-    --        require 'plugins.barbar'
-    --    end
-    --},
 
     --does so much
     {
@@ -138,5 +144,6 @@ lazy.setup({
             require('startup').setup { theme = 'dashboard' }
         end,
     },
+
 
 })

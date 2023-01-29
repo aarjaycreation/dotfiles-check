@@ -135,7 +135,6 @@ cmp.setup {
                     local col = context.cursor.col
                     local char_before_cursor = string.sub(line, col - 1, col - 1)
 
-
                     if char_before_cursor == "." then
                         if kind == 2 or kind == 5 then
                             return true
@@ -159,6 +158,9 @@ cmp.setup {
         {
             --This sources will only show up if there aren't any sources from the other list
             { name = "buffer", keyword_length = 5 },
+        },
+        {
+            { name = "orgmode" }
         }
     ),
     confirm_opts = {

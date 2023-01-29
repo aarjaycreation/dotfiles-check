@@ -8,14 +8,13 @@ if not present then
 end
 
 local options = {
-    ensure_installed = { "lua", "haskell", "rust", "markdown", "markdown_inline" },
+    ensure_installed = { "c", "lua", "haskell", "rust", "markdown", "markdown_inline" , "org"},
 
     highlight = {
         enable = true,
         use_languagetree = true,
-        additional_vim_regex_highlighting = { "markdown" },
+        additional_vim_regex_highlighting = { "markdown" , "org"},
     },
-
     indent = {
         enable = true,
     },

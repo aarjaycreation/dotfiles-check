@@ -67,7 +67,6 @@ require("bufferline").setup({
         sort_by = 'insert_after_current',
         custom_filter = function(buf_number, buf_numbers)
             -- filter out filetypes you don't want to see
-            print(vim.bo[buf_number].filetype)
             if vim.bo[buf_number].filetype ~= "" then
                 return true
             end

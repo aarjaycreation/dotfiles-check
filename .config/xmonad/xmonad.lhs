@@ -81,7 +81,7 @@
  launch rofi
 
 >    , ("M-p", spawn "rofi -show drun")
->    , ("M-s", spawn "selected=$(ls ~/.config/rofi/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
+>    , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
 
  launch web browser
 

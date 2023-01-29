@@ -27,3 +27,6 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 --Undo dir
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
+--Org mode hide links
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = 'nc'
