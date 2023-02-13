@@ -6,7 +6,9 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Util.Loggers (logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL, xmobarColorL)
 import XMonad.Hooks.SetWMName
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.UpdateFocus (focusUnderPointer)
 import XMonad.Hooks.StatusBar
+import XMonad.Layout.NoBorders
 import qualified XMonad.StackSet as W
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run
@@ -29,6 +31,12 @@ myWebBrowser    = "firefox"
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
+myFocusUnderPointer action = do
+                            c <- focusUnderPointer
+                            a <- action
+                            b <- focusUnderPointer
+                            return ()
+
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
@@ -48,7 +56,7 @@ myModMask       = mod4Mask
 
 myKeys :: [(String, X ())]
 myKeys =
-    [ ("M-x" ,spawn myTerminal )
+    [ ("M-x" ,myFocusUnderPointer  (spawn myTerminal) )
     , ("M-p", spawn "rofi -show drun")
     , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
     , ("M-b", spawn myWebBrowser)
@@ -59,7 +67,7 @@ myKeys =
     ,("<XF86MonBrightnessUp>", spawn "lux -a 10%")
     ,("<XF86MonBrightnessDown>", spawn "lux -s 10%")
     ,("M-n", spawn $ myTerminal ++  " -e nmtui")
-    , ("M-q", kill)
+    , ("M-q",  kill)
     , ("M-S-<Space>", sendMessage NextLayout)
     , ("M-<Down>", windows W.focusDown)
     , ("M-<Up>", windows W.focusUp  )
@@ -172,7 +180,7 @@ myConfig =  def
       normalBorderColor  = myNormalBorderColor,
       focusedBorderColor = myFocusedBorderColor,
      -- keys               = myKeys,
-      layoutHook         = spacingWithEdge 10 $ myLayout,
+      layoutHook         = smartBorders . spacingWithEdge 10 $ myLayout,
       manageHook         = manageSpawn <+> myManageHook <+> manageHook def,
       handleEventHook    = myEventHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True) ,
       startupHook        = myStartupHook}
