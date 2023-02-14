@@ -1,0 +1,25 @@
+* {
+    all: unset;
+}
+
+window {
+    border-radius: 5%;
+}
+
+.btns-box {
+    padding: 10px;
+    background-color: #282a36;
+    font-family: FiraCode Nerd Font Mono;
+    font-size: 100px;
+}
+
+.button{
+    border-radius: 5%;
+    outline-style: solid;
+    outline-color: #44475a;
+    outline-width: 2px;
+}
+
+.button:hover{
+    background-color: #44475a;
+}

@@ -1,0 +1,24 @@
+(defwindow powermenu
+  :stacking "fg"
+  :windowtype "dialog"
+  :wm-ignore true
+  :monitor 0
+  :geometry (geometry :anchor "center" :width "50%" :height "25%")
+  (powermenu_layout))
+
+(defwidget powermenu_layout []
+    (_buttons :sleep "systemctl suspend"
+              :sleep_icon "⏾"
+              :poweroff "poweroff"
+              :poweroff_icon "⏻"
+              :reboot "reboot"
+              :reboot_icon ""
+              :logout "loginctl kill-session self"
+              :logout_icon "󰗽"))
+
+(defwidget _buttons [sleep sleep_icon poweroff poweroff_icon reboot reboot_icon logout logout_icon]
+  (box :class "btns-box"
+    (button :class "button" :onclick sleep sleep_icon)
+    (button :class "button" :onclick poweroff poweroff_icon)
+    (button :class "button" :onclick reboot reboot_icon)
+    (button :class "button" :onclick logout logout_icon)))
