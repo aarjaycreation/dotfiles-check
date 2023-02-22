@@ -4,20 +4,20 @@ require('nvim-treesitter.install').update({ with_sync = true })
 
 
 if not present then
-  return
+    return
 end
 
 local options = {
-  ensure_installed = {"lua", "haskell", "rust", },
+    ensure_installed = { "c", "lua", "haskell", "rust", "markdown", "markdown_inline" , "org"},
 
-  highlight = {
-    enable = true,
-    use_languagetree = true,
-  },
-
-  indent = {
-    enable = true,
-  },
+    highlight = {
+        enable = true,
+        use_languagetree = true,
+        additional_vim_regex_highlighting = { "markdown" , "org"},
+    },
+    indent = {
+        enable = true,
+    },
 }
 
 treesitter.setup(options)
