@@ -1,41 +1,46 @@
 {-# OPTIONS_GHC -Wno-deprecations #-}
 
 import XMonad
+
+--Utils
 import XMonad.Util.EZConfig (additionalKeysP,removeKeysP)
-import XMonad.Hooks.DynamicLog
 import XMonad.Util.Loggers (logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL, xmobarColorL)
-import XMonad.Hooks.SetWMName
-import XMonad.Actions.SpawnOn
-import XMonad.Actions.UpdateFocus (focusUnderPointer)
-import XMonad.Hooks.StatusBar
-import XMonad.Layout.NoBorders
-import qualified XMonad.StackSet as W
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run
-import Data.Maybe (fromJust)
+import XMonad.Util.SpawnOnce
+import XMonad.Util.NamedScratchpad as NS
+
+--Hooks
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.SetWMName
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import Data.Monoid
-import Colors.Teal
-import System.Exit
-import XMonad.Util.SpawnOnce
-import XMonad.Layout.Spacing
 import XMonad.Hooks.WindowSwallowing
+
+--Actions
+import XMonad.Actions.SpawnOn
+import XMonad.Actions.UpdateFocus (focusUnderPointer)
+
+--Layouts
+import XMonad.Layout.NoBorders
+import XMonad.Layout.Spacing
+
+--Miscellaneous
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
+import System.Exit
+
+--Color Scheme
+import Colors.Teal
 
 myTerminal      = "alacritty" 
 myTextEditor    = "nvim"
 myWebBrowser    = "firefox"
+myModMask       = mod4Mask
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
-
-myFocusUnderPointer action = do
-                            c <- focusUnderPointer
-                            a <- action
-                            b <- focusUnderPointer
-                            return ()
 
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
@@ -49,24 +54,36 @@ myFocusedBorderColor = "#01F9C6"
 myBorderWidth   = 2
 
 myWorkspaces    = ["main","web","text","code","social","mail"]
+myWorkspaceIndices = zip myWorkspaces [1..]
 
-myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..]
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [NS "terminal" spawnTerm findTerm manageTerm]
+    where
+        spawnTerm  = myTerminal ++ " -t scratchpad"
+        findTerm   = title =? "scratchpad"
+        manageTerm = customFloating $ W.RationalRect l t w h
+            where
+                h = 0.6
+                w = 0.6
+                t = 0.7 -h
+                l = 0.8 -w
 
-myModMask       = mod4Mask
 
 myKeys :: [(String, X ())]
 myKeys =
-    [ ("M-x" ,myFocusUnderPointer  (spawn myTerminal) )
+    [ ("M-x" ,spawn myTerminal )
+    , ("M-S-x", namedScratchpadAction myScratchPads "terminal")
     , ("M-p", spawn "rofi -show drun")
+    , ("M-S-p", spawn "eww open --toggle powermenu")
     , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
     , ("M-b", spawn myWebBrowser)
-   , ("<Print>", spawn "flameshot gui")
+    , ("<Print>", spawn "flameshot gui")
     , ("<XF86AudioMute>", spawn "pamixer set --toggle-mute")
     , ("<XF86AudioLowerVolume>", spawn "pamixer -d 5")
     , ("<XF86AudioRaiseVolume>", spawn "pamixer -i 5")
-    ,("<XF86MonBrightnessUp>", spawn "lux -a 10%")
-    ,("<XF86MonBrightnessDown>", spawn "lux -s 10%")
-    ,("M-n", spawn $ myTerminal ++  " -e nmtui")
+    , ("<XF86MonBrightnessUp>", spawn "lux -a 10%")
+    , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
+    , ("M-n", spawn $ myTerminal ++  " -e nmtui")
     , ("M-q",  kill)
     , ("M-S-<Space>", sendMessage NextLayout)
     , ("M-<Down>", windows W.focusDown)
@@ -81,7 +98,7 @@ myKeys =
     ]
     ++
     [("M-" ++ m ++ (show k), windows $ f i)
-        | (i, k) <- zip myWorkspaces [1..]
+        | (i, k) <- myWorkspaceIndices
         , (f, m) <- [(W.greedyView, "0"), (W.shift, "S-")]]
     ++
     [("M-" ++ m ++ key, screenWorkspace sc >>= flip whenJust (windows . f))
@@ -89,6 +106,7 @@ myKeys =
         , (f, m) <- [(W.view, "0"), (W.shift, "S-")]]
 
 myRemoveKeys = ["M-S-<Return>","M-S-p","M-S-c","M-<Space>","M-n","M-S-q"]
+
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
                                       >> windows W.shiftMaster))
@@ -118,6 +136,7 @@ myManageHook = composeAll
   , className =? "Xmessage" --> doFloat
   , title     =? "Steam - News" --> doFloat
   , title     =? "Friends List" --> doFloat
+  , title     =? "scratchpad"   --> doFloat
   , isFullscreen -->  doFullFloat]
 
 myEventHook = ewmhDesktopsEventHook
@@ -183,59 +202,8 @@ myConfig =  def
       layoutHook         = smartBorders . spacingWithEdge 10 $ myLayout,
       manageHook         = manageSpawn <+> myManageHook <+> manageHook def,
       handleEventHook    = myEventHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True) ,
-      startupHook        = myStartupHook}
+      startupHook        = myStartupHook
+      }
 
 main :: IO ()
-main = do
-       xmonad . ewmh . ewmhFullscreen . dynamicSBs myStatusBarSpawner . docks $ additionalKeysP (removeKeysP myConfig myRemoveKeys) myKeys
-
-help :: String
-help = unlines ["The default modifier key is 'alt'. Default keybindings:",
-    "",
-    "-- launching and killing programs",
-    "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
-    "mod-Shift-c      Close/kill the focused window",
-    "mod-Space        Rotate through the available layout algorithms",
-    "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-    "mod-n            Resize/refresh viewed windows to the correct size",
-    "",
-    "-- move focus up or down the window stack",
-    "mod-Tab        Move focus to the next window",
-    "mod-Shift-Tab  Move focus to the previous window",
-    "mod-j          Move focus to the next window",
-    "mod-k          Move focus to the previous window",
-    "mod-m          Move focus to the master window",
-    "",
-    "-- modifying the window order",
-    "mod-Return   Swap the focused window and the master window",
-    "mod-Shift-j  Swap the focused window with the next window",
-    "mod-Shift-k  Swap the focused window with the previous window",
-    "",
-    "-- resizing the master/slave ratio",
-    "mod-h  Shrink the master area",
-    "mod-l  Expand the master area",
-    "",
-    "-- floating layer support",
-    "mod-t  Push window back into tiling; unfloat and re-tile it",
-    "",
-    "-- increase or decrease number of windows in the master area",
-    "mod-comma  (mod-,)   Increment the number of windows in the master area",
-    "mod-period (mod-.)   Deincrement the number of windows in the master area",
-    "",
-    "-- quit, or restart",
-    "mod-Shift-q  Quit xmonad",
-    "mod-q        Restart xmonad",
-    "mod-[1..9]   Switch to workSpace N",
-    "",
-    "-- Workspaces & screens",
-    "mod-Shift-[1..9]   Move client to workspace N",
-    "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
-    "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
-    "",
-    "-- Mouse bindings: default actions bound to mouse events",
-    "mod-button1  Set the window to floating mode and move by dragging",
-    "mod-button2  Raise the window to the top of the stack",
-    "mod-button3  Set the window to floating mode and resize by dragging"]
-
+main = xmonad . ewmh . ewmhFullscreen . dynamicSBs myStatusBarSpawner . docks $ additionalKeysP (removeKeysP myConfig myRemoveKeys) myKeys
