@@ -1,7 +1,7 @@
 local mason_lspconfig = require "mason-lspconfig"
 
 mason_lspconfig.setup({
-	ensure_installed = { "sumneko_lua", "rust_analyzer", "texlab", "hls", "yamlls" },
+	ensure_installed = { "lua_ls", "rust_analyzer", "texlab", "hls", "yamlls" },
 	automatic_installation = true
 })
 
