@@ -38,7 +38,7 @@ function s
 end
 
 function u
-    sudo pacman -Sy && sudo powerpill -Su && sudo pacman -Su
+    sudo pacman -Sy && sudo powerpill -Su 
 end
 
 function mónade
