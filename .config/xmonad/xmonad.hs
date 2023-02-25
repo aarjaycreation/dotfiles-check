@@ -149,32 +149,6 @@ myManageHook = composeAll
 
 myEventHook = ewmhDesktopsEventHook
 
-
-multiScreenFocusHook :: Event -> X All
-multiScreenFocusHook MotionEvent { ev_x = x, ev_y = y } = do
-  ms <- getScreenForPos x y
-  let cursorScreenID = W.screen <$> ms
-  focussedScreenID <- W.screen . W.current . windowset <$> get
-  when (cursorScreenID /= Just focussedScreenID) $
-    maybe (return ()) (windows . W.view . W.tag . W.workspace) ms
-  return (All True)
-  where
-    getScreenForPos :: CInt -> CInt
-      -> X (Maybe (W.Screen WorkspaceId (Layout Window) Window ScreenId ScreenDetail))
-    getScreenForPos x y = do
-      ws <- windowset <$> get
-      let screens = W.current ws : W.visible ws
-          inRects = map (inRect x y . screenRect . W.screenDetail) screens
-      return $ fst <$> find snd (zip screens inRects)
-
-    inRect :: CInt -> CInt -> Rectangle -> Bool
-    inRect x y rect =
-      let l = fromIntegral (rect_x rect)
-          r = l + fromIntegral (rect_width rect)
-          t = fromIntegral (rect_y rect)
-          b = t + fromIntegral (rect_height rect)
-      in x >= l && x < r && y >= t && y < b
-
 myStartupHook = do
       spawnOnce "pasystray"
       spawnOnce "nitrogen --restore &"
@@ -225,7 +199,6 @@ myXmobarPP s  =  def
 
 myConfig =  def
       {
-      rootMask           = rootMask def .|. pointerMotionMask,
       terminal           = myTerminal,
       focusFollowsMouse  = myFocusFollowsMouse,
       clickJustFocuses   = myClickJustFocuses,
@@ -237,7 +210,7 @@ myConfig =  def
      -- keys               = myKeys,
       layoutHook         = smartBorders . spacingWithEdge 10 $ myLayout,
       manageHook         = manageSpawn <+> myManageHook <+> manageHook def,
-      handleEventHook    = myEventHook <+> multiScreenFocusHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True),
+      handleEventHook    = myEventHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True),
       startupHook        = myStartupHook
       }
 
