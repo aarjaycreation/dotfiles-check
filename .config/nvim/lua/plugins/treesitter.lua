@@ -8,7 +8,7 @@ if not present then
 end
 
 local options = {
-    ensure_installed = { "c", "lua", "haskell", "rust", "markdown", "markdown_inline" , "org"},
+    ensure_installed = { "c", "lua", "haskell", "rust", "markdown", "org"},
 
     highlight = {
         enable = true,
