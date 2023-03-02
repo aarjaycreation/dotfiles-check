@@ -20,10 +20,6 @@ function launch-term
 	docker exec -it core xterm -bg black -fg white -fa 'DejaVu Sans Mono' -fs 16 -e vcmd -c /tmp/pycore.1/$argv -- sh -c "cd /rust-cc && /bin/bash"
 end
 
-function cat
-    bat $argv
-end
-
 function core
     xhost +local:root
     sudo docker exec -it core core-gui
@@ -39,6 +35,10 @@ end
 
 function u
     sudo pacman -Sy && sudo powerpill -Su 
+end
+
+function r
+    sudo pacman -Rns $argv
 end
 
 function mónade
