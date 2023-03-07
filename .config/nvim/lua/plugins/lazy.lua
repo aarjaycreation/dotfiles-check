@@ -145,9 +145,23 @@ lazy.setup({
         end,
     },
 
-    -------------------------------------------SYNTAX----------------------------------------------
-    'kmonad/kmonad-vim',
-    'elkowar/yuck.vim'
+    -------------------------------------------OTHERS----------------------------------------------
 
+    {
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers",
+        opts = {
+            load = {
+                ["core.defaults"] = {}, -- Loads default behaviour
+                ["core.norg.concealer"] = {} -- Adds pretty icons to your documents
+            },
+        },
+        dependencies = { { "nvim-lua/plenary.nvim" } },
+    },
+
+    'kmonad/kmonad-vim',
+    'elkowar/yuck.vim',
+    --Discord Rich Presence
+    'andweeb/presence.nvim'
 
 })
