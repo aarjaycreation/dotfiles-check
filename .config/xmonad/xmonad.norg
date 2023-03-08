@@ -2,7 +2,7 @@
 title: Xmonad Config
 authors: Afonso Franco
 categories: configs
-tangle: ./xmonad.hs
+tangle: /home/afonso/.config/xmonad/xmonad.hs
 @end
 
 * Overrides
@@ -103,7 +103,7 @@ myKeys =
     [ ("M-x" ,spawn myTerminal )
     , ("M-S-x", namedScratchpadAction myScratchPads "terminal")
     , ("M-p", spawn "rofi -show drun -show-icons")
-    , ("M-S-p", spawn "eww open --toggle powermenu")
+    , ("M-S-p", spawn "rofi -show p -modi p:rofi-power-menu")
     , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
     , ("M-b", spawn myWebBrowser)
     , ("<Print>", spawn "flameshot gui")
