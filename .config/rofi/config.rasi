@@ -1,7 +1,13 @@
 configuration {
- modi: "window,drun,ssh,combi";
- font: "FiraCode Nerd Font Mono 10";
- combi-modi: "window,drun,ssh";
+ modi: "drun,filebrowser";
+ font: "FiraCode Nerd Font Mono 16";
+ show-icons: true;
+ drun-display-format: "{icon} {name}";
+ disable-history: false;
+ hide-scrollbar: true;
+ display-drun: "  Apps";
+ display-Network:" 󰤨  Network";
+ sidebar-mode: true;
  }
 @theme "~/.config/rofi/themes/teal.rasi"
 

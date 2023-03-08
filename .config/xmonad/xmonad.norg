@@ -102,7 +102,7 @@ myKeys :: [(String, X ())]
 myKeys =
     [ ("M-x" ,spawn myTerminal )
     , ("M-S-x", namedScratchpadAction myScratchPads "terminal")
-    , ("M-p", spawn "rofi -show drun")
+    , ("M-p", spawn "rofi -show drun -show-icons")
     , ("M-S-p", spawn "eww open --toggle powermenu")
     , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
     , ("M-b", spawn myWebBrowser)
