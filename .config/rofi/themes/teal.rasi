@@ -19,8 +19,8 @@ element-text, element-icon , mode-switcher {
 
 window {
     height: 360px;
-    border: 3px;
-    border-color: @border-col;
+    border: 1px;
+    border-color: black;
     background-color: @bg-col;
 }
 
@@ -32,7 +32,7 @@ inputbar {
     children: [prompt,entry];
     background-color: @bg-col;
     border-radius: 5px;
-    padding: 2px;
+    padding: 4px;
 }
 
 prompt {
@@ -40,7 +40,7 @@ prompt {
     padding: 6px;
     text-color: @bg-col;
     border-radius: 3px;
-    margin: 20px 0px 0px 20px;
+    margin: 20px 0px 0px 10px;
 }
 
 textbox-prompt-colon {
@@ -50,22 +50,22 @@ textbox-prompt-colon {
 
 entry {
     padding: 6px;
-    margin: 20px 0px 0px 10px;
+    margin: 20px 0px 0px 20px;
     text-color: @fg-col;
     background-color: @bg-col;
 }
 
 listview {
     border: 0px 0px 0px;
-    padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
+    padding: 6px 0px 6px;
+    margin: 10px 0px 0px 10px;
     columns: 1;
-    lines: 3;
     background-color: @bg-col;
 }
 
 element {
     padding: 5px;
+    border-radius:6px;
     background-color: @bg-col;
     text-color: @fg-col  ;
 }
@@ -105,7 +105,7 @@ message {
 
 textbox {
     padding: 6px;
-    margin: 20px 0px 0px 20px;
+    margin: 10px 0px 0px 10px;
     text-color: @blue;
     background-color: @bg-col-light;
 }

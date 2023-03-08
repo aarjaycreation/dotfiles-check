@@ -5,8 +5,7 @@ configuration {
  drun-display-format: "{icon} {name}";
  disable-history: false;
  hide-scrollbar: true;
- display-drun: "  Apps";
- display-Network:" 󰤨  Network";
+ display-drun: " Apps";
  sidebar-mode: true;
  }
 @theme "~/.config/rofi/themes/teal.rasi"
