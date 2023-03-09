@@ -104,6 +104,8 @@ lazy.setup({
             require 'plugins.vimtex'
         end
     },
+
+    {'github/copilot.vim'},
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting
     { 'nvim-treesitter/nvim-treesitter',

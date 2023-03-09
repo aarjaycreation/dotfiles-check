@@ -151,6 +151,7 @@ cmp.setup {
 
             },
             { name = 'nvim_lua' },
+            { name = 'copilot' },
             { name = 'luasnip' },
             { name = 'nvim_lsp_signature_help' },
             { name = "path" },
