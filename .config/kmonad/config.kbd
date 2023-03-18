@@ -16,22 +16,37 @@
   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
 
-#| SET KEY TO LAYOUT |#
-
-(defalias esc (tap-hold 200 esc (layer-toggle numrow)))
-
 #| LAYOUTS |#
 
+(defalias esc (tap-hold 200 esc (layer-toggle numrow-layer)))
+(defalias tmux (tap-hold 200 lalt (layer-toggle tmux-layer)))
 (deflayer base
   esc   f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
   grv   1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
   tab   q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
   @esc  a    s    d    f    g    h    j    k    l    ;    '    ret
   lsft  z    x    c    v    b    n    m    ,    .    /    rsft                 up       
-  lctl  lmet lalt           spc             ralt rmet cmp  rctl            left down rght
+  lctl  lmet @tmux           spc             ralt rmet cmp  rctl            left down rght
 )
 
-(deflayer numrow
+#| Create an alias for the key combination control b n for the @nt |# 
+(defalias new-window   #((around ctl b) c))
+(defalias close-window #((around ctl b) x))
+(defalias next-window #((around ctl b) n))
+(defalias prev-window #((around lctl b) p))
+(defalias rename-window #((around lctl b) ,))
+(defalias next-session #((around ctl b) \)))
+(defalias prev-session #((around lctl b) \())
+(deflayer tmux-layer
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    _    @rename-window    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    _    _    _    @prev-window  @prev-session    @next-session    @next-window  _    _    _
+  _    _    _    @close-window  _    _    @new-window    _    _    _    _    _                    _
+  _    _    _              _              _    _    _    _               _    _    _
+)
+
+(deflayer numrow-layer
   _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
