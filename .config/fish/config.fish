@@ -4,7 +4,7 @@ end
 
 fish_default_key_bindings
 
-set -gx EDITOR vim
+set -gx EDITOR nvim
 set -gx TERM 'xterm-256color'
 
 fish_add_path $HOME/.local/share/nvim/mason/bin
@@ -17,3 +17,4 @@ source ~/.config/fish/myfunctions/code.fish
 source ~/.config/fish/myfunctions/dotfiles.fish
 source ~/.config/fish/myfunctions/pacman.fish
 source ~/.config/fish/myfunctions/qol.fish
+source ~/.config/fish/myfunctions/replacements.fish
