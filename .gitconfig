@@ -1,7 +1,7 @@
 [user]
  email = me@afonsofrancof.com
  name = afonsofrancof
- signingkey = D774F2EDAE844584699E6B01C459E0BB3DCEE899
+ signingkey = ~/.ssh/id_ed25519_sk.pub
 [filter "lfs"]
  process = git-lfs filter-process
  required = true
@@ -12,6 +12,6 @@
 [commit]
  gpgsign = true
 [gpg]
- program = gpg2
+ format = ssh
 [tag]
  gpgsign = true
