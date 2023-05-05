@@ -2,6 +2,10 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+if status --is-login
+    [ "$(tty)" = "/dev/tty1" ] && exec startx -- -keeptty
+end
+
 fish_default_key_bindings
 
 set -gx EDITOR nvim
