@@ -2,9 +2,13 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+if status --is-login
+    [ "$(tty)" = "/dev/tty1" ] && exec startx -- -keeptty
+end
+
 fish_default_key_bindings
 
-set -gx EDITOR vim
+set -gx EDITOR nvim
 set -gx TERM 'xterm-256color'
 
 fish_add_path $HOME/.local/share/nvim/mason/bin
@@ -15,5 +19,6 @@ fish_add_path $HOME/.ghcup/bin
 
 source ~/.config/fish/myfunctions/code.fish
 source ~/.config/fish/myfunctions/dotfiles.fish
-source ~/.config/fish/myfunctions/pacman.fish
+source ~/.config/fish/myfunctions/packages.fish
 source ~/.config/fish/myfunctions/qol.fish
+source ~/.config/fish/myfunctions/replacements.fish
