@@ -155,7 +155,7 @@ lazy.setup({
         opts = {
             load = {
                 ["core.defaults"] = {}, -- Loads default behaviour
-                ["core.norg.concealer"] = {} -- Adds pretty icons to your documents
+                ["core.concealer"] = {} -- Adds pretty icons to your documents
             },
         },
         dependencies = { { "nvim-lua/plenary.nvim" } },
