@@ -1,12 +1,6 @@
 configuration {
- modi: "drun,filebrowser";
  font: "FiraCode Nerd Font Mono 16";
  show-icons: true;
- drun-display-format: "{icon} {name}";
- disable-history: false;
- hide-scrollbar: true;
- display-drun: " Apps";
- sidebar-mode: true;
  }
 @theme "~/.config/rofi/themes/teal.rasi"
 
