@@ -1,8 +1,8 @@
 {
   "margin-top": 0,
-  "margin-left": 120,
+  "margin-left": 0,
   "margin-bottom": 0,
-  "margin-right": 120,
+  "margin-right": 0,
   "height": 60, 
   "layer": "top",
   "position": "top",
@@ -28,6 +28,13 @@
       },
   },
   
+  "custom/launcher": {
+      "interval": "once",
+      "format": "󰣇",
+      "on-click": "pkill rofi || rofi --show drun",
+      "tooltip": false
+    },
+
   "memory": {
     "interval": 30,
     "format": "  {}%",
