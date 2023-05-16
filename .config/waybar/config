@@ -76,7 +76,7 @@
     "format-plugged": " {capacity}%",
     "format-alt": "{icon} {capacity}%",
     "format-full": " 100%",
-    "format-icons": ["  ","  ","  ","  ","  ","  ","  ","  ","  "," "]
+    "format-icons": ["  ","  ","  ","  ","  ","  ","  ","  ","  ","  "]
 },
 
 "clock": {
