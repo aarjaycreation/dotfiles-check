@@ -5,9 +5,9 @@ STATES=($(nmcli device show | grep "GENERAL.STATE" | awk '{print $3}'))
 for ((i = 0; i < "${#TYPES[@]}"; i++)); do
     if [[ ${STATES[$i]} = "(connected)" ]]; then
         if [[ ${TYPES[$i]} == *"wifi"* ]]; then
-            echo "<fc=#DFDFDF><fn=3>直</fn></fc>"
+            echo "<fc=#DFDFDF><fn=3>󰖩</fn></fc>"
         else
-            echo "<fc=#DFDFDF><fn=3>ﯱ</fn></fc>"
+            echo "<fc=#DFDFDF><fn=3>󰛳</fn></fc>"
         fi
     fi
 done
