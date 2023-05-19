@@ -15,7 +15,7 @@ Config {font = "Ubuntu bold 10"
        --   an integer for the percentage width, so 100 would be 100%.
        --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
        --   NOTE: The height should be the same as the trayer (system tray) height.
-       , position       = TopSize L 100 40
+       , position       = TopSize L 100 36
        , lowerOnStart = True
        , hideOnStart  = False
        , allDesktops  = True
@@ -55,16 +55,9 @@ Config {font = "Ubuntu bold 10"
             \     \
 	    \%disk%\
 	    \     \
-	    \|\
-	    \     \
-	    \     \
-	    \%network%\
-	    \     \
-	    \%bluetooth%\
-	    \     \
-	    \%volume%\
 	    \     \
 	    \%battery%\
+	    \     \
 	    \     \
 	    \|\
             \%trayerpad%"
