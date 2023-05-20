@@ -19,7 +19,6 @@ import XMonad.Util.EZConfig (additionalKeysP,removeKeysP)
 import XMonad.Util.Loggers (logLayoutOnScreen, logTitleOnScreen, shortenL, wrapL, xmobarColorL)
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
-import XMonad.Util.NamedScratchpad as NS
 
 --Hooks
 import XMonad.Hooks.DynamicLog
@@ -59,6 +58,7 @@ import Colors.Teal
 @code haskell
 
 myTerminal      = "alacritty" 
+myTerminalTmux  = myTerminal ++ " -e tmux a"
 myTextEditor    = "nvim"
 myWebBrowser    = "firefox"
 myModMask       = mod4Mask
@@ -81,27 +81,12 @@ myWorkspaces    = ["main","web","text","code","social","monitoring"]
 myWorkspaceIndices = zip myWorkspaces [1..]
 
   @end
-* ScratchPads
-@code haskell
-myScratchPads :: [NamedScratchpad]
-myScratchPads = [NS "terminal" spawnTerm findTerm manageTerm]
-    where
-        spawnTerm  = myTerminal ++ " -t scratchpad"
-        findTerm   = title =? "scratchpad"
-        manageTerm = customFloating $ W.RationalRect l t w h
-            where
-                h = 0.6
-                w = 0.6
-                t = 0.7 -h
-                l = 0.8 -w
 
-  @end
 * Keybinds
 @code haskell
 myKeys :: [(String, X ())]
 myKeys =
-    [ ("M-x" ,spawn myTerminal )
-    , ("M-S-x", namedScratchpadAction myScratchPads "terminal")
+    [ ("M-x" ,spawn myTerminalTmux )
     , ("M-p", spawn "rofi -show drun -show-icons")
     , ("M-S-p", spawn "rofi -show p -modi p:rofi-power-menu")
     , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
@@ -169,26 +154,25 @@ myManageHook = composeAll
   , className =? "Xmessage" --> doFloat
   , title     =? "Steam - News" --> doFloat
   , title     =? "Friends List" --> doFloat
-  , title     =? "scratchpad"   --> doFloat
   , isFullscreen -->  doFullFloat]
 
 
 myEventHook = ewmhDesktopsEventHook
 
 myStartupHook = do
-      spawnOnce "pasystray"
-      spawnOnce "nitrogen --restore &"
-      spawnOnce "playerctld"
-      spawnOnce "picom &"
-      spawnOnce "optimus-manager-qt"
-      setWMName "LG3D"
-      spawnOnce "nm-applet"
-      spawnOnce "mailspring"
-      spawnOnce("xsetroot -cursor_name left_ptr")
-      spawn ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --widthtype request --padding 7 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 26 --distance 5 &")
-      spawnOn "web" myWebBrowser
-      spawnOn "main" myTerminal
-      spawnOn "monitoring"    ("alacritty -e btop")
+    spawnOnce "pasystray"
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "playerctld"
+    spawnOnce "picom &"
+    spawnOnce "optimus-manager-qt"
+    setWMName "LG3D"
+    spawnOnce "nm-applet"
+    spawnOnce "mailspring"
+    spawnOnce("xsetroot -cursor_name left_ptr")
+    spawn ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --widthtype request --padding 7 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 26 --distance 5 &")
+    spawnOn "web" myWebBrowser
+    spawnOn "main" myTerminalTmux
+    spawnOn "monitoring"    ("alacritty -e btop")
 @end
 * XMobar Config
 @code haskell
