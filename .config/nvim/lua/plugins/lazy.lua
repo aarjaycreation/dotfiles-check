@@ -70,6 +70,12 @@ lazy.setup({
         end
     },
 
+    {'stevearc/oil.nvim',
+      config = function()
+        require("oil").setup()
+      end          
+    },
+
     -------------------------------------------------------LSP----------------------------------------------
     {
         'hrsh7th/nvim-cmp',
