@@ -34,6 +34,7 @@ lazy.setup({
 
     --Change add and remove surroundings from words
     'tpope/vim-surround',
+    'tpope/vim-obsession',
 
     --Tmux navigation
     {

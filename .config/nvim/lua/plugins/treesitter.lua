@@ -13,7 +13,7 @@ local options = {
     highlight = {
         enable = true,
         use_languagetree = true,
-        additional_vim_regex_highlighting = { "markdown" , "org"},
+        additional_vim_regex_highlighting = {"org"},
     },
     indent = {
         enable = true,

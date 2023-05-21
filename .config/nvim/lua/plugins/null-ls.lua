@@ -5,7 +5,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.rustfmt,
         null_ls.builtins.formatting.stylish_haskell,
         null_ls.builtins.formatting.fourmolu,
-        null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.blue,
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = { "html", "json", "yaml", "markdown" },
 		}),

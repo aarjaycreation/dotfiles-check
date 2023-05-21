@@ -1,7 +1,7 @@
 #!/bin/sh
 
-XDG_SESSION_TYPE=x11
-XDG_CURRENT_DESKTOP=X-Generic
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=X-Generic
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -10,33 +10,14 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
-
-
-
-
-
-
-
     xrdb -merge $sysresources
-
 fi
-
 if [ -f $sysmodmap ]; then
     xmodmap $sysmodmap
 fi
-
 if [ -f "$userresources" ]; then
-
-
-
-
-
-
-
     xrdb -merge "$userresources"
-
 fi
-
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
@@ -54,6 +35,5 @@ setxkbmap -layout us,pt
 setxkbmap -option grp:win_space_toggle
 setxkbmap -option caps:escape
 xrandr --output DP-0 --primary --left-of HDMI-0
-xscreensaver -no-splash &
 dunst &
 /home/afonso/.local/bin/xmonad

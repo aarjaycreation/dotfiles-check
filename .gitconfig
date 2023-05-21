@@ -15,3 +15,5 @@
  format = ssh
 [tag]
  gpgsign = true
+[pull]
+	rebase = false

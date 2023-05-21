@@ -42,6 +42,7 @@ local kind_icons = {
     Event = "",
     Operator = "",
     TypeParameter = "",
+    Copilot = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
@@ -52,7 +53,7 @@ cmp.setup {
         end,
     },
     mapping = {
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs( -1), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -61,7 +62,10 @@ cmp.setup {
             c = cmp.mapping.close(),
         },
         -- Accept currently selected item. If none selected, do nothing.
-        ["<CR>"] = cmp.mapping.confirm { select = false },
+        ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false
+        },
         ["<C-k>"] = cmp.mapping(function(fallback)
             if luasnip.expandable() then
                 luasnip.expand()
@@ -74,8 +78,8 @@ cmp.setup {
             end
         end),
         ["<C-j>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+            if luasnip.jumpable( -1) then
+                luasnip.jump( -1)
             else
                 fallback()
             end
@@ -109,13 +113,14 @@ cmp.setup {
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
             vim_item.menu = ({
-                nvim_lsp = "(LSP)",
-                luasnip = "(Snippet)",
-                buffer = "(Text)",
-                nvim_lsp_signature_help = "(Signature)",
-                nvim_lua = "(Nvim LSP)",
-                path = "(Path)",
-            })[entry.source.name]
+                    nvim_lsp = "(LSP)",
+                    copilot = "(Copilot)",
+                    luasnip = "(Snippet)",
+                    buffer = "(Text)",
+                    nvim_lsp_signature_help = "(Signature)",
+                    nvim_lua = "(Nvim LSP)",
+                    path = "(Path)",
+                })[entry.source.name]
             return vim_item
         end,
     },
@@ -138,7 +143,9 @@ cmp.setup {
                     if char_before_cursor == "." then
                         if kind == 2 or kind == 5 then
                             return true
-                        else return false end
+                        else
+                            return false
+                        end
                     elseif string.match(line, "^%s*%w*$") then
                         if kind == 3 or kind == 6 then
                             return true
@@ -151,7 +158,6 @@ cmp.setup {
 
             },
             { name = 'nvim_lua' },
-            { name = 'copilot' },
             { name = 'luasnip' },
             { name = 'nvim_lsp_signature_help' },
             { name = "path" },
