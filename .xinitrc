@@ -34,6 +34,7 @@ fi
 setxkbmap -layout us,pt
 setxkbmap -option grp:win_space_toggle
 setxkbmap -option caps:escape
+xset r rate 300 50
 xrandr --output DP-0 --primary --left-of HDMI-0
 dunst &
 /home/afonso/.local/bin/xmonad
