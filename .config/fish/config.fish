@@ -5,7 +5,6 @@ end
 fish_default_key_bindings
 
 set -gx EDITOR nvim
-set -gx TERM 'xterm-256color'
 
 fish_add_path $HOME/.local/share/nvim/mason/bin
 fish_add_path /home/afonso/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin
