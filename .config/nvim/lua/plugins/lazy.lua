@@ -36,13 +36,6 @@ lazy.setup({
     'tpope/vim-surround',
     'tpope/vim-obsession',
 
-    {
-        'm4xshen/hardtime.nvim',
-        config = function()
-            require 'hardtime'.setup {}
-        end
-    },
-
     --Tmux navigation
     {
         'alexghergh/nvim-tmux-navigation',
