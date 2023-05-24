@@ -14,6 +14,6 @@ fish_add_path $HOME/.ghcup/bin
 
 source ~/.config/fish/myfunctions/code.fish
 source ~/.config/fish/myfunctions/dotfiles.fish
-source ~/.config/fish/myfunctions/packages.fish
+source ~/.config/fish/myfunctions/pacman.fish
 source ~/.config/fish/myfunctions/qol.fish
 source ~/.config/fish/myfunctions/replacements.fish

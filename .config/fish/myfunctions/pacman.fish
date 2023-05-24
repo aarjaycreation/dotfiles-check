@@ -1,16 +1,5 @@
-function i
-	sudo pacman -S $argv
-end
-
-function s
-	sudo pacman -Ss $argv
-end
-
-function u
-    sudo pacman -Syu
-end
-
-function r
-    sudo pacman -Rns $argv
-end
+abbr -a i sudo pacman -S
+abbr -a s sudo pacman -Ss
+abbr -a u sudo pacman -Syu
+abbr -a r sudo pacman -Rns
 
