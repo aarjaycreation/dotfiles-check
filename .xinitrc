@@ -37,4 +37,10 @@ setxkbmap -option caps:escape
 xset r rate 300 50
 xrandr --output DP-0 --primary --left-of HDMI-0
 dunst &
+
+if ! pgrep -f /usr/bin/easyeffects; then
+    exec /usr/bin/easyeffects --gapplication-service &
+    notify-send 'easyeffects daemon started'
+fi
+
 /home/afonso/.local/bin/xmonad

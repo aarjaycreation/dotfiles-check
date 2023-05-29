@@ -1,6 +1,7 @@
 [global]
 frame_color = "#8CAAEE"
 separator_color= frame
+icon_position = left
 
 [urgency_low]
 background = "#303446"

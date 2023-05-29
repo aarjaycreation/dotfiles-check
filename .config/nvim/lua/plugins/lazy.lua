@@ -35,6 +35,7 @@ lazy.setup({
     --Change add and remove surroundings from words
     'tpope/vim-surround',
     'tpope/vim-obsession',
+    'tpope/vim-fugitive',
 
     --Tmux navigation
     {
@@ -57,7 +58,10 @@ lazy.setup({
     {
         'windwp/nvim-autopairs',
         config = function()
-            require('nvim-autopairs').setup {}
+            require('nvim-autopairs').setup ({
+                map_cr = true,
+                map_bs = true,
+            })
         end
     },
 
