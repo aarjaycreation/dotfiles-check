@@ -1,7 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-
 fish_default_key_bindings
 
 set -gx EDITOR nvim
@@ -17,3 +16,5 @@ source ~/.config/fish/myfunctions/dotfiles.fish
 source ~/.config/fish/myfunctions/pacman.fish
 source ~/.config/fish/myfunctions/qol.fish
 source ~/.config/fish/myfunctions/replacements.fish
+
+starship init fish | source
