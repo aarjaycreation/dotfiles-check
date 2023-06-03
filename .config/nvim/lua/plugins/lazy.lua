@@ -37,6 +37,12 @@ lazy.setup({
     'tpope/vim-obsession',
     'tpope/vim-fugitive',
 
+    --Database integration
+    'tpope/vim-dadbod',
+    'kristijanhusak/vim-dadbod-ui',
+
+    'mbbill/undotree',
+
     --Tmux navigation
     {
         'alexghergh/nvim-tmux-navigation',
