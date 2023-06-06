@@ -39,7 +39,12 @@ lazy.setup({
 
     --Database integration
     'tpope/vim-dadbod',
-    'kristijanhusak/vim-dadbod-ui',
+    {'kristijanhusak/vim-dadbod-ui',
+        config = function()
+            vim.g.db_ui_auto_execute_table_helpers = 1
+        end 
+    },
+    'kristijanhusak/vim-dadbod-completion',
 
     'mbbill/undotree',
 
@@ -149,7 +154,6 @@ lazy.setup({
         end
     },
 
-    { 'github/copilot.vim' },
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting
     {

@@ -7,7 +7,6 @@ local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
     return
 end
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -43,6 +42,7 @@ local kind_icons = {
     Operator = "",
     TypeParameter = "",
     Copilot = "",
+    DB = "󰆼",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
@@ -53,7 +53,7 @@ cmp.setup {
         end,
     },
     mapping = {
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs( -1), { "i", "c" }),
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
         ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -78,8 +78,8 @@ cmp.setup {
             end
         end),
         ["<C-j>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable( -1) then
-                luasnip.jump( -1)
+            if luasnip.jumpable(-1) then
+                luasnip.jump(-1)
             else
                 fallback()
             end
@@ -110,17 +110,14 @@ cmp.setup {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            --vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            vim_item.kind = string.format('[%s %s]', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
             vim_item.menu = ({
-                    nvim_lsp = "(LSP)",
-                    copilot = "(Copilot)",
-                    luasnip = "(Snippet)",
-                    buffer = "(Text)",
-                    nvim_lsp_signature_help = "(Signature)",
-                    nvim_lua = "(Nvim LSP)",
-                    path = "(Path)",
-                })[entry.source.name]
+                nvim_lsp = "[LSP]",
+                ["vim-dadbod-completion"] = "[󰆼]",
+                nvim_lua = "[LSP]",
+                path = "[Path]",
+            })[entry.source.name]
             return vim_item
         end,
     },
@@ -133,7 +130,8 @@ cmp.setup {
     },
     sources = cmp.config.sources(
         {
-            { name = "nvim_lsp",
+            {
+                name = "nvim_lsp",
                 entry_filter = function(entry, context)
                     local kind = entry:get_kind()
                     local line = context.cursor_line
@@ -159,15 +157,12 @@ cmp.setup {
             },
             { name = 'nvim_lua' },
             { name = 'luasnip' },
-            { name = 'nvim_lsp_signature_help' },
+            { name = "vim-dadbod-completion" },
             { name = "path" },
         },
         {
             --This sources will only show up if there aren't any sources from the other list
             { name = "buffer", keyword_length = 5 },
-        },
-        {
-            { name = "neorg" }
         }
     ),
     confirm_opts = {
