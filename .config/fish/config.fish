@@ -4,6 +4,7 @@ end
 fish_default_key_bindings
 
 set -gx EDITOR nvim
+set -gx READER mupdf
 
 fish_add_path $HOME/.bun/bin
 fish_add_path $HOME/go/bin
