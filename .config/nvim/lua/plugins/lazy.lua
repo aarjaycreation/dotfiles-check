@@ -5,7 +5,6 @@ lazy.setup({
     'lewis6991/impatient.nvim',
 
     -------------------------------------------THEMES------------------------------------------
-    'joshdick/onedark.vim',
     {
         'catppuccin/nvim',
         lazy = false,
@@ -15,11 +14,27 @@ lazy.setup({
         end
     },
     -------------------------------------------------------QOL---------------------------------
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require 'plugins.copilot'
+        end,
+    },
     --better navigation with 's-letter'
     {
         'ggandor/leap.nvim',
         config = function()
             require('leap').add_default_mappings()
+        end
+    },
+
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("todo-comments").setup {}
         end
     },
 
@@ -37,14 +52,37 @@ lazy.setup({
     'tpope/vim-obsession',
     'tpope/vim-fugitive',
 
-    --Database integration
-    'tpope/vim-dadbod',
-    {'kristijanhusak/vim-dadbod-ui',
+
+    {
+        'NvChad/nvim-colorizer.lua',
         config = function()
-            vim.g.db_ui_auto_execute_table_helpers = 1
-        end 
+            require 'colorizer'.setup()
+        end
     },
-    'kristijanhusak/vim-dadbod-completion',
+
+    {
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        config = function()
+            require("tailwindcss-colorizer-cmp").setup({
+                color_square_width = 2,
+            })
+        end
+    },
+{
+    'laytan/tailwind-sorter.nvim',
+    dependencies = {'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'},
+    build = 'cd formatter && bun i && bun run build',
+    config = true,
+  },
+    --Database integration
+    -- 'tpope/vim-dadbod',
+    -- {
+    --     'kristijanhusak/vim-dadbod-ui',
+    --     config = function()
+    --         vim.g.db_ui_auto_execute_table_helpers = 1
+    --     end
+    -- },
+    -- 'kristijanhusak/vim-dadbod-completion',
 
     'mbbill/undotree',
 
@@ -64,12 +102,12 @@ lazy.setup({
         end
     },
     -- Rename variable pop up
-    'stevearc/dressing.nvim',
+    -- 'stevearc/dressing.nvim',
 
     {
         'windwp/nvim-autopairs',
         config = function()
-            require('nvim-autopairs').setup ({
+            require('nvim-autopairs').setup({
                 map_cr = true,
                 map_bs = true,
             })
@@ -115,6 +153,7 @@ lazy.setup({
     --LSP Status
     {
         'j-hui/fidget.nvim',
+        tag = 'legacy',
         config = function()
             require('fidget').setup {
                 window = {
@@ -140,6 +179,8 @@ lazy.setup({
         end
     },
 
+    'simrat39/rust-tools.nvim',
+
     {
         'jose-elias-alvarez/null-ls.nvim',
         config = function()
@@ -147,12 +188,12 @@ lazy.setup({
         end
     },
 
-    {
-        'lervag/vimtex',
-        config = function()
-            require 'plugins.vimtex'
-        end
-    },
+    -- {
+    --     'lervag/vimtex',
+    --     config = function()
+    --         require 'plugins.vimtex'
+    --     end
+    -- },
 
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting
@@ -192,13 +233,13 @@ lazy.setup({
 
 
     --Main menu
-    {
-        'startup-nvim/startup.nvim',
-        dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('startup').setup { theme = 'dashboard' }
-        end,
-    },
+    -- {
+    --     'startup-nvim/startup.nvim',
+    --     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
+    --     config = function()
+    --         require('startup').setup { theme = 'dashboard' }
+    --     end,
+    -- },
 
     -------------------------------------------OTHERS----------------------------------------------
 
@@ -214,8 +255,8 @@ lazy.setup({
         dependencies = { { "nvim-lua/plenary.nvim" } },
     },
 
-    'kmonad/kmonad-vim',
-    'elkowar/yuck.vim',
+    -- 'kmonad/kmonad-vim',
+    -- 'elkowar/yuck.vim',
     --Discord Rich Presence
     'andweeb/presence.nvim'
 

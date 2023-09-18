@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ "$(acpi)" == "No support for device type: power_supply" ]
+then
+    echo ""
+fi
 
 batLevel=$(acpi --battery | grep -Po '(\d+)\%' | sed 's/%//')
 

@@ -111,14 +111,19 @@ cmp.setup {
         format = function(entry, vim_item)
             -- Kind icons
             --vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            vim_item.kind = string.format('[%s %s]', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-            vim_item.menu = ({
-                nvim_lsp = "[LSP]",
-                ["vim-dadbod-completion"] = "[󰆼]",
-                nvim_lua = "[LSP]",
-                path = "[Path]",
-            })[entry.source.name]
-            return vim_item
+            if vim.tbl_contains({ "nvim_lsp" }, entry.source.name) then
+                tailwind = require("tailwindcss-colorizer-cmp")
+                return tailwind.formatter(entry, vim_item)
+            else
+                vim_item.kind = string.format('[%s %s]', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+                vim_item.menu = ({
+                    nvim_lsp = "[LSP]",
+                    ["vim-dadbod-completion"] = "[󰆼]",
+                    nvim_lua = "[LSP]",
+                    path = "[Path]",
+                })[entry.source.name]
+                return vim_item
+            end
         end,
     },
     sorting = {

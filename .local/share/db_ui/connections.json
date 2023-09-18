@@ -1,1 +1,1 @@
-[{"url": "mysql://root@localhost/hospitalPortucalense_23", "name": "hospitalPortucalense_23"}, {"url": "mysql://root@localhost/", "name": "root@localhost"}]
+[{"url": "mysql://root@localhost/hospitalPortucalense_23", "name": "hospitalPortucalense_23"}, {"url": "postgresql://root:example@localhost:5432/go-timer", "name": "go-timer"}]
