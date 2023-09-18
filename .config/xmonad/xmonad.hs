@@ -1,16 +1,5 @@
-@document.meta
-title: Xmonad Config
-authors: Afonso Franco
-categories: configs
-tangle: /home/afonso/.config/xmonad/xmonad.hs
-@end
-
-* Overrides
-@code haskell
 {-# OPTIONS_GHC -Wno-deprecations #-}
-@end
-* Imports
-@code haskell
+
 
 import XMonad
 
@@ -53,9 +42,7 @@ import System.Exit
 --Color Scheme
 import Colors.Teal
 
-@end
-* Variables
-@code haskell
+
 
 myTerminal      = "kitty" 
 myTerminalTmux  = myTerminal ++ " -e tmux a"
@@ -80,10 +67,7 @@ myBorderWidth   = 2
 myWorkspaces    = ["main","web","text","code","social","monitoring"]
 myWorkspaceIndices = zip myWorkspaces [1..]
 
-  @end
 
-* Keybinds
-@code haskell
 myKeys :: [(String, X ())]
 myKeys =
     [ ("M-x" ,spawn myTerminalTmux )
@@ -127,18 +111,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
     , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
                                        >> windows W.shiftMaster))]
-  @end
-* Layouts
-@code haskell
+
 myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
   where
      tiled   = Tall nmaster delta ratio
      nmaster = 1
      ratio   = 1/2
      delta   = 3/100
-@end
-* Hooks
-@code haskell
+
 myManageHook = composeAll
   [ className =? "MPlayer"        --> doFloat
   , className =? "Gimp"           --> doFloat
@@ -170,9 +150,7 @@ myStartupHook = do
     spawnOnce ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --margin 4 --widthtype request --padding 8 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 30 --distance 5 &")
     spawnOnOnce "web" myWebBrowser
     spawnOnOnce "main" myTerminalTmux
-@end
-* XMobar Config
-@code haskell
+
 
 myStatusBarSpawner :: Applicative f => ScreenId -> f StatusBarConfig
 myStatusBarSpawner (S s) = do
@@ -206,9 +184,7 @@ myXmobarPP s  =  def
    layoutColorIsActive n l = do
      c <- withWindowSet $ return . W.screen . W.current
      if n == c then wrapL "<icon=/home/afonso/.config/xmobar/xpm/" "_selected.xpm/>" l else wrapL "<icon=/home/afonso/.config/xmobar/xpm/" ".xpm/>" l
-  @end
-* Config Variables binding
-@code haskell
+
 
 myConfig =  def
     {
@@ -225,10 +201,7 @@ myConfig =  def
     handleEventHook    = myEventHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True),
     startupHook        = myStartupHook
     }
-@end
-* Main
-@code haskell
+
 
 main :: IO ()
 main = xmonad . ewmh . ewmhFullscreen . dynamicSBs myStatusBarSpawner . docks $ additionalKeysP (removeKeysP myConfig myRemoveKeys) myKeys
-@end

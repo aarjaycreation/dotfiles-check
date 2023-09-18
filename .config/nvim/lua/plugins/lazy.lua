@@ -68,12 +68,12 @@ lazy.setup({
             })
         end
     },
-{
-    'laytan/tailwind-sorter.nvim',
-    dependencies = {'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim'},
-    build = 'cd formatter && bun i && bun run build',
-    config = true,
-  },
+    {
+        'laytan/tailwind-sorter.nvim',
+        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+        build = 'cd formatter && bun i && bun run build',
+        config = true,
+    },
     --Database integration
     -- 'tpope/vim-dadbod',
     -- {
@@ -246,13 +246,15 @@ lazy.setup({
     {
         "nvim-neorg/neorg",
         build = ":Neorg sync-parsers",
-        opts = {
-            load = {
-                ["core.defaults"] = {}, -- Loads default behaviour
-                ["core.concealer"] = {} -- Adds pretty icons to your documents
-            },
-        },
-        dependencies = { { "nvim-lua/plenary.nvim" } },
+        config = function()
+            require("neorg").setup {
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {} -- Adds pretty icons to your documents
+                },
+            }
+        end,
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
 
     -- 'kmonad/kmonad-vim',
