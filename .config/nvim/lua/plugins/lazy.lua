@@ -102,7 +102,7 @@ lazy.setup({
         end
     },
     -- Rename variable pop up
-    -- 'stevearc/dressing.nvim',
+    'stevearc/dressing.nvim',
 
     {
         'windwp/nvim-autopairs',
