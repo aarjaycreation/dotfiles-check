@@ -21,8 +21,17 @@ source ~/.config/fish/myfunctions/pacman.fish
 source ~/.config/fish/myfunctions/qol.fish
 source ~/.config/fish/myfunctions/replacements.fish
 
-starship init fish | source
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if test -f /home/afonso/miniconda3/bin/conda
+    eval /home/afonso/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+end
+# <<< conda initialize <<<
+conda deactivate
+
+starship init fish | source

@@ -101,6 +101,7 @@ lazy.setup({
             }
         end
     },
+
     -- Rename variable pop up
     'stevearc/dressing.nvim',
     {
@@ -108,19 +109,23 @@ lazy.setup({
         config = function()
             require("compiler-explorer").setup({
                 url = "https://godbolt.org",
-                infer_lang = true, -- Try to infer possible language based on file extension.
+                infer_lang = true,      -- Try to infer possible language based on file extension.
                 line_match = {
-                    highlight = true, -- highlight the matching line(s) in the other buffer.
-                    jump = true, -- move the cursor in the other buffer to the first matching line.
+                    highlight = true,   -- highlight the matching line(s) in the other buffer.
+                    jump = true,        -- move the cursor in the other buffer to the first matching line.
                 },
-                open_qflist = true, --  Open qflist after compilation if there are diagnostics.
-                split = "split", -- How to split the window after the second compile (split/vsplit).
-                compiler_flags = "", -- Default flags passed to the compiler.
+                open_qflist = true,     --  Open qflist after compilation if there are diagnostics.
+                split = "split",        -- How to split the window after the second compile (split/vsplit).
+                compiler_flags = "",    -- Default flags passed to the compiler.
                 job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
-                languages = { -- Language specific default compiler/flags
+                languages = {           -- Language specific default compiler/flags
                 },
             })
         end
+    },
+
+    {
+        'luk400/vim-jukit'
     },
 
     {
@@ -207,12 +212,12 @@ lazy.setup({
         end
     },
 
-    -- {
-    --     'lervag/vimtex',
-    --     config = function()
-    --         require 'plugins.vimtex'
-    --     end
-    -- },
+     {
+         'lervag/vimtex',
+         config = function()
+             require 'plugins.vimtex'
+         end
+     },
 
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting

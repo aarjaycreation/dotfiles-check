@@ -43,4 +43,11 @@ if ! pgrep -f /usr/bin/easyeffects; then
     notify-send 'easyeffects daemon started'
 fi
 
-/home/afonso/.local/bin/xmonad
+gpu_mode=$(/usr/bin/envycontrol -q)
+if [ "$gpu_mode" = "nvidia" ]; then
+    xrandr --setprovideroutputsource modesetting NVIDIA-0
+    xrandr --auto
+fi
+
+
+exec /home/afonso/.local/bin/xmonad

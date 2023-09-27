@@ -44,7 +44,7 @@ import Colors.Teal
 
 
 
-myTerminal      = "kitty" 
+myTerminal      = "kitty"
 myTerminalTmux  = myTerminal ++ " -e tmux a"
 myTextEditor    = "nvim"
 myWebBrowser    = "firefox"
@@ -149,6 +149,8 @@ myStartupHook = do
     spawnOnce ("xsetroot -cursor_name left_ptr")
     spawnOnce ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --margin 4 --widthtype request --padding 8 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 30 --distance 5 &")
     spawnOnce ("slimbookbattery --minimize")
+    spawnOnce ("slimbookintelcontroller")
+    spawnOnce ("nextcloud")
     spawnOnOnce "web" myWebBrowser
     spawnOnOnce "main" myTerminalTmux
 
