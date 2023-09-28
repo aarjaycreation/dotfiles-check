@@ -32,7 +32,9 @@ vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'nc'
 --Jupyter notebooks
 vim.g.jukit_convert_overwrite_default = 1
-vim.g.jukit_convert_open_default = 1
+vim.g.jukit_convert_open_default = 0
 vim.g.jukit_shell_cmd = 'ipython3'
 vim.g.jukit_terminal = 'nvimterm'
 vim.g.jukit_inline_plotting=1
+vim.g.jukit_show_prompt = 1
+vim.g.jukit_pdf_viewer = 'zathura'
