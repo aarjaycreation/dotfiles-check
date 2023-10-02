@@ -119,6 +119,9 @@ lazy.setup({
                 compiler_flags = "",    -- Default flags passed to the compiler.
                 job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
                 languages = {           -- Language specific default compiler/flags
+                   c = {
+                       compiler = "cg132"
+                   }
                 },
             })
         end
