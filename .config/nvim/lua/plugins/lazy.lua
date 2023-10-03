@@ -29,6 +29,22 @@ lazy.setup({
             require('leap').add_default_mappings()
         end
     },
+    --Nvim to browser
+    'subnut/nvim-ghost.nvim',
+
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
 
     {
         "folke/todo-comments.nvim",
@@ -119,9 +135,9 @@ lazy.setup({
                 compiler_flags = "",    -- Default flags passed to the compiler.
                 job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
                 languages = {           -- Language specific default compiler/flags
-                   c = {
-                       compiler = "cg132"
-                   }
+                    c = {
+                        compiler = "cg132"
+                    }
                 },
             })
         end
@@ -215,12 +231,12 @@ lazy.setup({
         end
     },
 
-     {
-         'lervag/vimtex',
-         config = function()
-             require 'plugins.vimtex'
-         end
-     },
+    {
+        'lervag/vimtex',
+        config = function()
+            require 'plugins.vimtex'
+        end
+    },
 
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting
