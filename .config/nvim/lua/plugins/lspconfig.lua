@@ -2,8 +2,7 @@ local mason_lspconfig = require "mason-lspconfig"
 local lspconfig = require "lspconfig"
 
 mason_lspconfig.setup({
-    ensure_installed = { "lua_ls", "texlab", "hls", "yamlls" },
-    automatic_installation = true
+    automatic_installation = false
 })
 
 
@@ -61,6 +60,13 @@ mason_lspconfig.setup_handlers {
     end,
 }
 
+require('lspconfig')['hls'].setup {
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+
 require("rust-tools").setup({
     server = {
         on_attach = on_attach,
@@ -79,4 +85,3 @@ require("rust-tools").setup({
         },
     },
 })
-
