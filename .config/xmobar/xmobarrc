@@ -22,7 +22,7 @@ Config {font = "Ubuntu bold 10"
        , persistent   = False
        , iconRoot     = "/home/afonso/.config/xmobar/xpm/"  -- default: "."
        , commands = [
-                      Run UnsafeXPropertyLog "_XMONAD_LOG_0"
+                      Run XMonadLog
 		    , Run Date "%a, %d %b   <fn=1></fn>   %H:%M" "date" 10
 		    , Run Mpris2 "playerctld" ["-t", "<fc=#AAC0F0><artist> - <title></fc>"] 10
                     , Run Memory ["-t","<fn=6></fn> <fc=#AAC0F0><usedratio></fc>%"] 10
@@ -38,7 +38,7 @@ Config {font = "Ubuntu bold 10"
        , alignSep = "}{"
        , template = " <icon=logo.xpm/> \
             \    \
-            \%_XMONAD_LOG_0%\
+            \%XMonadLog%\
             \}\
             \%date%\
 	    \<hspace=20/>\
