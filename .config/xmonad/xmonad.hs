@@ -59,10 +59,10 @@ myClickJustFocuses = False
 windowCount :: X (Maybe String)
 windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
-myNormalBorderColor  = "#008080"
+myNormalBorderColor  = "#534783"
 myFocusedBorderColor = "#01F9C6"
 
-myBorderWidth   = 2
+myBorderWidth   = 1
 
 myWorkspaces    = ["main","web","text","code","social","monitoring"]
 myWorkspaceIndices = zip myWorkspaces [1..]
@@ -112,18 +112,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
                                        >> windows W.shiftMaster))]
 
-myLayout = avoidStruts(tiled ||| Mirror tiled ||| Full)
-  where
-     tiled   = Tall nmaster delta ratio
-     nmaster = 1
-     ratio   = 1/2
-     delta   = 3/100
-
 myManageHook = composeAll
   [ className =? "MPlayer"        --> doFloat
   , className =? "Gimp"           --> doFloat
   , resource  =? "desktop_window" --> doIgnore
-  , className =? "QjackCtl"       --> doFloat    
+  , className =? "QjackCtl"       --> doFloat
   , resource  =? "kdesktop"       --> doIgnore
   , className =? "firefox"        --> doShift (myWorkspaces !! 1)
   , className =? "Code"        --> doShift (myWorkspaces !! 3)
@@ -146,65 +139,47 @@ myStartupHook = do
     spawnOnce "picom &"
     setWMName "LG3D"
     spawnOnce "nm-applet"
-    spawnOnce ("xsetroot -cursor_name left_ptr")
-    spawnOnce ("killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --margin 4 --widthtype request --padding 8 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 30 --distance 5 &")
-    spawnOnce ("slimbookbattery --minimize")
-    spawnOnce ("slimbookintelcontroller")
-    spawnOnce ("nextcloud")
+    spawnOnce "xsetroot -cursor_name left_ptr"
+    spawnOnce "killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --margin 4 --widthtype request --padding 8 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 30 --distance 5 &"
+    spawnOnce "slimbookbattery --minimize"
+    spawnOnce "slimbookintelcontroller"
+    spawnOnce "nextcloud"
     spawnOnOnce "web" myWebBrowser
     spawnOnOnce "main" myTerminalTmux
 
 
-myStatusBarSpawner :: Applicative f => ScreenId -> f StatusBarConfig
-myStatusBarSpawner (S s) = do
-                   pure $ statusBarPropTo ("_XMONAD_LOG_" ++ show s)
-                         ("xmobar -x " ++ show s ++ " ~/.config/xmobar/xmobarrc" ++ show s)
-                         (pure $ myXmobarPP (S s))
+mySB = statusBarProp "/home/afonso/.local/bin/xmobar /home/afonso/.config/xmobar/xmobarrc" (pure myXmobarPP)
 
-
-myXmobarPP :: ScreenId -> PP
-myXmobarPP s  =  def
- { ppSep = ""
- , ppWsSep = ""
- , ppCurrent = xmobarColor cyan "" . const wsIconFull
- , ppVisible = xmobarColor grey4 "" . const wsIconFull
- , ppVisibleNoWindows = Just (xmobarColor grey4 "" . const wsIconFull)
- , ppHidden = xmobarColor grey2 "" . const wsIconHidden
- , ppHiddenNoWindows = xmobarColor grey2 "" . const wsIconEmpty
- , ppUrgent = xmobarColor orange "" . const wsIconFull
- , ppOrder = \(ws : _ : _ : extras) -> ws : extras
- , ppExtras  = [ wrapL "    " "    " $ layoutColorIsActive s (logLayoutOnScreen s)
-               ,titleColorIsActive s (shortenL 81 $ logTitleOnScreen s)
-               ]
- }
+myXmobarPP :: PP
+myXmobarPP =  def
+    { ppSep = ""
+    , ppWsSep = ""
+    , ppCurrent = xmobarColor cyan "" . const wsIconFull
+    , ppVisible = xmobarColor grey4 "" . const wsIconFull
+    , ppHidden = xmobarColor grey4 "" . const wsIconFull
+    , ppHiddenNoWindows = xmobarColor grey4 "" . const wsIconFull
+    , ppOrder = \(ws : _ : _ : extras) -> ws : extras
+    }
   where
    wsIconFull   = "  <fn=2>\xf111</fn>   "
-   wsIconHidden = "  <fn=2>\xf111</fn>   "
-   wsIconEmpty  = "  <fn=2>\xf10c</fn>   "
-   titleColorIsActive n l = do
-     c <- withWindowSet $ return . W.screen . W.current
-     if n == c then xmobarColorL cyan "" l else xmobarColorL grey3 "" l
-   layoutColorIsActive n l = do
-     c <- withWindowSet $ return . W.screen . W.current
-     if n == c then wrapL "<icon=/home/afonso/.config/xmobar/xpm/" "_selected.xpm/>" l else wrapL "<icon=/home/afonso/.config/xmobar/xpm/" ".xpm/>" l
 
 
 myConfig =  def
     {
     terminal           = myTerminal,
-    focusFollowsMouse  = myFocusFollowsMouse,
-    clickJustFocuses   = myClickJustFocuses,
+    focusFollowsMouse  = True,
+    clickJustFocuses   = False,
     borderWidth        = myBorderWidth,
     modMask            = myModMask,
     workspaces         = myWorkspaces,
     normalBorderColor  = myNormalBorderColor,
     focusedBorderColor = myFocusedBorderColor,
-    layoutHook         = smartBorders . spacingWithEdge 15 $ myLayout,
+    layoutHook         = avoidStruts $ smartBorders . smartSpacingWithEdge 5 $ layoutHook def,
     manageHook         = manageSpawn <+> myManageHook <+> manageHook def,
-    handleEventHook    = myEventHook <+> fullscreenEventHook <+> swallowEventHook (className=?"Alacritty") (return True),
+    handleEventHook    = myEventHook <+> fullscreenEventHook,
     startupHook        = myStartupHook
     }
 
 
 main :: IO ()
-main = xmonad . ewmh . ewmhFullscreen . dynamicSBs myStatusBarSpawner . docks $ additionalKeysP (removeKeysP myConfig myRemoveKeys) myKeys
+main = xmonad . ewmh . ewmhFullscreen . withSB mySB . docks $ additionalKeysP (removeKeysP myConfig myRemoveKeys) myKeys

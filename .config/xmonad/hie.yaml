@@ -1,0 +1,8 @@
+cradle:
+  stack:
+    - path: ./xmonad.hs
+      component: ./xmonad.hs
+    - path: ./xmonad-git/
+      component: xmonad:lib
+    - path: ./xmonad-contrib-git/
+      component: xmonad-contrib:lib
