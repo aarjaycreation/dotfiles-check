@@ -35,7 +35,7 @@ setxkbmap -layout us,pt
 setxkbmap -option grp:win_space_toggle
 setxkbmap -option caps:escape
 xset r rate 300 50
-xrandr --output DP-0 --primary --left-of HDMI-0
+xrandr --output DP-0 --primary --mode 2560x1440 --left-of HDMI-0 --output HDMI-0 --mode 1920x1080
 dunst &
 
 if ! pgrep -f /usr/bin/easyeffects; then

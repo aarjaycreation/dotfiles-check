@@ -13,7 +13,7 @@ fish_add_path /home/afonso/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/b
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.ghcup/bin
-fish_add_path /var/lib/flatpak/exports/bin
+fish_add_path /usr/bin/vendor_perl
 
 source ~/.config/fish/myfunctions/code.fish
 source ~/.config/fish/myfunctions/dotfiles.fish
@@ -34,4 +34,7 @@ end
 # <<< conda initialize <<<
 conda deactivate
 
+direnv hook fish | source
+
 starship init fish | source
+
