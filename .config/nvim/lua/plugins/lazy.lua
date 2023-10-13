@@ -33,6 +33,15 @@ lazy.setup({
     'subnut/nvim-ghost.nvim',
 
     {
+        '2kabhishek/nerdy.nvim',
+        dependencies = {
+            'stevearc/dressing.nvim',
+            'nvim-telescope/telescope.nvim',
+        },
+        cmd = 'Nerdy',
+    },
+
+    {
         "folke/which-key.nvim",
         event = "VeryLazy",
         init = function()
@@ -225,9 +234,9 @@ lazy.setup({
     'simrat39/rust-tools.nvim',
 
     {
-        'jose-elias-alvarez/null-ls.nvim',
+        'nvimtools/none-ls.nvim',
         config = function()
-            require 'plugins.null-ls'
+            require 'plugins.none-ls'
         end
     },
 
