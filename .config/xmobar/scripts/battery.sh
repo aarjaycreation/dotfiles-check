@@ -1,8 +1,19 @@
 #!/bin/bash
 
-if [ "$(acpi)" == "No support for device type: power_supply" ]
+#Check if its laptop of pc with hostnamectl
+
+pctype=$(hostnamectl | grep -Po '(Chassis: )(\w+)' | sed 's/Chassis: //')
+if [ "$pctype" == "desktop" ];
 then
-    echo ""
+    #Check if any connected device has a battery with upower
+    xm3bat=$(upower -i /org/freedesktop/UPower/devices/headset_dev_94_DB_56_AB_B5_D4 | grep -Po '(percentage: *)(\d+)' | sed 's/\s*percentage: //' | xargs)
+    if [ "$xm3bat" == 0 ];
+    then
+        echo ""
+        exit 0
+    fi
+    echo "<fn=3>󰋋</fn><fc=#AAC0F0> $xm3bat%</fc>"
+    exit 0
 fi
 
 batLevel=$(acpi --battery | grep -Po '(\d+)\%' | sed 's/%//')

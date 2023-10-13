@@ -22,18 +22,16 @@ Config {font = "Ubuntu bold 10"
        , persistent   = False
        , iconRoot     = "/home/afonso/.config/xmobar/xpm/"  -- default: "."
        , commands = [
-                      Run XMonadLog
+                    Run XMonadLog
 		    , Run Date "%a, %d %b   <fn=1></fn>   %H:%M" "date" 10
 		    , Run Mpris2 "playerctld" ["-t", "<fc=#AAC0F0><artist> - <title></fc>"] 10
-                    , Run Memory ["-t","<fn=6></fn> <fc=#AAC0F0><usedratio></fc>%"] 10
-		    , Run Com "/home/afonso/.config/xmobar/scripts/disk.sh" [] "disk" 10
-                    , Run Com "/home/afonso/.config/xmobar/scripts/cpu_temp.sh" [] "cpu" 10
-                    , Run Com "/home/afonso/.config/xmobar/scripts/volume.sh" [] "volume" 10
-                    , Run Com "/home/afonso/.config/xmobar/scripts/bluetooth.sh" [] "bluetooth" 10
-                    , Run Com "/home/afonso/.config/xmobar/scripts/network.sh" [] "network" 10
-		    , Run Com "/home/afonso/.config/xmobar/scripts/battery.sh" [] "battery" 20
-                    , Run Com "/home/afonso/.config/xmobar/scripts/trayer-padding-icon.sh" [] "trayerpad" 20
-                    ]
+            , Run Memory ["-t","<fn=6></fn> <fc=#AAC0F0><usedratio></fc>%"] 50
+		    , Run Com "/home/afonso/.config/xmobar/scripts/disk.sh" [] "disk" 100
+            , Run Com "/home/afonso/.config/xmobar/scripts/cpu_temp.sh" [] "cpu" 50
+		    , Run Com "/home/afonso/.config/xmobar/scripts/battery.sh" [] "battery" 50
+		    , Run Com "/home/afonso/.config/xmobar/scripts/updates.sh" [] "updates" 6000
+            , Run Com "/home/afonso/.config/xmobar/scripts/trayer-padding-icon.sh" [] "trayerpad" 20
+            ]
        , sepChar = "%"
        , alignSep = "}{"
        , template = " <icon=logo.xpm/> \
@@ -47,6 +45,9 @@ Config {font = "Ubuntu bold 10"
             \     \
             \|\
             \     \
+            \%updates%\
+            \     \
+            \     \
             \%memory%\
             \     \
             \     \
@@ -57,8 +58,6 @@ Config {font = "Ubuntu bold 10"
 	    \     \
 	    \     \
 	    \%battery%\
-	    \     \
-	    \     \
 	    \|\
             \%trayerpad%"
        }
