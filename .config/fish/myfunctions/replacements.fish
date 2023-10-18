@@ -1,5 +1,5 @@
 function ls
-    eza --icons -l $argv
+    eza --icons -l --sort type $argv
 end
 abbr -a find fd
 abbr -a df duf

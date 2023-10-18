@@ -25,15 +25,18 @@ lazy.setup({
     --better navigation with 's-letter'
     {
         'ggandor/leap.nvim',
+        event = "VeryLazy",
         config = function()
             require('leap').add_default_mappings()
         end
     },
+
     --Nvim to browser
     'subnut/nvim-ghost.nvim',
 
     {
         '2kabhishek/nerdy.nvim',
+        event = "VeryLazy",
         dependencies = {
             'stevearc/dressing.nvim',
             'nvim-telescope/telescope.nvim',
@@ -57,6 +60,7 @@ lazy.setup({
 
     {
         "folke/todo-comments.nvim",
+        event = "VeryLazy",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             require("todo-comments").setup {}
@@ -65,6 +69,7 @@ lazy.setup({
 
     {
         'folke/zen-mode.nvim',
+        event = "VeryLazy",
         config = function()
             require("zen-mode").setup {
                 vim.keymap.set('n', '<leader>z', '<Cmd> ZenMode <CR>', { noremap = true, silent = true })
@@ -75,8 +80,6 @@ lazy.setup({
     --Change add and remove surroundings from words
     'tpope/vim-surround',
     'tpope/vim-obsession',
-    'tpope/vim-fugitive',
-
 
     {
         'NvChad/nvim-colorizer.lua',
@@ -87,6 +90,7 @@ lazy.setup({
 
     {
         "roobert/tailwindcss-colorizer-cmp.nvim",
+        event = "VeryLazy",
         config = function()
             require("tailwindcss-colorizer-cmp").setup({
                 color_square_width = 2,
@@ -95,6 +99,7 @@ lazy.setup({
     },
     {
         'laytan/tailwind-sorter.nvim',
+        event = "VeryLazy",
         dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
         build = 'cd formatter && bun i && bun run build',
         config = true,
@@ -131,6 +136,7 @@ lazy.setup({
     'stevearc/dressing.nvim',
     {
         'krady21/compiler-explorer.nvim',
+        event = "VeryLazy",
         config = function()
             require("compiler-explorer").setup({
                 url = "https://godbolt.org",
@@ -153,7 +159,8 @@ lazy.setup({
     },
 
     {
-        'luk400/vim-jukit'
+        'luk400/vim-jukit',
+        event = "VeryLazy",
     },
 
     {
@@ -178,6 +185,7 @@ lazy.setup({
 
     {
         'stevearc/oil.nvim',
+        event = "VeryLazy",
         config = function()
             require("oil").setup()
         end
@@ -231,10 +239,9 @@ lazy.setup({
         end
     },
 
-    'simrat39/rust-tools.nvim',
-
     {
         'nvimtools/none-ls.nvim',
+        event = "VeryLazy",
         config = function()
             require 'plugins.none-ls'
         end
@@ -242,6 +249,7 @@ lazy.setup({
 
     {
         'lervag/vimtex',
+        event = "VeryLazy",
         config = function()
             require 'plugins.vimtex'
         end
@@ -277,7 +285,7 @@ lazy.setup({
     --does so much
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.0',
+        tag = '0.1.4',
         -- or                            , branch = '0.1.x',
         dependencies = { 'nvim-lua/plenary.nvim' },
         config = function() require('plugins.telescope') end
@@ -295,19 +303,19 @@ lazy.setup({
 
     -------------------------------------------OTHERS----------------------------------------------
 
-    {
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers",
-        config = function()
-            require("neorg").setup {
-                load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
-                    ["core.concealer"] = {} -- Adds pretty icons to your documents
-                },
-            }
-        end,
-        dependencies = { "nvim-lua/plenary.nvim" },
-    },
+    -- {
+    --     "nvim-neorg/neorg",
+    --     build = ":Neorg sync-parsers",
+    --     config = function()
+    --         require("neorg").setup {
+    --             load = {
+    --                 ["core.defaults"] = {}, -- Loads default behaviour
+    --                 ["core.concealer"] = {} -- Adds pretty icons to your documents
+    --             },
+    --         }
+    --     end,
+    --     dependencies = { "nvim-lua/plenary.nvim" },
+    -- },
 
     -- 'kmonad/kmonad-vim',
     -- 'elkowar/yuck.vim',

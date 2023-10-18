@@ -1,7 +1,7 @@
 rule ={
 	matches = {
 		{
-			{"node.name","equals","GA104 High Definition Audio Controller Digital Stereo (HDMI 2)"},
+			{"node.description","equals","GA104 High Definition Audio Controller Digital Stereo (HDMI)"},
 		}
 	},
 	apply_properties = {

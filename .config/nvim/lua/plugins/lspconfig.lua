@@ -59,29 +59,3 @@ mason_lspconfig.setup_handlers {
         }
     end,
 }
-
-require('lspconfig')['hls'].setup {
-    filetypes = { 'haskell', 'lhaskell', 'cabal' },
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-}
-
-require("rust-tools").setup({
-    server = {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = {
-                    command = "clippy",
-                },
-            },
-        },
-    },
-    tools = {
-        hover_actions = {
-            auto_focus = true,
-        },
-    },
-})
