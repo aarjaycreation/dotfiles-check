@@ -36,5 +36,8 @@ conda deactivate
 
 direnv hook fish | source
 
+# opam configuration
+source /home/afonso/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+
 starship init fish | source
 
