@@ -6,7 +6,6 @@ null_ls.setup({
         null_ls.builtins.formatting.rustfmt,
         null_ls.builtins.formatting.blue,
         null_ls.builtins.formatting.gofmt,
-        null_ls.builtins.formatting.clang_format,
         null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.formatting.prettierd.with({
             filetypes = { "html", "json", "css", "js", "yaml", "markdown" },
