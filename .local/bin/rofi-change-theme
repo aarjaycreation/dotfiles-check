@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Define a list of themes
+themes="latte\nfrappe"
+
+# Display theme options in Rofi
+selected_theme=$(echo -e "${themes[@]}" | rofi -dmenu -p "Select a theme:")
+
+case $selected_theme in
+    "latte")
+        # Change to Latte theme
+        #kitty
+        kitty +kitten themes --reload-in=all catppuccin-latte
+        sed -i 's/flavour = ".*"/flavour = "latte"/' "$HOME"/.config/nvim/lua/plugins/catppuccin.lua
+        nvim --server /tmp/nvim.pipe --remote-send ':colorscheme catppuccin-latte<CR>'
+        sed -i 's/set -g @catppuccin_flavour .*/set -g @catppuccin_flavour '\''latte'\''/' "$HOME"/.config/tmux/tmux.conf
+        fish -c "echo \"Y\" | fish_config theme save \"Catppuccin Latte\""
+        ;;
+    "frappe")
+        # Change to Frappe theme
+        #kitty
+        kitty +kitten themes --reload-in=all catppuccin-frappe
+        sed -i 's/flavour = ".*"/flavour = "frappe"/' "$HOME"/.config/nvim/lua/plugins/catppuccin.lua
+        nvim --server /tmp/nvim.pipe --remote-send ':colorscheme catppuccin-frappe<CR>'
+        sed -i 's/set -g @catppuccin_flavour .*/set -g @catppuccin_flavour '\''frappe'\''/' "$HOME"/.config/tmux/tmux.conf
+        fish -c "echo \"Y\" | fish_config theme save \"Catppuccin Frappe\""
+        ;;
+    *)
+        # Handle an invalid selection or cancel
+        echo "Invalid selection or canceled."
+        ;;
+esac
+
+tmux source-file "$HOME/.config/tmux/tmux.conf"

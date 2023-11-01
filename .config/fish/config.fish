@@ -15,7 +15,6 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.ghcup/bin
 fish_add_path /usr/bin/vendor_perl
 
-source ~/.config/fish/myfunctions/code.fish
 source ~/.config/fish/myfunctions/dotfiles.fish
 source ~/.config/fish/myfunctions/pacman.fish
 source ~/.config/fish/myfunctions/qol.fish

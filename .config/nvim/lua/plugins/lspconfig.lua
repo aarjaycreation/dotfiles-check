@@ -48,19 +48,20 @@ local capabilities = vim.tbl_deep_extend(
     require('cmp_nvim_lsp').default_capabilities()
 )
 
-local setup = {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-}
 mason_lspconfig.setup_handlers {
 
     -- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
     function(server_name)
-        lspconfig[server_name].setup { setup }
+        lspconfig[server_name].setup {
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
+        }
     end,
 }
 
-lspconfig["ocamllsp"].setup {
-    setup
+lspconfig["ocamllsp"].setup{
+            on_attach = on_attach,
+            flags = lsp_flags,
+            capabilities = capabilities,
 }

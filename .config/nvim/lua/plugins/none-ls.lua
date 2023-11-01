@@ -7,6 +7,7 @@ null_ls.setup({
         null_ls.builtins.formatting.blue,
         null_ls.builtins.formatting.gofmt,
         null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.formatting.beautysh,
         null_ls.builtins.formatting.prettierd.with({
             filetypes = { "html", "json", "css", "js", "yaml", "markdown" },
         }),
