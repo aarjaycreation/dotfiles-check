@@ -2,10 +2,10 @@ function ls
     eza --icons -l --sort type $argv
 end
 function nvim
-    /usr/bin/nvim --listen /tmp/nvim.pipe $argv
+    /opt/homebrew/bin/nvim --listen /tmp/nvim.pipe $argv
 end
 function vim
-    /usr/bin/nvim --listen /tmp/nvim.pipe $argv
+    /opt/homebrew/bin/nvim --listen /tmp/nvim.pipe $argv
 end
 abbr -a find fd
 abbr -a df duf

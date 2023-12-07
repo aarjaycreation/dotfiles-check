@@ -54,7 +54,7 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/usr/bin/vendor_perl\x1e/home/afonso/go/bin\x1e/home/afonso/\x2ebun/bin\x1e/var/lib/flatpak/exports/bin\x1e/home/afonso/\x2eghcup/bin\x1e/home/afonso/\x2econfig/emacs/bin\x1e/home/afonso/\x2enix\x2dprofile/bin\x1e/var/lib/snapd/snap/bin\x1e/home/afonso/\x2elocal/share/nvim/mason/bin\x1e/home/afonso/\x2erustup/toolchains/nightly\x2dx86_64\x2dunknown\x2dlinux\x2dgnu/bin\x1e/home/afonso/\x2ecargo/bin\x1e/home/afonso/\x2elocal/bin
+SETUVAR fish_user_paths:/opt/homebrew/opt/openjdk\x4017/bin\x1e/Users/afonso/\x2elocal/share/nvim/mason/bin\x1e/opt/homebrew/bin\x1e/Users/afonso/\x2elocal/bin\x1e/usr/bin/vendor_perl\x1e/home/afonso/go/bin\x1e/home/afonso/\x2ebun/bin\x1e/var/lib/flatpak/exports/bin\x1e/home/afonso/\x2eghcup/bin\x1e/home/afonso/\x2econfig/emacs/bin\x1e/home/afonso/\x2enix\x2dprofile/bin\x1e/var/lib/snapd/snap/bin\x1e/home/afonso/\x2elocal/share/nvim/mason/bin\x1e/home/afonso/\x2erustup/toolchains/nightly\x2dx86_64\x2dunknown\x2dlinux\x2dgnu/bin\x1e/home/afonso/\x2ecargo/bin\x1e/home/afonso/\x2elocal/bin
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_check_for_new_release:false
 SETUVAR pure_color_at_sign:pure_color_mute

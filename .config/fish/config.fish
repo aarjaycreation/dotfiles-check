@@ -6,6 +6,8 @@ fish_default_key_bindings
 set -gx EDITOR nvim
 set -gx READER mupdf
 
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/opt/openjdk@17/bin
 fish_add_path $HOME/.bun/bin
 fish_add_path $HOME/go/bin
 fish_add_path $HOME/.local/share/nvim/mason/bin
@@ -25,18 +27,11 @@ source ~/.config/fish/myfunctions/replacements.fish
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /home/afonso/miniconda3/bin/conda
-    eval /home/afonso/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-end
-# <<< conda initialize <<<
-conda deactivate
-
-direnv hook fish | source
 
 # opam configuration
 source /home/afonso/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 
+tmux new-session -A -s main
 starship init fish | source
+
 
