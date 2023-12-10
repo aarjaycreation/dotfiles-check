@@ -75,7 +75,7 @@ ZSH_THEME="robbyrussell"
 #THEME
 source $HOME/.config/zsh/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh
 
-plugins=(git zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
+plugins=(git macos command-not-found web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
