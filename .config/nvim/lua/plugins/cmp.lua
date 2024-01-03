@@ -14,33 +14,33 @@ local check_backspace = function()
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
---   פּ ﯟ   some other good icons
+-- 󰃐 󰆩 󰙅 󰛡  󰅲 some other good icons
 local kind_icons = {
-    Text = "",
+    Text = "󰉿",
     Method = "m",
-    Function = "",
+    Function = "󰊕",
     Constructor = "",
     Field = "",
-    Variable = "",
-    Class = "",
+    Variable = "󰆧",
+    Class = "󰌗",
     Interface = "",
     Module = "",
     Property = "",
     Unit = "",
-    Value = "",
+    Value = "󰎠",
     Enum = "",
-    Keyword = "",
+    Keyword = "󰌋",
     Snippet = "",
-    Color = "",
-    File = "",
+    Color = "󰏘",
+    File = "󰈙",
     Reference = "",
-    Folder = "",
+    Folder = "󰉋",
     EnumMember = "",
-    Constant = "",
+    Constant = "󰇽",
     Struct = "",
     Event = "",
-    Operator = "",
-    TypeParameter = "",
+    Operator = "󰆕",
+    TypeParameter = "󰊄",
     Copilot = "",
     DB = "󰆼",
 }
@@ -110,20 +110,19 @@ cmp.setup {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
-            --vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            if vim.tbl_contains({ "nvim_lsp" }, entry.source.name) then
-                tailwind = require("tailwindcss-colorizer-cmp")
-                return tailwind.formatter(entry, vim_item)
-            else
-                vim_item.kind = string.format('[%s %s]', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-                vim_item.menu = ({
-                    nvim_lsp = "[LSP]",
-                    ["vim-dadbod-completion"] = "[󰆼]",
-                    nvim_lua = "[LSP]",
-                    path = "[Path]",
-                })[entry.source.name]
-                return vim_item
-            end
+            --            if vim.tbl_contains({ "nvim_lsp" }, entry.source.name) then
+            --                tailwind = require("tailwindcss-colorizer-cmp")
+            --                return tailwind.formatter(entry, vim_item)
+            --            else
+            vim_item.kind = string.format('[%s %s]', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                ["vim-dadbod-completion"] = "[󰆼]",
+                nvim_lua = "[LSP]",
+                path = "[Path]",
+            })[entry.source.name]
+            return vim_item
+            --            end
         end,
     },
     sorting = {
@@ -195,7 +194,13 @@ cmp.setup {
 
     },
     experimental = {
-        ghost_text = true,
+        ghost_text = false,
         native_menu = false,
     },
 }
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+)

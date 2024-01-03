@@ -6,14 +6,18 @@ lazy.setup({
 
     -------------------------------------------THEMES------------------------------------------
     {
+        'zaldih/themery.nvim',
+        config = function()
+            require('plugins.themery')
+        end
+    },
+    {
         'catppuccin/nvim',
         name = "catppuccin",
         lazy = false,
         priority = 1000,
-        config = function()
-            require('plugins.catppuccin')
-        end
     },
+    { "ellisonleao/gruvbox.nvim", priority = 1000 },
     -------------------------------------------------------QOL---------------------------------
     {
         "zbirenbaum/copilot.lua",
@@ -46,6 +50,17 @@ lazy.setup({
     },
 
     {
+        'declancm/cinnamon.nvim',
+        config = function()
+            require('cinnamon').setup {
+                scroll_limit = 10000,
+                always_scroll = true,
+            }
+        end
+    },
+
+    {
+
         "folke/which-key.nvim",
         event = "VeryLazy",
         init = function()
@@ -80,7 +95,6 @@ lazy.setup({
 
     --Change add and remove surroundings from words
     'tpope/vim-surround',
-    'tpope/vim-obsession',
 
     {
         'NvChad/nvim-colorizer.lua',
@@ -89,22 +103,22 @@ lazy.setup({
         end
     },
 
-    {
-        "roobert/tailwindcss-colorizer-cmp.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("tailwindcss-colorizer-cmp").setup({
-                color_square_width = 2,
-            })
-        end
-    },
-    {
-        'laytan/tailwind-sorter.nvim',
-        event = "VeryLazy",
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
-        build = 'cd formatter && bun i && bun run build',
-        config = true,
-    },
+    -- {
+    --     "roobert/tailwindcss-colorizer-cmp.nvim",
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("tailwindcss-colorizer-cmp").setup({
+    --             color_square_width = 2,
+    --         })
+    --     end
+    -- },
+    -- {
+    --     'laytan/tailwind-sorter.nvim',
+    --     event = "VeryLazy",
+    --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+    --     build = 'cd formatter && bun i && bun run build',
+    --     config = true,
+    -- },
     --Database integration
     -- 'tpope/vim-dadbod',
     -- {
@@ -135,42 +149,35 @@ lazy.setup({
 
     -- Rename variable pop up
     'stevearc/dressing.nvim',
-    {
-        'krady21/compiler-explorer.nvim',
-        event = "VeryLazy",
-        config = function()
-            require("compiler-explorer").setup({
-                url = "https://godbolt.org",
-                infer_lang = true,      -- Try to infer possible language based on file extension.
-                line_match = {
-                    highlight = true,   -- highlight the matching line(s) in the other buffer.
-                    jump = true,        -- move the cursor in the other buffer to the first matching line.
-                },
-                open_qflist = true,     --  Open qflist after compilation if there are diagnostics.
-                split = "split",        -- How to split the window after the second compile (split/vsplit).
-                compiler_flags = "",    -- Default flags passed to the compiler.
-                job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
-                languages = {           -- Language specific default compiler/flags
-                    c = {
-                        compiler = "cg132"
-                    }
-                },
-            })
-        end
-    },
 
-    {
-        'luk400/vim-jukit',
-        ft = {'python','ipynb'},
-    },
+    -- {
+    --     'krady21/compiler-explorer.nvim',
+    --     event = "VeryLazy",
+    --     config = function()
+    --         require("compiler-explorer").setup({
+    --             url = "https://godbolt.org",
+    --             infer_lang = true,      -- Try to infer possible language based on file extension.
+    --             line_match = {
+    --                 highlight = true,   -- highlight the matching line(s) in the other buffer.
+    --                 jump = true,        -- move the cursor in the other buffer to the first matching line.
+    --             },
+    --             open_qflist = true,     --  Open qflist after compilation if there are diagnostics.
+    --             split = "split",        -- How to split the window after the second compile (split/vsplit).
+    --             compiler_flags = "",    -- Default flags passed to the compiler.
+    --             job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
+    --             languages = {           -- Language specific default compiler/flags
+    --                 c = {
+    --                     compiler = "cg132"
+    --                 }
+    --             },
+    --         })
+    --     end
+    -- },
 
     {
         'windwp/nvim-autopairs',
         config = function()
-            require('nvim-autopairs').setup({
-                map_cr = true,
-                map_bs = true,
-            })
+            require 'plugins.autopairs'
         end
     },
 
@@ -211,17 +218,7 @@ lazy.setup({
     },
 
     --LSP Status
-    {
-        'j-hui/fidget.nvim',
-        tag = 'legacy',
-        config = function()
-            require('fidget').setup {
-                window = {
-                    blend = 0,
-                }
-            }
-        end
-    },
+    'j-hui/fidget.nvim',
 
     {
         "rcarriga/nvim-dap-ui",
@@ -298,6 +295,8 @@ lazy.setup({
         end
     },
 
+    'kaarmu/typst.vim',
+
     --Sticky headers
     {
         'nvim-treesitter/nvim-treesitter-context',
@@ -305,6 +304,8 @@ lazy.setup({
             require 'plugins.treesitter-context'
         end
     },
+
+    "runoshun/vim-alloy",
 
     --Tabs
     {

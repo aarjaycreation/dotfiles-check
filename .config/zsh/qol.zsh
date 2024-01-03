@@ -1,8 +1,5 @@
 # ~/.config/zsh/qol.zsh
 
-bindkey '^H' backward-kill-path-component
-bindkey '^[[3;5~' kill-word
-
 backup() {
     cp $1 $1.bak
 }
