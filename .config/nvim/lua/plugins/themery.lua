@@ -48,6 +48,7 @@ require("themery").setup({
                         },
                     },
                 })
+      vim.opt.background = "dark"
     ]]
         },
         {
@@ -85,7 +86,38 @@ require("themery").setup({
                         },
                     },
                 })
+      vim.opt.background = "light"
     ]]
+        },
+        {
+            name = "Rosé Pine",
+            colorscheme = "rose-pine",
+            before = [[
+                require('rose-pine').setup({
+                    variant = "main"
+                })
+                vim.opt.background = "dark"
+            ]]
+        },
+        {
+            name = "Rosé Pine Moon",
+            colorscheme = "rose-pine",
+            before = [[
+                require('rose-pine').setup({
+                    variant = "moon"
+                })
+                vim.opt.background = "dark"
+            ]]
+        },
+        {
+            name = "Rosé Pine Dawn",
+            colorscheme = "rose-pine",
+            before = [[
+                require('rose-pine').setup({
+                    variant = "dawn"
+                })
+                vim.opt.background = "light"
+            ]]
         },
     },
     themeConfigFile = "~/.config/nvim/lua/core/theme.lua", -- Described below

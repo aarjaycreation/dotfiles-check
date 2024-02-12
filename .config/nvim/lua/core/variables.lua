@@ -12,6 +12,9 @@ vim.opt.smartindent = true
 --Move lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+--Change word definition
+vim.opt.iskeyword:append("-")
+vim.opt.iskeyword:append("_")
 --Remove Wrap
 vim.opt.wrap = false
 --Not let cursor go bellow 10 chars.
@@ -35,6 +38,6 @@ vim.g.jukit_convert_overwrite_default = 1
 vim.g.jukit_convert_open_default = 0
 vim.g.jukit_shell_cmd = 'ipython3'
 vim.g.jukit_terminal = 'nvimterm'
-vim.g.jukit_inline_plotting=1
 vim.g.jukit_show_prompt = 1
 vim.g.jukit_pdf_viewer = 'zathura'
+vim.g.jukit_mappings = 1

@@ -17,8 +17,63 @@ lazy.setup({
         lazy = false,
         priority = 1000,
     },
+
     { "ellisonleao/gruvbox.nvim", priority = 1000 },
+
+    'rose-pine/neovim',
+    -------------------------------------------------------MFP---------------------------------
+    {
+        'susliko/tla.nvim',
+        config = function()
+            require("tla").setup()
+        end
+    },
     -------------------------------------------------------QOL---------------------------------
+
+    {
+        'chipsenkbeil/distant.nvim',
+        branch = 'v0.3',
+        config = function()
+            require('distant'):setup({
+                servers = {
+                    ['10.8.0.9'] = {
+                        launch = {
+                            default = {
+                                username = 'afonso',
+                                args = '--port 8080 --shutdown lonely=1'
+                            }
+                        }
+                    },
+                }
+            })
+        end
+    },
+    --Python notebooks
+    {
+        'luk400/vim-jukit',
+        config = function()
+            require 'plugins.jukit'
+        end
+    },
+    --org mode
+    {
+        'nvim-orgmode/orgmode',
+        dependencies = {
+            { 'nvim-treesitter/nvim-treesitter', lazy = true },
+        },
+        event = 'VeryLazy',
+        config = function()
+            -- Load treesitter grammar for org
+            require('orgmode').setup_ts_grammar()
+
+            -- Setup orgmode
+            require('orgmode').setup({
+                org_agenda_files = '~/orgfiles/**/*',
+                org_default_notes_file = '~/orgfiles/refile.org',
+            })
+        end,
+    },
+
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
