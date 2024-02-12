@@ -16,6 +16,7 @@ style = "Light"
 opacity = 0.95
 option_as_alt = "Both"
 dynamic_padding = true
+decorations= "Buttonless"
 
 [window.padding]
 x = 2
