@@ -5,4 +5,3 @@ config() {
 }
 
 alias lc="lazygit --git-dir=$HOME/dotfiles/ --work-tree=$HOME/"
-
