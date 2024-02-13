@@ -27,6 +27,9 @@ vim.opt.expandtab = true
 --quickfix keybinds 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+--buffer keybinds
+vim.keymap.set("n", "<A-h>", "<cmd>bp<CR>")
+vim.keymap.set("n", "<A-l>", "<cmd>bn<CR>")
 --Undo dir
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true

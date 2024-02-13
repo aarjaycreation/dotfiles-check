@@ -41,6 +41,21 @@ function M.render()
     -- Remove leading slash.
     path = path:gsub('^/', '')
 
+    -- Get the background color of the Normal highlight group
+    local normal_bg_color = vim.api.nvim_get_hl_by_name('Normal', true).background
+    -- Get the foreground color of the Normal highlight group
+    local normal_fg_color = vim.api.nvim_get_hl_by_name('Normal', true).foreground
+
+    -- Convert the RGB color to a hex string
+    local bg_hex_color = string.format('#%06x', normal_bg_color)
+    -- Convert the RGB color to a hex string
+    local fg_hex_color = string.format('#%06x', normal_fg_color)
+
+    -- Define the Winbar highlight group with the same background color
+    vim.api.nvim_command('highlight Winbar guibg=' .. bg_hex_color)
+    -- Define the Winbar highlight group with the same foreground color
+    vim.api.nvim_command('highlight Winbar guifg=' .. fg_hex_color)
+
     return table.concat {
         ' ',
         prefix,
@@ -58,10 +73,10 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     desc = 'Attach winbar',
     callback = function(args)
         if
-            not vim.api.nvim_win_get_config(0).zindex -- Not a floating window
-            and vim.bo[args.buf].buftype == '' -- Normal buffer
+            not vim.api.nvim_win_get_config(0).zindex     -- Not a floating window
+            and vim.bo[args.buf].buftype == ''            -- Normal buffer
             and vim.api.nvim_buf_get_name(args.buf) ~= '' -- Has a file name
-            and not vim.wo[0].diff -- Not in diff mode
+            and not vim.wo[0].diff                        -- Not in diff mode
         then
             vim.wo.winbar = "%{%v:lua.require'winbar'.render()%}"
         end

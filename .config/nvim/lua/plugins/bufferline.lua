@@ -71,6 +71,5 @@ require("bufferline").setup({
                 return true
             end
         end,
-    },
-    highlights = require("catppuccin.groups.integrations.bufferline").get()
+    }
 })

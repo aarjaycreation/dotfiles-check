@@ -15,5 +15,3 @@ vim() {
 alias find="fd"
 alias df="duf"
 alias lg="lazygit"
-
-

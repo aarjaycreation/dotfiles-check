@@ -6,21 +6,27 @@ lazy.setup({
 
     -------------------------------------------THEMES------------------------------------------
     {
-        'zaldih/themery.nvim',
-        config = function()
-            require('plugins.themery')
-        end
-    },
-    {
         'catppuccin/nvim',
         name = "catppuccin",
         lazy = false,
         priority = 1000,
+        config = function()
+            require("catppuccin").setup({
+                integrations = {
+                    cmp = true,
+                    treesitter = true,
+                    treesitter_context = true,
+                    fidget = true,
+                    telescope = true,
+                    leap = true,
+                    mason = true,
+                },
+            })
+        end
     },
 
-    { "ellisonleao/gruvbox.nvim", priority = 1000 },
+    'sainnhe/gruvbox-material',
 
-    'rose-pine/neovim',
     -------------------------------------------------------MFP---------------------------------
     {
         'susliko/tla.nvim',
@@ -53,7 +59,8 @@ lazy.setup({
         'luk400/vim-jukit',
         config = function()
             require 'plugins.jukit'
-        end
+        end,
+        ft = { 'python', 'json' }
     },
     --org mode
     {
@@ -68,8 +75,8 @@ lazy.setup({
 
             -- Setup orgmode
             require('orgmode').setup({
-                org_agenda_files = '~/orgfiles/**/*',
-                org_default_notes_file = '~/orgfiles/refile.org',
+                org_agenda_files = '~/org/**/*',
+                org_default_notes_file = '~/org/refile.org',
             })
         end,
     },
@@ -363,14 +370,14 @@ lazy.setup({
     "runoshun/vim-alloy",
 
     --Tabs
-    {
-        'akinsho/bufferline.nvim',
-        version = 'v3.*',
-        dependencies = 'nvim-tree/nvim-web-devicons',
-        config = function()
-            require("plugins.bufferline")
-        end
-    },
+    --{
+    --    'akinsho/bufferline.nvim',
+    --    version = 'v3.*',
+    --    dependencies = 'nvim-tree/nvim-web-devicons',
+    --    config = function()
+    --        require("plugins.bufferline")
+    --    end
+    --},
 
     --does so much
     {
