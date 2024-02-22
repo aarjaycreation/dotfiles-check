@@ -43,4 +43,7 @@ vim.g.jukit_shell_cmd = 'ipython3'
 vim.g.jukit_terminal = 'nvimterm'
 vim.g.jukit_show_prompt = 1
 vim.g.jukit_pdf_viewer = 'zathura'
-vim.g.jukit_mappings = 1
+vim.g.jukit_mappings = 0
+--Format Options
+vim.opt.formatoptions:remove("ro")
+
