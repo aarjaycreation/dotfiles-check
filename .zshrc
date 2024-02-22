@@ -73,10 +73,10 @@ ZSH_CUSTOM=/Users/afonso/.config/zsh
 
 
 #THEME
-source $HOME/.config/zsh/themes/gruvbox_light.zsh
+source $HOME/.config/zsh/themes/gruvbox_dark.zsh
 source $HOME/.config/zsh/overrides.zsh
 
-plugins=(git sudo macos tmux command-not-found web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting fzf-tab)
+plugins=(zsh-vi-mode git sudo macos tmux command-not-found web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting fzf-tab)
 
 
 #Completions
