@@ -72,3 +72,33 @@ ZSH_HIGHLIGHT_STYLES[redirection]='fg=#4c4f69'
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#4c4f69'
 ZSH_HIGHLIGHT_STYLES[default]='fg=#4c4f69'
 ZSH_HIGHLIGHT_STYLES[cursor]='fg=#4c4f69'
+
+#Pure prompt
+# Define cappuccin latte colors
+pure_prompt_colors() {
+    local colors
+    colors=(
+        execution_time='%F{#bdae93}'           # The execution time of the last command when exceeding PURE_CMD_MAX_EXEC_TIME.
+        git:arrow='%F{#458588}'                 # For PURE_GIT_UP_ARROW and PURE_GIT_DOWN_ARROW.
+        git:stash='%F{#bdae93}'                 # For PURE_GIT_STASH_SYMBOL.
+        git:branch='%F{#98971a}'                # The name of the current branch when in a Git repository.
+        git:branch:cached='%F{#cc241d}'         # The name of the current branch when the data isn't fresh.
+        git:action='%F{#b16286}'                # The current action in progress (cherry-pick, rebase, etc.) when in a Git repository.
+        git:dirty='%F{#d65d0e}'                 # The asterisk showing the branch is dirty.
+        host='%F{#7c6f64}'                      # The hostname when on a remote machine.
+        path='%F{#458588}'                      # The current path, for example, PWD.
+        prompt:error='%F{#cc241d}'              # The PURE_PROMPT_SYMBOL when the previous command has failed.
+        prompt:success='%F{#98971a}'            # The PURE_PROMPT_SYMBOL when the previous command has succeeded.
+        prompt:continuation='%F{#b16286}'       # The color for showing the state of the parser in the continuation prompt (PS2).
+        suspended_jobs='%F{#cc241d}'            # The ✦ symbol indicates that jobs are running in the background.
+        user='%F{#7c6f64}'                      # The username when on remote machine.
+        user:root='%F{default}'                 # The username when the user is root.
+        virtualenv='%F{#b16286}'                # The name of the Python virtualenv when in use.
+    )
+    (( $#colors )) || echo $colors
+}
+
+# Apply cappuccin latte colors to Zsh Pure prompt
+for color in $(pure_prompt_colors); do
+    zstyle ":prompt:pure:$color" color "$color"
+done

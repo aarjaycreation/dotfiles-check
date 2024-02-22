@@ -16,3 +16,12 @@ capture() {
         }
     '
 }
+
+sourceall(){
+    set -e
+    pids=$(pgrep zsh)
+    while IFS= read -r pid; do
+        kill -USR1 "$pid"
+    done <<< "$pids"
+    set +e
+}

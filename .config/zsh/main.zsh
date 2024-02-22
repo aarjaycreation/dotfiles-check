@@ -15,30 +15,13 @@ setopt HIST_VERIFY
 export EDITOR=nvim
 export READER=mupdf
 
-# Add paths
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
-export PATH="$HOME/.bun/bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-export PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.ghcup/bin:$PATH"
-export PATH="/usr/bin/vendor_perl:$PATH"
-export PATH="/Applications/usdpython/usdpython/USD:$PATH"
-export PATH="/Applications/usdpython/usdzconvert:$PATH"
-export PATH="/Users/afonso/Library/Python/3.11/bin:$PATH"
-[ -f "/Users/afonso/.ghcup/env" ] && source "/Users/afonso/.ghcup/env" # ghcup-env
-export PYTHONPATH="/Applications/usdpython/USD/lib/python:$PYTHONPATH"
-export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 
 
-if [ "$(arch)" = "arm64" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    eval "$(/usr/local/bin/brew shellenv)"
-fi
+#if [ "$(arch)" = "arm64" ]; then
+eval "$(/opt/homebrew/bin/brew shellenv)"
+#else
+#    eval "$(/usr/local/bin/brew shellenv)"
+#fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -49,3 +32,7 @@ enable-fzf-tab
 
 # opam configuration
 source $HOME/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
+
+eval "$(zoxide init zsh)"
+
+eval "$(direnv hook zsh)"

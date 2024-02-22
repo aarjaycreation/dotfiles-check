@@ -4,6 +4,10 @@ ls() {
     eza --icons -l --sort type "$@"
 }
 
+cd(){
+    z "$@"
+}
+
 nvim() {
     /opt/homebrew/bin/nvim --listen /tmp/nvim.pipe "$@"
 }
@@ -12,6 +16,9 @@ vim() {
     /opt/homebrew/bin/nvim --listen /tmp/nvim.pipe "$@"
 }
 
-alias find="fd"
-alias df="duf"
+v() {
+    /opt/homebrew/bin/nvim --listen /tmp/nvim.pipe "$@"
+}
+
 alias lg="lazygit"
+alias calcurse-caldav='CALCURSE_CALDAV_PASSWORD=$(keyring get caldav afonso) calcurse-caldav'
