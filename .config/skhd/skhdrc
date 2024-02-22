@@ -1,6 +1,7 @@
 # Terminal and Applications
-cmd - t : open -na alacritty
-cmd - b : open -a Firefox
+cmd + alt - t : open -na alacritty
+cmd + alt - b : open -a Firefox
+cmd + shift - v : ~/.config/skhd/scripts/menubar.sh
 
 # System Controls
 cmd - return : yabai -m window --swap west
