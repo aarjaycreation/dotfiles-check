@@ -1,4 +1,6 @@
 local opts = { noremap = true, silent = true, buffer = true }
+--Convert between py and ipynb
+vim.keymap.set('n', '<leader>jnp', '<cmd>call jukit#convert#notebook_convert()<CR>', opts)
 -- Create new code cell below. Argument: Whether to create code cell (0) or markdown cell (1)
 vim.keymap.set('n', '<leader>jco', '<cmd>call jukit#cells#create_below(0)<CR>', opts)
 -- Create new code cell above. Argument: Whether to create code cell (0) or markdown cell (1)

@@ -10,19 +10,7 @@ lazy.setup({
         name = "catppuccin",
         lazy = false,
         priority = 1000,
-        config = function()
-            require("catppuccin").setup({
-                integrations = {
-                    cmp = true,
-                    treesitter = true,
-                    treesitter_context = true,
-                    fidget = true,
-                    telescope = true,
-                    leap = true,
-                    mason = true,
-                },
-            })
-        end
+        opts = {}
     },
 
     'sainnhe/gruvbox-material',
@@ -30,33 +18,24 @@ lazy.setup({
     -------------------------------------------------------MFP---------------------------------
     {
         'susliko/tla.nvim',
-        config = function()
-            require("tla").setup()
-        end
+        opts = {}
     },
     -------------------------------------------------------QOL---------------------------------
 
     {
-        'chipsenkbeil/distant.nvim',
-        branch = 'v0.3',
+        'jbyuki/instant.nvim',
         config = function()
-            require('distant'):setup({
-                servers = {
-                    ['10.8.0.9'] = {
-                        launch = {
-                            default = {
-                                username = 'afonso',
-                                args = '--port 8080 --shutdown lonely=1'
-                            }
-                        }
-                    },
-                }
-            })
+            vim.g.instant_username = 'afonso'
         end
     },
 
     'vimpostor/vim-tpipeline',
 
+    {
+        'TobinPalmer/pastify.nvim',
+        cmd = { 'Pastify' },
+        opts = {}
+    },
 
     --Python notebooks
     {
@@ -65,24 +44,6 @@ lazy.setup({
             require 'plugins.jukit'
         end,
         ft = { 'python', 'json' }
-    },
-    --org mode
-    {
-        'nvim-orgmode/orgmode',
-        dependencies = {
-            { 'nvim-treesitter/nvim-treesitter', lazy = true },
-        },
-        event = 'VeryLazy',
-        config = function()
-            -- Load treesitter grammar for org
-            require('orgmode').setup_ts_grammar()
-
-            -- Setup orgmode
-            require('orgmode').setup({
-                org_agenda_files = '~/org/**/*',
-                org_default_notes_file = '~/org/refile.org',
-            })
-        end,
     },
 
     {
@@ -93,55 +54,31 @@ lazy.setup({
             require 'plugins.copilot'
         end,
     },
-    --better navigation with 's-letter'
-    {
-        'ggandor/leap.nvim',
-        event = "VeryLazy",
-        config = function()
-            require('leap').add_default_mappings()
-        end
-    },
 
     --Nvim to browser
     'subnut/nvim-ghost.nvim',
 
     {
-        '2kabhishek/nerdy.nvim',
-        event = "VeryLazy",
-        dependencies = {
-            'stevearc/dressing.nvim',
-            'nvim-telescope/telescope.nvim',
-        },
-        cmd = 'Nerdy',
-    },
-
-    {
         'declancm/cinnamon.nvim',
-        config = function()
-            require('cinnamon').setup {
-                scroll_limit = 10000,
-                always_scroll = true,
-            }
-        end
+        opts = {
+            scroll_limit = 10000,
+            always_scroll = true,
+        }
     },
 
     {
         "folke/todo-comments.nvim",
         event = "VeryLazy",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("todo-comments").setup {}
-        end
+        opts = {}
     },
 
     {
         'folke/zen-mode.nvim',
         event = "VeryLazy",
-        config = function()
-            require("zen-mode").setup {
-                vim.keymap.set('n', '<leader>z', '<Cmd> ZenMode <CR>', { noremap = true, silent = true })
-            }
-        end
+        opts = {
+            vim.keymap.set('n', '<leader>z', '<Cmd> ZenMode <CR>', { noremap = true, silent = true })
+        }
     },
 
     --Change add and remove surroundings from words
@@ -149,81 +86,27 @@ lazy.setup({
 
     {
         'NvChad/nvim-colorizer.lua',
-        config = function()
-            require 'colorizer'.setup()
-        end
+        opts = {}
     },
-
-    -- {
-    --     "roobert/tailwindcss-colorizer-cmp.nvim",
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require("tailwindcss-colorizer-cmp").setup({
-    --             color_square_width = 2,
-    --         })
-    --     end
-    -- },
-    -- {
-    --     'laytan/tailwind-sorter.nvim',
-    --     event = "VeryLazy",
-    --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
-    --     build = 'cd formatter && bun i && bun run build',
-    --     config = true,
-    -- },
-    --Database integration
-    -- 'tpope/vim-dadbod',
-    -- {
-    --     'kristijanhusak/vim-dadbod-ui',
-    --     config = function()
-    --         vim.g.db_ui_auto_execute_table_helpers = 1
-    --     end
-    -- },
-    -- 'kristijanhusak/vim-dadbod-completion',
 
     'mbbill/undotree',
 
     --Tmux navigation
     {
         'alexghergh/nvim-tmux-navigation',
-        config = function()
-            require 'nvim-tmux-navigation'.setup {
-                disable_when_zoomed = true, -- defaults to false
-                keybindings = {
-                    left = "<F5>",
-                    down = "<F6>",
-                    up = "<F7>",
-                    right = "<F8>",
-                }
+        opts = {
+            disable_when_zoomed = true, -- defaults to false
+            keybindings = {
+                left = "<F5>",
+                down = "<F6>",
+                up = "<F7>",
+                right = "<F8>",
             }
-        end
+        }
     },
 
     -- Rename variable pop up
     'stevearc/dressing.nvim',
-
-    -- {
-    --     'krady21/compiler-explorer.nvim',
-    --     event = "VeryLazy",
-    --     config = function()
-    --         require("compiler-explorer").setup({
-    --             url = "https://godbolt.org",
-    --             infer_lang = true,      -- Try to infer possible language based on file extension.
-    --             line_match = {
-    --                 highlight = true,   -- highlight the matching line(s) in the other buffer.
-    --                 jump = true,        -- move the cursor in the other buffer to the first matching line.
-    --             },
-    --             open_qflist = true,     --  Open qflist after compilation if there are diagnostics.
-    --             split = "split",        -- How to split the window after the second compile (split/vsplit).
-    --             compiler_flags = "",    -- Default flags passed to the compiler.
-    --             job_timeout_ms = 25000, -- Timeout for libuv job in milliseconds.
-    --             languages = {           -- Language specific default compiler/flags
-    --                 c = {
-    --                     compiler = "cg132"
-    --                 }
-    --             },
-    --         })
-    --     end
-    -- },
 
     {
         'windwp/nvim-autopairs',
@@ -244,9 +127,7 @@ lazy.setup({
 
     {
         'stevearc/oil.nvim',
-        config = function()
-            require("oil").setup()
-        end
+        opts = {}
     },
 
     -------------------------------------------------------LSP----------------------------------------------
@@ -303,6 +184,9 @@ lazy.setup({
     },
     {
         "mfussenegger/nvim-dap",
+        config = function()
+            require 'plugins.dap'
+        end
     },
 
     {
@@ -331,10 +215,15 @@ lazy.setup({
 
     {
         'lervag/vimtex',
-        event = "VeryLazy",
         config = function()
             require 'plugins.vimtex'
         end
+    },
+
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
     },
 
     -------------------------------------------------------------------------------------------
@@ -358,16 +247,6 @@ lazy.setup({
 
     "runoshun/vim-alloy",
 
-    --Tabs
-    --{
-    --    'akinsho/bufferline.nvim',
-    --    version = 'v3.*',
-    --    dependencies = 'nvim-tree/nvim-web-devicons',
-    --    config = function()
-    --        require("plugins.bufferline")
-    --    end
-    --},
-
     --does so much
     {
         'nvim-telescope/telescope.nvim',
@@ -377,34 +256,6 @@ lazy.setup({
         config = function() require('plugins.telescope') end
     },
 
-
-    --Main menu
-    -- {
-    --     'startup-nvim/startup.nvim',
-    --     dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' },
-    --     config = function()
-    --         require('startup').setup { theme = 'dashboard' }
-    --     end,
-    -- },
-
-    -------------------------------------------OTHERS----------------------------------------------
-
-    -- {
-    --     "nvim-neorg/neorg",
-    --     build = ":Neorg sync-parsers",
-    --     config = function()
-    --         require("neorg").setup {
-    --             load = {
-    --                 ["core.defaults"] = {}, -- Loads default behaviour
-    --                 ["core.concealer"] = {} -- Adds pretty icons to your documents
-    --             },
-    --         }
-    --     end,
-    --     dependencies = { "nvim-lua/plenary.nvim" },
-    -- },
-
-    -- 'kmonad/kmonad-vim',
-    -- 'elkowar/yuck.vim',
     --Discord Rich Presence
     'andweeb/presence.nvim'
 

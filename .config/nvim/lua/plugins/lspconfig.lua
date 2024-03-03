@@ -60,8 +60,16 @@ mason_lspconfig.setup_handlers {
     end,
 }
 
-lspconfig["ocamllsp"].setup{
-            on_attach = on_attach,
-            flags = lsp_flags,
-            capabilities = capabilities,
+lspconfig["ocamllsp"].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+
+vim.g.rustaceanvim = {
+    server = {
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities
+    },
 }
