@@ -1,49 +1,49 @@
-local lazy = require('lazy')
+local lazy = require("lazy")
 
 lazy.setup({
 
-    'lewis6991/impatient.nvim',
+    "lewis6991/impatient.nvim",
 
     -------------------------------------------THEMES------------------------------------------
     {
-        'catppuccin/nvim',
+        "catppuccin/nvim",
         name = "catppuccin",
         lazy = false,
         priority = 1000,
-        opts = {}
+        opts = {},
     },
 
-    'sainnhe/gruvbox-material',
+    "sainnhe/gruvbox-material",
 
     -------------------------------------------------------MFP---------------------------------
     {
-        'susliko/tla.nvim',
-        opts = {}
+        "susliko/tla.nvim",
+        opts = {},
     },
     -------------------------------------------------------QOL---------------------------------
 
     {
-        'jbyuki/instant.nvim',
+        "jbyuki/instant.nvim",
         config = function()
-            vim.g.instant_username = 'afonso'
-        end
+            vim.g.instant_username = "afonso"
+        end,
     },
 
-    'vimpostor/vim-tpipeline',
+    "vimpostor/vim-tpipeline",
 
     {
-        'TobinPalmer/pastify.nvim',
-        cmd = { 'Pastify' },
-        opts = {}
+        "TobinPalmer/pastify.nvim",
+        cmd = { "Pastify" },
+        opts = {},
     },
 
     --Python notebooks
     {
-        'luk400/vim-jukit',
+        "luk400/vim-jukit",
         config = function()
-            require 'plugins.jukit'
+            require("plugins.jukit")
         end,
-        ft = { 'python', 'json' }
+        ft = { "python", "json" },
     },
 
     {
@@ -51,49 +51,49 @@ lazy.setup({
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
-            require 'plugins.copilot'
+            require("plugins.copilot")
         end,
     },
 
     --Nvim to browser
-    'subnut/nvim-ghost.nvim',
+    "subnut/nvim-ghost.nvim",
 
     {
-        'declancm/cinnamon.nvim',
+        "declancm/cinnamon.nvim",
         opts = {
             scroll_limit = 10000,
             always_scroll = true,
-        }
+        },
     },
 
     {
         "folke/todo-comments.nvim",
         event = "VeryLazy",
         dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {}
+        opts = {},
     },
 
     {
-        'folke/zen-mode.nvim',
+        "folke/zen-mode.nvim",
         event = "VeryLazy",
         opts = {
-            vim.keymap.set('n', '<leader>z', '<Cmd> ZenMode <CR>', { noremap = true, silent = true })
-        }
+            vim.keymap.set("n", "<leader>z", "<Cmd> ZenMode <CR>", { noremap = true, silent = true }),
+        },
     },
 
     --Change add and remove surroundings from words
-    'tpope/vim-surround',
+    "tpope/vim-surround",
 
     {
-        'NvChad/nvim-colorizer.lua',
-        opts = {}
+        "NvChad/nvim-colorizer.lua",
+        opts = {},
     },
 
-    'mbbill/undotree',
+    "mbbill/undotree",
 
     --Tmux navigation
     {
-        'alexghergh/nvim-tmux-navigation',
+        "alexghergh/nvim-tmux-navigation",
         opts = {
             disable_when_zoomed = true, -- defaults to false
             keybindings = {
@@ -101,56 +101,57 @@ lazy.setup({
                 down = "<F6>",
                 up = "<F7>",
                 right = "<F8>",
-            }
-        }
+            },
+        },
     },
 
     -- Rename variable pop up
-    'stevearc/dressing.nvim',
+    "stevearc/dressing.nvim",
 
     {
-        'windwp/nvim-autopairs',
+        "windwp/nvim-autopairs",
         config = function()
-            require 'plugins.autopairs'
-        end
+            require("plugins.autopairs")
+        end,
     },
 
-    'nvim-tree/nvim-web-devicons',
+    "nvim-tree/nvim-web-devicons",
 
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
         config = function()
-            require 'plugins.lualine'
-        end
+            require("plugins.lualine")
+        end,
     },
 
     {
-        'stevearc/oil.nvim',
-        opts = {}
+        "stevearc/oil.nvim",
+        opts = {},
     },
 
     -------------------------------------------------------LSP----------------------------------------------
     {
-        'hrsh7th/nvim-cmp',
+        "hrsh7th/nvim-cmp",
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp',                -- lsp
-            'hrsh7th/cmp-nvim-lua',                -- Nvim API completions
-            'hrsh7th/cmp-nvim-lsp-signature-help', -- Show function signatures
-            'hrsh7th/cmp-buffer',                  --buffer completions
-            'hrsh7th/cmp-path',                    --path completions
-            'hrsh7th/cmp-cmdline',                 --cmdline completions
-            'L3MON4D3/LuaSnip',
-            'rafamadriz/friendly-snippets',
-            'saadparwaiz1/cmp_luasnip',
+            "hrsh7th/cmp-nvim-lsp",                -- lsp
+            "hrsh7th/cmp-nvim-lua",                -- Nvim API completions
+            "hrsh7th/cmp-nvim-lsp-signature-help", -- Show function signatures
+            "hrsh7th/cmp-buffer",                  --buffer completions
+            "hrsh7th/cmp-path",                    --path completions
+            "hrsh7th/cmp-cmdline",                 --cmdline completions
+            "L3MON4D3/LuaSnip",
+            "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind.nvim", --lspkind icons
         },
         config = function()
-            require 'plugins.cmp'
-        end
+            require("plugins.cmp")
+        end,
     },
 
     --LSP Status
-    'j-hui/fidget.nvim',
+    "j-hui/fidget.nvim",
 
     {
         "rcarriga/nvim-dap-ui",
@@ -169,7 +170,7 @@ lazy.setup({
             dap.listeners.before.event_exited["dapui_config"] = function()
                 dapui.close()
             end
-        end
+        end,
     },
     {
         "jay-babu/mason-nvim-dap.nvim",
@@ -179,84 +180,89 @@ lazy.setup({
             "mfussenegger/nvim-dap",
         },
         opts = {
-            handlers = {}
+            handlers = {},
         },
     },
     {
         "mfussenegger/nvim-dap",
         config = function()
-            require 'plugins.dap'
-        end
+            require("plugins.dap")
+        end,
     },
 
     {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
         config = function()
-            require 'plugins.mason'
-        end
+            require("plugins.mason")
+        end,
     },
 
-    'williamboman/mason-lspconfig.nvim',
+    "williamboman/mason-lspconfig.nvim",
 
     {
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
         config = function()
-            require 'plugins.lspconfig'
-        end
+            require("plugins.lspconfig")
+        end,
     },
 
     {
-        'nvimtools/none-ls.nvim',
-        event = "VeryLazy",
+        "stevearc/conform.nvim",
         config = function()
-            require 'plugins.none-ls'
-        end
+            require("plugins.conform")
+        end,
     },
 
     {
-        'lervag/vimtex',
+        "lervag/vimtex",
         config = function()
-            require 'plugins.vimtex'
-        end
+            require("plugins.vimtex")
+        end,
     },
 
     {
-        'mrcjkb/rustaceanvim',
-        version = '^4', -- Recommended
-        ft = { 'rust' },
+        "mrcjkb/rustaceanvim",
+        version = "^4", -- Recommended
+        ft = { "rust" },
     },
+
+    "barreiroleo/ltex-extra.nvim",
 
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting
     {
-        'nvim-treesitter/nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter",
         config = function()
-            require 'plugins.treesitter'
-        end
+            require("plugins.treesitter")
+        end,
     },
 
-    'kaarmu/typst.vim',
+    "kaarmu/typst.vim",
 
     --Sticky headers
     {
-        'nvim-treesitter/nvim-treesitter-context',
+        "nvim-treesitter/nvim-treesitter-context",
         config = function()
-            require 'plugins.treesitter-context'
-        end
+            require("plugins.treesitter-context")
+        end,
     },
 
     "runoshun/vim-alloy",
 
     --does so much
     {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
+        "nvim-telescope/telescope.nvim",
+        tag = "0.1.4",
         -- or                            , branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function() require('plugins.telescope') end
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("plugins.telescope")
+        end,
     },
 
     --Discord Rich Presence
-    'andweeb/presence.nvim'
-
+    "andweeb/presence.nvim",
+    
+    --Vim be good
+    'ThePrimeagen/vim-be-good',
 })

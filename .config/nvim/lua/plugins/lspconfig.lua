@@ -1,75 +1,91 @@
-local mason_lspconfig = require "mason-lspconfig"
-local lspconfig = require "lspconfig"
+local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require("lspconfig")
 
 mason_lspconfig.setup({
-    automatic_installation = false
+    automatic_installation = false,
+})
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+        local telescope = require("telescope.builtin")
+        local conform = require("conform")
+
+        -- Mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local bufopts = { noremap = true, silent = true, buffer = ev.buf }
+        vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, bufopts)
+        vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, bufopts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+        vim.keymap.set("n", "gd", telescope.lsp_definitions, bufopts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+        vim.keymap.set("n", "gi", telescope.lsp_implementations, bufopts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
+        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+        vim.keymap.set("n", "gr", telescope.lsp_references, bufopts)
+        vim.keymap.set("n", "<space>ge", function() vim.diagnostic.goto_next() end, bufopts)
+        vim.keymap.set("n", "<space>gE", function() vim.diagnostic.goto_prev() end, bufopts)
+        vim.keymap.set("n", "<space>fo", function() conform.format({ lsp_fallback = true }) end, bufopts)
+    end,
+})
+
+-- ADD NVIM CMP AS A CAPABILITY
+local lsp_defaults = lspconfig.util.default_config
+local capabilities =
+    vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+mason_lspconfig.setup_handlers({
+    -- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
+    function(server_name)
+        lspconfig[server_name].setup({
+            capabilities = capabilities,
+        })
+    end,
+    ["lua_ls"] = function()
+        lspconfig["lua_ls"].setup({
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    library = {
+                        unpack(vim.api.nvim_get_runtime_file('', true))
+                    },
+                    diagnostics = {
+                        globals = { 'vim' },
+                    },
+                },
+            },
+        })
+    end,
+    ["hls"] = function()
+        lspconfig["hls"].setup({
+            capabilities = capabilities,
+            filetypes = { 'haskell', 'lhaskell', 'cabal' },
+        })
+    end,
+    ["ltex"] = function()
+        lspconfig["ltex"].setup({
+            capabilities = capabilities,
+            --Local on attach
+            on_attach = function(_, _)
+                -- rest of your on_attach process.
+                require("ltex_extra").setup()
+            end,
+        })
+    end
+
+
 })
 
 
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { noremap = true, silent = true }
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>ge', function() vim.diagnostic.goto_next() end, bufopts)
-    vim.keymap.set('n', '<space>gE', function() vim.diagnostic.goto_prev() end, bufopts)
-    vim.keymap.set('n', '<space>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
-    vim.keymap.set('n', '<space>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
-end
-
--- ADD NVIM CMP AS A CAPABILITY
-local lsp_defaults = lspconfig.util.default_config
-local capabilities = vim.tbl_deep_extend(
-    'force',
-    lsp_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
-
-mason_lspconfig.setup_handlers {
-
-    -- This is a default handler that will be called for each installed server (also for new servers that are installed during a session)
-    function(server_name)
-        lspconfig[server_name].setup {
-            on_attach = on_attach,
-            flags = lsp_flags,
-            capabilities = capabilities,
-        }
-    end,
-}
-
-lspconfig["ocamllsp"].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-}
-
 vim.g.rustaceanvim = {
     server = {
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities
+        capabilities = capabilities,
     },
 }
