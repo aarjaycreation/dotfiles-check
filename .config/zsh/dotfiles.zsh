@@ -1,7 +1,5 @@
 # ~/.config/zsh/myfunctions/dotfiles.zsh
 
-config() {
-    /usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME $argv
-}
+alias config="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 
 alias lc="lazygit --git-dir=$HOME/dotfiles/ --work-tree=$HOME/"
