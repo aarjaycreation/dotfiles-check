@@ -17,6 +17,7 @@
   "gruvbox-material": { "branch": "master", "commit": "b17fe51688b76e2ccf118e5f76f3978b9a8c503e" },
   "impatient.nvim": { "branch": "main", "commit": "47302af74be7b79f002773011f0d8e85679a7618" },
   "instant.nvim": { "branch": "master", "commit": "294b6d08143b3db8f9db7f606829270149e1a786" },
+  "jq.nvim": { "branch": "master", "commit": "b9879798f25a9318894456dc7464af0904c08958" },
   "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
   "lspkind.nvim": { "branch": "master", "commit": "1735dd5a5054c1fb7feaf8e8658dbab925f4f0cf" },
   "ltex-extra.nvim": { "branch": "master", "commit": "42dd3572cb09b52a137e91e515f2dff5eb631b1e" },

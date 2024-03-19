@@ -265,4 +265,7 @@ lazy.setup({
     
     --Vim be good
     'ThePrimeagen/vim-be-good',
+
+    --JQ
+    'jrop/jq.nvim'
 })

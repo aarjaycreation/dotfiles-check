@@ -3,6 +3,7 @@ require("conform").setup({
 		python = { "black" },
 		javascript = { "prettierd" },
 		markdown = { "mdformat" },
+        json = {"jq"}
 	},
 	format_on_save = {
 		lsp_fallback = true,
