@@ -1,7 +1,7 @@
 [user]
  email = afonso@francof.net
  name = afonso
- signingkey = ~/.ssh/id_ed25519_sk.pub
+ signingkey = ~/.ssh/simple_sk
 [includeIf "hasconfig:remote.*.url:https://github.com/**"]
  path = ~/.gitconfig-gh
 [includeIf "hasconfig:remote.*.url:ssh://git@github.com/**"]
