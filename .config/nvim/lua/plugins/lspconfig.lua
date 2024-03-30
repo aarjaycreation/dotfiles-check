@@ -15,6 +15,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local telescope = require("telescope.builtin")
         local conform = require("conform")
 
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        client.server_capabilities.semanticTokensProvider = nil
+
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = ev.buf }
@@ -62,12 +65,6 @@ mason_lspconfig.setup_handlers({
             },
         })
     end,
-    ["hls"] = function()
-        lspconfig["hls"].setup({
-            capabilities = capabilities,
-            filetypes = { 'haskell', 'lhaskell', 'cabal' },
-        })
-    end,
     ["ltex"] = function()
         lspconfig["ltex"].setup({
             capabilities = capabilities,
@@ -77,15 +74,38 @@ mason_lspconfig.setup_handlers({
                 require("ltex_extra").setup()
             end,
         })
+    end,
+    ["basedpyright"] = function ()
+        lspconfig["basedpyright"].setup({
+            capabilities = capabilities,
+            settings = {
+                verboseOutput = true,
+                autoImportCompletion = true,
+                basedpyright = {
+                    analysis = {
+                        typeCheckingMode = "all",
+                        autoSearchPaths = true,
+                        useLibraryCodeForTypes = true,
+                        diagnosticMode = "openFilesOnly",
+                        indexing = true,
+                    },
+                },
+            },
+        })
     end
+})
 
 
+lspconfig["hls"].setup({
+    capabilities = capabilities,
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
 })
 
 
 
-vim.g.rustaceanvim = {
-    server = {
-        capabilities = capabilities,
-    },
-}
+
+--vim.g.rustaceanvim = {
+--    server = {
+--        capabilities = capabilities,
+--    },
+--}

@@ -19,14 +19,6 @@ if not lspkind_status_ok then
     return
 end
 
-cmp.event:on("menu_opened", function()
-    vim.b.copilot_suggestion_hidden = true
-end)
-
-cmp.event:on("menu_closed", function()
-    vim.b.copilot_suggestion_hidden = false
-end)
-
 -- 󰃐 󰆩 󰙅 󰛡  󰅲 some other good icons
 local kind_icons = {
     Text = "󰉿",

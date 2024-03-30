@@ -156,7 +156,7 @@ lazy.setup({
     {
         "rcarriga/nvim-dap-ui",
         event = "VeryLazy",
-        dependencies = "mfussenegger/nvim-dap",
+        dependencies = {"mfussenegger/nvim-dap","nvim-neotest/nvim-nio"},
         config = function()
             local dap = require("dap")
             local dapui = require("dapui")
@@ -220,11 +220,13 @@ lazy.setup({
         end,
     },
 
-    {
-        "mrcjkb/rustaceanvim",
-        version = "^4", -- Recommended
-        ft = { "rust" },
-    },
+    'tpope/vim-commentary',
+
+   -- {
+   --     "mrcjkb/rustaceanvim",
+   --     version = "^4", -- Recommended
+   --     ft = { "rust" },
+   -- },
 
     "barreiroleo/ltex-extra.nvim",
 
