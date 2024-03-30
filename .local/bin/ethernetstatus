@@ -1,0 +1,58 @@
+#!/bin/bash
+
+get_adapter_name() {
+    adapter=$(/usr/sbin/networksetup -listnetworkserviceorder | /usr/bin/sed -En 's|^\(Hardware Port: AX88179A, Device: (en.)\)$|\1|p')
+    echo "$adapter"
+}
+
+check_ethernet_status() {
+    adapter="$1"
+    status=$( /sbin/ifconfig "$adapter" | grep 'status: active' )
+    if [ -n "$status" ]; then
+        echo "Ethernet on adapter $adapter is connected"
+        return 0
+    else
+        echo "Ethernet on adapter $adapter is not connected"
+        return 1
+    fi
+}
+
+open_app() {
+    app="$1"
+    if ! pgrep -f "$app" >/dev/null; then
+        /usr/bin/open -a "$app"
+    fi
+}
+
+close_app() {
+    app="$1"
+    if pgrep -f "$app" >/dev/null; then
+        pkill -f "$app"
+    fi
+}
+
+main() {
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: $0 <program_to_run>"
+        return 1
+    fi
+
+    adapter=$(get_adapter_name)
+    if [ -z "$adapter" ]; then
+        echo "Failed to get adapter name"
+        return 1
+    fi
+
+    app="$1"
+
+    if check_ethernet_status "$adapter"; then
+        open_app "$app"
+    else
+        close_app "$app"
+    fi
+
+    return 0
+}
+
+main "$@"
+
