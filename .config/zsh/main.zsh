@@ -33,6 +33,4 @@ enable-fzf-tab
 # opam configuration
 source $HOME/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
-eval "$(zoxide init zsh)"
-
 eval "$(direnv hook zsh)"
