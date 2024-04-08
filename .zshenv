@@ -17,5 +17,6 @@ export PATH="$HOME/.ghcup/bin:$PATH"
 export DYLD_LIBRARY_PATH="/opt/homebrew/lib:$DYLD_LIBRARY_PATH"
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 export PATH="$HOME/.miniforge3/bin:$PATH"
+export PATH="/opt/homebrew/opt/texlive/bin/:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
