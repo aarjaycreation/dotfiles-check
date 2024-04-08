@@ -11,13 +11,14 @@ cmd - u : yabai --load-sa && yabai --restart # Assuming you have scripting addit
 cmd - h : yabai -m window --resize right:-20:0
 cmd - l : yabai -m window --resize left:20:0
 
+
 # Focus workspaces 1 through 6
-cmd - 1 : index=$(yabai -m query --spaces --space | jq .display); yabai -m space 1 --display ${index}; yabai -m space --focus 1
-cmd - 2 : index=$(yabai -m query --spaces --space | jq .display); yabai -m space 2 --display ${index}; yabai -m space --focus 2
-cmd - 3 : index=$(yabai -m query --spaces --space | jq .display); yabai -m space 3 --display ${index}; yabai -m space --focus 3
-cmd - 4 : index=$(yabai -m query --spaces --space | jq .display); yabai -m space 4 --display ${index}; yabai -m space --focus 4
-cmd - 5 : index=$(yabai -m query --spaces --space | jq .display); yabai -m space 5 --display ${index}; yabai -m space --focus 5
-cmd - 6 : index=$(yabai -m query --spaces --space | jq .display); yabai -m space 6 --display ${index}; yabai -m space --focus 6
+cmd - 1 : index=$(yabai -m query --spaces --space | jq .display); yabai -m display --focus ${index}; yabai -m space --focus 1
+cmd - 2 : index=$(yabai -m query --spaces --space | jq .display); yabai -m display --focus ${index}; yabai -m space --focus 2
+cmd - 3 : index=$(yabai -m query --spaces --space | jq .display); yabai -m display --focus ${index}; yabai -m space --focus 3
+cmd - 4 : index=$(yabai -m query --spaces --space | jq .display); yabai -m display --focus ${index}; yabai -m space --focus 4
+cmd - 5 : index=$(yabai -m query --spaces --space | jq .display); yabai -m display --focus ${index}; yabai -m space --focus 5
+cmd - 6 : index=$(yabai -m query --spaces --space | jq .display); yabai -m display --focus ${index}; yabai -m space --focus 6
 
 # Move window between monitor
 cmd + shift - e: yabai -m window --display next
