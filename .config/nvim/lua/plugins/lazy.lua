@@ -46,15 +46,6 @@ lazy.setup({
         ft = { "python", "json" },
     },
 
-    {
-        "zbirenbaum/copilot.lua",
-        cmd = "Copilot",
-        event = "InsertEnter",
-        config = function()
-            require("plugins.copilot")
-        end,
-    },
-
     --Nvim to browser
     "subnut/nvim-ghost.nvim",
 

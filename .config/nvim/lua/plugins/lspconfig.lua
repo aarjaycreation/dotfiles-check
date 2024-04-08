@@ -75,7 +75,7 @@ mason_lspconfig.setup_handlers({
             end,
         })
     end,
-    ["basedpyright"] = function ()
+    ["basedpyright"] = function()
         lspconfig["basedpyright"].setup({
             capabilities = capabilities,
             settings = {
@@ -92,7 +92,7 @@ mason_lspconfig.setup_handlers({
                 },
             },
         })
-    end
+    end,
 })
 
 
