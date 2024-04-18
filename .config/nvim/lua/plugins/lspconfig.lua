@@ -18,6 +18,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         client.server_capabilities.semanticTokensProvider = nil
 
+        --Enable inlay hints
+        --vim.lsp.inlay_hint.enable(ev.buf,true)
+
         -- Mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local bufopts = { noremap = true, silent = true, buffer = ev.buf }
@@ -35,6 +38,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<space>ge", function() vim.diagnostic.goto_next() end, bufopts)
         vim.keymap.set("n", "<space>gE", function() vim.diagnostic.goto_prev() end, bufopts)
         vim.keymap.set("n", "<space>fo", function() conform.format({ lsp_fallback = true }) end, bufopts)
+        vim.keymap.set("n", "<space>n", "<cmd>!toke check<cr>")
     end,
 })
 
@@ -50,6 +54,26 @@ mason_lspconfig.setup_handlers({
             capabilities = capabilities,
         })
     end,
+    ["gopls"] = function ()
+        lspconfig["gopls"].setup({
+            capabilities = capabilities,
+            settings = {
+                gopls = {
+                    ["ui.completion.usePlaceholders"] = true,
+                    ["ui.diagnostic.staticcheck"] = true,
+                    ["ui.inlayhint.hints"] = {
+                        assignVariablesTypes = true,
+                        compositeLiteralFields = true,
+                        compositeLiteralTypes = true,
+                        constantValues = true,
+                        functionTypeParameters = true,
+                        parameterNames = true,
+                        rangeVariableTypes = true
+                    },
+                }
+            }
+        })
+    end,
     ["lua_ls"] = function()
         lspconfig["lua_ls"].setup({
             capabilities = capabilities,
@@ -61,6 +85,7 @@ mason_lspconfig.setup_handlers({
                     diagnostics = {
                         globals = { 'vim' },
                     },
+                    hint = { enable = true }
                 },
             },
         })

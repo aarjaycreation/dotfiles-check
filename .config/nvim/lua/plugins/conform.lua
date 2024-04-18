@@ -3,6 +3,7 @@ require("conform").setup({
 		python = { "black" },
 		javascript = { "prettierd" },
 		markdown = { "mdformat" },
+        go = { "gofmt" },
         json = {"jq"}
 	}
 })

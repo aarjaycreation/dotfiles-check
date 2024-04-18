@@ -147,7 +147,7 @@ lazy.setup({
     {
         "rcarriga/nvim-dap-ui",
         event = "VeryLazy",
-        dependencies = {"mfussenegger/nvim-dap","nvim-neotest/nvim-nio"},
+        dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
         config = function()
             local dap = require("dap")
             local dapui = require("dapui")
@@ -196,6 +196,61 @@ lazy.setup({
             require("plugins.lspconfig")
         end,
     },
+    {
+        "folke/trouble.nvim",
+        branch = "dev",
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
+        opts = {
+            modes = {
+                mydiags = {
+                    mode = "diagnostics", -- inherit from diagnostics mode
+                    filter = {
+                        any = {
+                            buf = 0,                                      -- current buffer
+                            {
+                                severity = vim.diagnostic.severity.ERROR, -- errors only
+                                -- limit to files in the current project
+                                function(item)
+                                    return item.filename:find(vim.loop.cwd(), 1, true)
+                                end,
+                            },
+                        },
+                    },
+                }
+            }
+        }
+    },
 
     {
         "stevearc/conform.nvim",
@@ -205,19 +260,32 @@ lazy.setup({
     },
 
     {
+        'dense-analysis/ale',
+        config = function()
+            vim.g.ale_linters_explicit = 1
+            vim.g.ale_echo_msg_error_str = 'E'
+            vim.g.ale_echo_msg_warning_str = 'W'
+            vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
+            --vim.g.ale_linters = {
+            --   go = { 'golangci-lint' },
+            --}
+        end
+    },
+
+    {
         "lervag/vimtex",
         config = function()
             require("plugins.vimtex")
         end,
     },
 
-    'tpope/vim-commentary',
+    --'tpope/vim-commentary',
 
-   -- {
-   --     "mrcjkb/rustaceanvim",
-   --     version = "^4", -- Recommended
-   --     ft = { "rust" },
-   -- },
+    -- {
+    --     "mrcjkb/rustaceanvim",
+    --     version = "^4", -- Recommended
+    --     ft = { "rust" },
+    -- },
 
     "barreiroleo/ltex-extra.nvim",
 
@@ -255,10 +323,15 @@ lazy.setup({
 
     --Discord Rich Presence
     "andweeb/presence.nvim",
-    
+
     --Vim be good
     'ThePrimeagen/vim-be-good',
 
     --JQ
-    'jrop/jq.nvim'
+    'jrop/jq.nvim',
+
+    {
+        'BooleanCube/keylab.nvim',
+        opts = {}
+    }
 })

@@ -8,6 +8,7 @@ null_ls.setup({
         null_ls.builtins.formatting.prettierd.with({
             filetypes = { "html", "json", "css", "js", "yaml", "markdown" },
         }),
+        null_ls.builtins.diagnostics.golangci_lint,
     },
     on_attach = function(client,bufnr)
         if client.supports_method("textDocument/formatting") then
