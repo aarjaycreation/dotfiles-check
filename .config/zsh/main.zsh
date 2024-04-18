@@ -15,22 +15,10 @@ setopt HIST_VERIFY
 export EDITOR=nvim
 export READER=mupdf
 
-
-
-#if [ "$(arch)" = "arm64" ]; then
-eval "$(/opt/homebrew/bin/brew shellenv)"
-#else
-#    eval "$(/usr/local/bin/brew shellenv)"
-#fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 enable-fzf-tab
 
 # opam configuration
 source $HOME/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
 eval "$(direnv hook zsh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"

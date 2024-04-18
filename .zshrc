@@ -1,5 +1,17 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Add paths
+export PATH="/usr/sbin:/sbin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+export PATH="/Users/afonso/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
+export PATH="$HOME/.miniforge3/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -76,6 +88,7 @@ ZSH_CUSTOM=/Users/afonso/.config/zsh
 source $HOME/.config/zsh/themes/gruvbox_dark.zsh
 source $HOME/.config/zsh/overrides.zsh
 
+zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
 plugins=(zsh-vi-mode git sudo macos tmux command-not-found web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting fzf-tab)
 
 
@@ -129,11 +142,10 @@ else
     else
         export PATH="/Users/afonso/.miniforge3/bin:$PATH"
     fi
+    if [ -f "/Users/afonso/.miniforge3/etc/profile.d/mamba.sh" ]; then
+        . "/Users/afonso/.miniforge3/etc/profile.d/mamba.sh"
+    fi
 fi
 unset __conda_setup
-
-if [ -f "/Users/afonso/.miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/Users/afonso/.miniforge3/etc/profile.d/mamba.sh"
-fi
 # <<< conda initialize <<<
 
