@@ -71,16 +71,18 @@ case $1 in
         alacritty_theme_name="gruvbox_dark"
         zsh_theme_name="gruvbox_dark"
         nvim_color_scheme="gruvbox-material"
-        background_color="#282828"
+        background_color="#1d2021"
         tmux_bar_unfocused_fg="#d4be98"
         tmux_bar_focused_bg="#d4be98"
-        tmux_bar_focused_fg="#282828"
+        tmux_bar_focused_fg="#1d2021"
 
 
         nvim --server /tmp/nvim.pipe --remote-send ':lua vim.g.gruvbox_material_better_performance = 1<CR>' || true
         echo "vim.g.gruvbox_material_better_performance = 1" > ~/.config/nvim/lua/core/theme.lua
-        nvim --server /tmp/nvim.pipe --remote-send ':lua vim.g.gruvbox_material_background = "medium"<CR>' || true
-        echo "vim.g.gruvbox_material_background = 'medium'" >> ~/.config/nvim/lua/core/theme.lua
+        nvim --server /tmp/nvim.pipe --remote-send ':lua vim.g.gruvbox_material_background = "hard"<CR>' || true
+        echo "vim.g.gruvbox_material_background = 'hard'" >> ~/.config/nvim/lua/core/theme.lua
+        nvim --server /tmp/nvim.pipe --remote-send ':lua vim.g.gruvbox_material_foreground = "original"<CR>' || true
+        echo "vim.g.gruvbox_material_foreground = 'original'" >> ~/.config/nvim/lua/core/theme.lua
         nvim --server /tmp/nvim.pipe --remote-send ':lua vim.opt.background = "dark"<CR>' || true
         echo "vim.opt.background = 'dark'" >> ~/.config/nvim/lua/core/theme.lua
 
@@ -101,6 +103,8 @@ case $1 in
         echo "vim.g.gruvbox_material_better_performance = 1" > ~/.config/nvim/lua/core/theme.lua
         nvim --server /tmp/nvim.pipe --remote-send ':lua vim.g.gruvbox_material_background = "soft"<CR>' || true
         echo "vim.g.gruvbox_material_background = 'soft'" >> ~/.config/nvim/lua/core/theme.lua
+        nvim --server /tmp/nvim.pipe --remote-send ':lua vim.g.gruvbox_material_foreground = "original"<CR>' || true
+        echo "vim.g.gruvbox_material_foreground = 'original'" >> ~/.config/nvim/lua/core/theme.lua
         nvim --server /tmp/nvim.pipe --remote-send ':lua vim.opt.background = "light"<CR>' || true
         echo "vim.opt.background = 'light'" >> ~/.config/nvim/lua/core/theme.lua
 
