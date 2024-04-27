@@ -12,6 +12,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+        vim.opt_local.signcolumn=numbers
+
         local telescope = require("telescope.builtin")
         local conform = require("conform")
 
@@ -28,13 +30,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, bufopts)
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
         vim.keymap.set("n", "gd", telescope.lsp_definitions, bufopts)
+        vim.keymap.set("n", "gr", telescope.lsp_references, bufopts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
         vim.keymap.set("n", "gi", telescope.lsp_implementations, bufopts)
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+        vim.keymap.set("n", "<space>k", vim.lsp.buf.signature_help, bufopts)
         vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
         vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "gr", telescope.lsp_references, bufopts)
         vim.keymap.set("n", "<space>ge", function() vim.diagnostic.goto_next() end, bufopts)
         vim.keymap.set("n", "<space>gE", function() vim.diagnostic.goto_prev() end, bufopts)
         vim.keymap.set("n", "<space>fo", function() conform.format({ lsp_fallback = true }) end, bufopts)
@@ -54,7 +56,7 @@ mason_lspconfig.setup_handlers({
             capabilities = capabilities,
         })
     end,
-    ["gopls"] = function ()
+    ["gopls"] = function()
         lspconfig["gopls"].setup({
             capabilities = capabilities,
             settings = {
@@ -79,11 +81,17 @@ mason_lspconfig.setup_handlers({
             capabilities = capabilities,
             settings = {
                 Lua = {
-                    library = {
-                        unpack(vim.api.nvim_get_runtime_file('', true))
+                    runtime = {
+                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                        version = "LuaJIT",
                     },
                     diagnostics = {
-                        globals = { 'vim' },
+                        -- Get the language server to recognize the `vim` global
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        -- Make the server aware of Neovim runtime files
+                        library = vim.api.nvim_get_runtime_file("", true),
                     },
                     hint = { enable = true }
                 },

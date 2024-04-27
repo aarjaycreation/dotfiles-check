@@ -29,6 +29,15 @@ lazy.setup({
         end,
     },
 
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("plugins.harpoon")
+        end
+    },
+
     "vimpostor/vim-tpipeline",
 
     {
@@ -61,7 +70,15 @@ lazy.setup({
         "folke/todo-comments.nvim",
         event = "VeryLazy",
         dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {},
+        opts = {
+            vim.keymap.set("n", "]t", function()
+                require("todo-comments").jump_next()
+            end, { desc = "Next todo comment" }),
+
+            vim.keymap.set("n", "[t", function()
+                require("todo-comments").jump_prev()
+            end, { desc = "Previous todo comment" })
+        },
     },
 
     {
@@ -182,6 +199,11 @@ lazy.setup({
     },
 
     {
+        'leoluz/nvim-dap-go',
+        opts = {}
+    },
+
+    {
         "williamboman/mason.nvim",
         config = function()
             require("plugins.mason")
@@ -196,61 +218,12 @@ lazy.setup({
             require("plugins.lspconfig")
         end,
     },
+    --Better quick fix
     {
-        "folke/trouble.nvim",
-        branch = "dev",
-        keys = {
-            {
-                "<leader>xx",
-                "<cmd>Trouble diagnostics toggle<cr>",
-                desc = "Diagnostics (Trouble)",
-            },
-            {
-                "<leader>xX",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-                desc = "Buffer Diagnostics (Trouble)",
-            },
-            {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle focus=false<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
-                "<leader>cl",
-                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-                desc = "LSP Definitions / references / ... (Trouble)",
-            },
-            {
-                "<leader>xL",
-                "<cmd>Trouble loclist toggle<cr>",
-                desc = "Location List (Trouble)",
-            },
-            {
-                "<leader>xQ",
-                "<cmd>Trouble qflist toggle<cr>",
-                desc = "Quickfix List (Trouble)",
-            },
-        },
-        opts = {
-            modes = {
-                mydiags = {
-                    mode = "diagnostics", -- inherit from diagnostics mode
-                    filter = {
-                        any = {
-                            buf = 0,                                      -- current buffer
-                            {
-                                severity = vim.diagnostic.severity.ERROR, -- errors only
-                                -- limit to files in the current project
-                                function(item)
-                                    return item.filename:find(vim.loop.cwd(), 1, true)
-                                end,
-                            },
-                        },
-                    },
-                }
-            }
-        }
+        'kevinhwang91/nvim-bqf',
+        ft = 'qf'
     },
+    'junegunn/fzf',
 
     {
         "stevearc/conform.nvim",
@@ -293,12 +266,14 @@ lazy.setup({
     -- Syntax Highlighting
     {
         "nvim-treesitter/nvim-treesitter",
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects'
+        },
         config = function()
             require("plugins.treesitter")
         end,
     },
 
-    "kaarmu/typst.vim",
 
     --Sticky headers
     {
@@ -315,7 +290,11 @@ lazy.setup({
         "nvim-telescope/telescope.nvim",
         tag = "0.1.4",
         -- or                            , branch = '0.1.x',
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            'nvim-telescope/telescope-ui-select.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+        },
         config = function()
             require("plugins.telescope")
         end,

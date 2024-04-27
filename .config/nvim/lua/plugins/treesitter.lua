@@ -4,11 +4,6 @@ if not present then
 end
 
 require('nvim-treesitter.install').update({ with_sync = true })
-local present, orgmode = pcall(require, "orgmode")
-if present then
-    require('orgmode').setup_ts_grammar()
-end
-
 
 
 local options = {
@@ -21,6 +16,26 @@ local options = {
     },
     indent = {
         enable = true,
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ab"] = "@block.outer",
+                ["ib"] = "@block.inner",
+            },
+            selection_modes = {
+                ['@block.outer'] = 'v', -- charwise
+                ['@block.inner'] = 'v', -- charwise
+                ['@function.outer'] = 'V', -- linewise
+            },
+            include_surrounding_whitespace = true,
+        },
     },
 }
 
