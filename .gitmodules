@@ -40,3 +40,6 @@
 [submodule ".config/tmux/plugins/tpm"]
 	path = .config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/zsh/prompts/pure"]
+	path = .config/zsh/prompts/pure
+	url = https://github.com/sindresorhus/pure.git
