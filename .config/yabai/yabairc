@@ -16,13 +16,6 @@ yabai -m rule --add app="^Firefox$" space=two
 
 
 
-yabai -m space 1 --label one
-yabai -m space 2 --label two 
-yabai -m space 3 --label three
-yabai -m space 4 --label four
-yabai -m space 5 --label five
-yabai -m space 6 --label six
-
 #Indicator
 yabai -m signal --add event=mission_control_exit action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
 yabai -m signal --add event=display_added action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
