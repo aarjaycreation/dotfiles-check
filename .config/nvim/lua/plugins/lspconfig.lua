@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-        vim.opt_local.signcolumn=numbers
+        vim.opt_local.signcolumn = numbers
 
         local telescope = require("telescope.builtin")
         local conform = require("conform")
@@ -106,6 +106,11 @@ mason_lspconfig.setup_handlers({
                 -- rest of your on_attach process.
                 require("ltex_extra").setup()
             end,
+            settings = {
+                ltex = {
+                    language = "en-US",
+                },
+            },
         })
     end,
     ["basedpyright"] = function()

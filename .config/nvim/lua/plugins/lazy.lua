@@ -30,6 +30,13 @@ lazy.setup({
     },
 
     {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    },
+
+    {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -38,7 +45,12 @@ lazy.setup({
         end
     },
 
-    "vimpostor/vim-tpipeline",
+    {
+        "vimpostor/vim-tpipeline",
+        config = function()
+            vim.g.tpipeline_restore = 1
+        end
+    },
 
     {
         "TobinPalmer/pastify.nvim",

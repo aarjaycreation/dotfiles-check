@@ -13,10 +13,10 @@ telescope.setup {
     pickers = {
         find_files = {
             previewer = false,
-            layout_strategy = "vertical",
-            layout_config = { 
+            layout_strategy = "center",
+            layout_config = {
                 height = 0.7,
-                width = 0.5 
+                width = 0.5
             },
         },
         live_grep = {
