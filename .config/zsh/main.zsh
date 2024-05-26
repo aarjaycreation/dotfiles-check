@@ -21,4 +21,6 @@ enable-fzf-tab
 source $HOME/.opam/opam-init/init.zsh > /dev/null 2>&1 || true
 
 eval "$(direnv hook zsh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ $(uname) == "Darwin" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
