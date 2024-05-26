@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    uni_projects=$(find ~/projects/University -mindepth 3 -maxdepth 3 -type d)
+    personal_projects=$(find ~/projects/Personal -mindepth 1 -maxdepth 1 -type d)
+    gits=$(find ~/gits -mindepth 1 -maxdepth 1 -type d)
+    dotfiles=$(find ~/.config -mindepth 1 -maxdepth 1 -type d)
+    #Merge the two lists
+    selected=$(echo -e "$uni_projects\n$personal_projects\n$dotfiles\n$gits" | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s $selected_name -c $selected
+    exit 0
+fi
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+tmux switch-client -t $selected_name
