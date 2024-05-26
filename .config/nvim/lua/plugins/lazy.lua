@@ -2,28 +2,27 @@ local lazy = require("lazy")
 
 lazy.setup({
 
-    "lewis6991/impatient.nvim",
-
     -------------------------------------------THEMES------------------------------------------
     {
         "catppuccin/nvim",
         name = "catppuccin",
+        event = "VeryLazy",
         lazy = false,
         priority = 1000,
         opts = {},
     },
 
-    "sainnhe/gruvbox-material",
-
-    -------------------------------------------------------MFP---------------------------------
     {
-        "susliko/tla.nvim",
-        opts = {},
+        "sainnhe/gruvbox-material",
+        event = "VeryLazy",
+        priority = 1000,
     },
+
     -------------------------------------------------------QOL---------------------------------
 
     {
         "jbyuki/instant.nvim",
+        event = "VeryLazy",
         config = function()
             vim.g.instant_username = "afonso"
         end,
@@ -31,6 +30,7 @@ lazy.setup({
 
     {
         "iamcco/markdown-preview.nvim",
+        event = "VeryLazy",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
@@ -38,6 +38,7 @@ lazy.setup({
 
     {
         "ThePrimeagen/harpoon",
+        event = "VeryLazy",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
@@ -53,7 +54,16 @@ lazy.setup({
     },
 
     {
+        "FabijanZulj/blame.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("blame").setup()
+        end
+    },
+
+    {
         "TobinPalmer/pastify.nvim",
+        event = "VeryLazy",
         cmd = { "Pastify" },
         opts = {},
     },
@@ -61,6 +71,7 @@ lazy.setup({
     --Python notebooks
     {
         "luk400/vim-jukit",
+        event = "VeryLazy",
         config = function()
             require("plugins.jukit")
         end,
@@ -68,7 +79,7 @@ lazy.setup({
     },
 
     --Nvim to browser
-    "subnut/nvim-ghost.nvim",
+    --"subnut/nvim-ghost.nvim",
 
     {
         "declancm/cinnamon.nvim",
@@ -126,16 +137,18 @@ lazy.setup({
     },
 
     -- Rename variable pop up
-    "stevearc/dressing.nvim",
+    {
+        "stevearc/dressing.nvim",
+        event = "VeryLazy",
+    },
 
     {
         "windwp/nvim-autopairs",
+        event = "VeryLazy",
         config = function()
             require("plugins.autopairs")
         end,
     },
-
-    "nvim-tree/nvim-web-devicons",
 
     {
         "nvim-lualine/lualine.nvim",
@@ -153,6 +166,7 @@ lazy.setup({
     -------------------------------------------------------LSP----------------------------------------------
     {
         "hrsh7th/nvim-cmp",
+        event = "VeryLazy",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",                -- lsp
             "hrsh7th/cmp-nvim-lua",                -- Nvim API completions
@@ -205,6 +219,7 @@ lazy.setup({
     },
     {
         "mfussenegger/nvim-dap",
+        event = "VeryLazy",
         config = function()
             require("plugins.dap")
         end,
@@ -212,53 +227,52 @@ lazy.setup({
 
     {
         'leoluz/nvim-dap-go',
+        event = "VeryLazy",
         opts = {}
     },
 
     {
-        "williamboman/mason.nvim",
-        config = function()
-            require("plugins.mason")
-        end,
-    },
-
-    "williamboman/mason-lspconfig.nvim",
-
-    {
         "neovim/nvim-lspconfig",
+        event = { "BufReadPost", "BufNewFile" },
+        dependencies = {
+            {
+                "williamboman/mason-lspconfig.nvim",
+                dependencies = {
+                    {
+                        "williamboman/mason.nvim",
+                        config = function()
+                            require("plugins.mason")
+                        end,
+                    },
+                },
+                config = function()
+                    require("plugins.mason-lspconfig")
+                end
+            },
+        },
         config = function()
             require("plugins.lspconfig")
         end,
     },
+
     --Better quick fix
     {
         'kevinhwang91/nvim-bqf',
+        event = "VeryLazy",
         ft = 'qf'
     },
-    'junegunn/fzf',
 
     {
         "stevearc/conform.nvim",
+        event = "VeryLazy",
         config = function()
             require("plugins.conform")
         end,
     },
 
     {
-        'dense-analysis/ale',
-        config = function()
-            vim.g.ale_linters_explicit = 1
-            vim.g.ale_echo_msg_error_str = 'E'
-            vim.g.ale_echo_msg_warning_str = 'W'
-            vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
-            --vim.g.ale_linters = {
-            --   go = { 'golangci-lint' },
-            --}
-        end
-    },
-
-    {
         "lervag/vimtex",
+        event = "VeryLazy",
         config = function()
             require("plugins.vimtex")
         end,
@@ -272,12 +286,16 @@ lazy.setup({
     --     ft = { "rust" },
     -- },
 
-    "barreiroleo/ltex-extra.nvim",
+    {
+        "barreiroleo/ltex-extra.nvim",
+        event = "VeryLazy",
+    },
 
     -------------------------------------------------------------------------------------------
     -- Syntax Highlighting
     {
         "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects'
         },
@@ -295,34 +313,33 @@ lazy.setup({
         end,
     },
 
-    "runoshun/vim-alloy",
-
-    --does so much
     {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.4",
-        -- or                            , branch = '0.1.x',
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            'nvim-telescope/telescope-ui-select.nvim',
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
-        },
+        "ibhagwan/fzf-lua",
+        event = "VeryLazy",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
-            require("plugins.telescope")
-        end,
+            require('plugins.fzf-lua')
+        end
     },
 
     --Discord Rich Presence
     "andweeb/presence.nvim",
 
     --Vim be good
-    'ThePrimeagen/vim-be-good',
+    {
+        'ThePrimeagen/vim-be-good',
+        event = "VeryLazy",
+    },
+
 
     --JQ
-    'jrop/jq.nvim',
-
     {
-        'BooleanCube/keylab.nvim',
-        opts = {}
-    }
+        'jrop/jq.nvim',
+        event = "VeryLazy",
+    },
+
+    --   {
+    --       'BooleanCube/keylab.nvim',
+    --       opts = {}
+    --   }
 })

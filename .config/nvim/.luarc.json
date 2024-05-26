@@ -1,4 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "runtime.version": "LuaJIT"
+    "runtime.version": "LuaJIT",
+    "diagnostics.globals": [
+        "vim",
+        "numbers"
+    ]
 }

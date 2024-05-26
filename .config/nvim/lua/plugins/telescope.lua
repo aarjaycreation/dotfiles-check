@@ -4,6 +4,7 @@ local actions = require("telescope.actions")
 telescope.setup {
     defaults = {
         layout_strategy = "horizontal",
+        path_display = { "filename_first" },
         mappings = {
             i = {
                 ["<esc>"] = actions.close,
@@ -32,10 +33,10 @@ telescope.setup {
 }
 telescope.load_extension('fzf')
 telescope.load_extension("ui-select")
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fs', builtin.treesitter, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+--local builtin = require('telescope.builtin')
+--vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+--vim.keymap.set('n', '<leader>fe', builtin.diagnostics, {})
+--vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+--vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+--vim.keymap.set('n', '<leader>fs', builtin.treesitter, {})
+--vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})

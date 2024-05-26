@@ -1,17 +1,13 @@
-local present, mason = pcall(require, "mason")
-
+local mason = require("mason")
 vim.api.nvim_create_augroup("_mason", { clear = true })
-
 local options = {
   PATH = "skip",
-
   ui = {
     icons = {
       package_pending = " ",
       package_installed = "󰄳 ",
       package_uninstalled = " ",
     },
-
     keymaps = {
       toggle_server_expand = "<CR>",
       install_server = "i",
@@ -23,9 +19,6 @@ local options = {
       cancel_installation = "<C-c>",
     },
   },
-
   max_concurrent_installers = 10,
 }
-
-
 mason.setup(options)

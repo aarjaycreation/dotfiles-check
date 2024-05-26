@@ -60,9 +60,10 @@ function M.render()
         ' ',
         prefix,
         table.concat(
-            vim.iter.map(function(segment)
+            vim.iter(vim.split(path, '/'))
+            :map(function(segment)
                 return string.format('%%#Winbar#%s', segment)
-            end, vim.split(path, '/')),
+            end):totable(),
             separator
         ),
     }

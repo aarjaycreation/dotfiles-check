@@ -9,6 +9,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.ghcup/bin:$PATH"
 export PATH="$HOME/.miniforge3/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/texlive/bin:$PATH"
+export PATH="$HOME/.cabal/bin:$PATH"
 
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
