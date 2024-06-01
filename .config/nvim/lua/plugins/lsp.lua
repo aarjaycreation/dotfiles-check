@@ -6,6 +6,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
+        event = "VeryLazy",
         config = function()
             local mason = require("mason")
             vim.api.nvim_create_augroup("_mason", { clear = true })
@@ -35,6 +36,7 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        event = "VeryLazy",
         dependencies = {
             "williamboman/mason.nvim"
         },
