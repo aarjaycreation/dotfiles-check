@@ -2,8 +2,8 @@ return {
     {
         "vimpostor/vim-tpipeline",
         config = function()
-            vim.g.tpipeline_restore = 1
-            vim.g.tpipeline_autoembed = 1
+            vim.g.tpipeline_restore = 0
+            vim.g.tpipeline_autoembed = 0
             vim.o.laststatus = 0
             vim.g.tpipeline_statusline = '%=%l:%c'
         end
