@@ -4,4 +4,7 @@ TRAPUSR1() {
         exec "${SHELL}"
     fi
 }
-export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+if [[ $(uname) == "Darwin" ]]; then
+    export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+fi
+export LIBVA_DRIVER_NAME=nvidia
