@@ -25,8 +25,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 --quickfix keybinds 
-vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 --buffer keybinds
 vim.keymap.set("n", "<A-h>", "<cmd>bp<CR>")
 vim.keymap.set("n", "<A-l>", "<cmd>bn<CR>")
@@ -47,3 +47,4 @@ vim.g.jukit_mappings = 0
 --Format Options
 vim.opt.formatoptions:remove("ro")
 --Sign gutter always on
+vim.opt.signcolumn = "yes"

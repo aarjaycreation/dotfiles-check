@@ -1,42 +1,44 @@
-local present, treesitter = pcall(require, "nvim-treesitter.configs")
-if not present then
-    return
-end
+return {
 
-require('nvim-treesitter.install').update({ with_sync = true })
-
-
-local options = {
-    ensure_installed = { "c", "lua", "haskell", "rust", "markdown", "org" },
-
-    highlight = {
-        enable = true,
-        use_languagetree = true,
-        additional_vim_regex_highlighting = { "org" },
-    },
-    indent = {
-        enable = true,
-    },
-    textobjects = {
-        select = {
-            enable = true,
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
-            keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["ab"] = "@block.outer",
-                ["ib"] = "@block.inner",
-            },
-            selection_modes = {
-                ['@block.outer'] = 'v', -- charwise
-                ['@block.inner'] = 'v', -- charwise
-                ['@function.outer'] = 'V', -- linewise
-            },
-            include_surrounding_whitespace = true,
+    {
+        "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects'
         },
+        config = function()
+            local treesitter = require("nvim-treesitter.configs")
+
+            require('nvim-treesitter.install').update({ with_sync = true })
+
+
+            local options = {
+                ensure_installed = { "c", "lua", "haskell", "markdown" },
+
+                highlight = {
+                    enable = true,
+                    use_languagetree = true,
+                    additional_vim_regex_highlighting = { "org" },
+                },
+                indent = {
+                    enable = true,
+                },
+            }
+
+            treesitter.setup(options)
+        end
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        event = "VeryLazy",
+        config = function()
+            require 'treesitter-context'.setup()
+        end,
+    },
+    {
+        'echasnovski/mini.ai',
+        event = "VeryLazy",
+        version = false,
+        opts = {}
     },
 }
-
-treesitter.setup(options)
