@@ -35,10 +35,11 @@
   "oil.nvim": { "branch": "master", "commit": "2cb39e838e9dcd8b374f09a3a87a2e5ec9d372f6" },
   "pastify.nvim": { "branch": "main", "commit": "47317b9bb7bf5fb7dfd994a6eb9bec8f00628dc0" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
-  "presence.nvim": { "branch": "main", "commit": "87c857a56b7703f976d3a5ef15967d80508df6e6" },
   "todo-comments.nvim": { "branch": "main", "commit": "e1549807066947818113a7d7ed48f637e49620d3" },
   "undotree": { "branch": "master", "commit": "56c684a805fe948936cda0d1b19505b84ad7e065" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-tpipeline": { "branch": "master", "commit": "5dd3832bd6e239feccb11cadca583cdcf9d5bda1" },
-  "vimtex": { "branch": "master", "commit": "9665df7f51ee24aa81dbd81782e0a22480209753" }
+  "vim-visual-multi": { "branch": "master", "commit": "b84a6d42c1c10678928b0bf8327f378c8bc8af5a" },
+  "vimtex": { "branch": "master", "commit": "9665df7f51ee24aa81dbd81782e0a22480209753" },
+  "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" }
 }

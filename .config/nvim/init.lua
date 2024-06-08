@@ -1,4 +1,6 @@
 require("core.variables")
+require("core.keymaps")
+require("core.autocmds")
 require('core.package_manager')
 require('winbar')
 require('core.theme')
