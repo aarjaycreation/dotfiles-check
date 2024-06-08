@@ -23,4 +23,11 @@ return {
         event = "VeryLazy",
         ft = 'qf'
     },
+    {
+        "folke/zen-mode.nvim",
+        event = "VeryLazy",
+        opts = {
+            vim.keymap.set("n", "<leader>z", "<Cmd> ZenMode <CR>", { noremap = true, silent = true }),
+        },
+    },
 }
