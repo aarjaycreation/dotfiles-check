@@ -1,5 +1,5 @@
-*.hi
-*.o
+**/*.o
+**/*.hi
 .ghc.*
 .stack-work
 stack.*
