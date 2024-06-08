@@ -32,22 +32,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 setxkbmap -layout us,pt
-setxkbmap -option grp:win_space_toggle
+setxkbmap -option grp:alt_space_toggle
 setxkbmap -option caps:escape
-xset r rate 300 50
-xrandr --output DP-0 --primary --mode 2560x1440 --left-of HDMI-0 --output HDMI-0 --mode 1920x1080
-dunst &
+xset r rate 300 40
 
-if ! pgrep -f /usr/bin/easyeffects; then
-    exec /usr/bin/easyeffects --gapplication-service &
-    notify-send 'easyeffects daemon started'
-fi
-
-gpu_mode=$(/usr/bin/envycontrol -q)
-if [ "$gpu_mode" = "nvidia" ]; then
-    xrandr --setprovideroutputsource modesetting NVIDIA-0
-    xrandr --auto
-fi
+#gpu_mode=$(/usr/bin/envycontrol -q)
+#if [ "$gpu_mode" = "nvidia" ]; then
+    #xrandr --setprovideroutputsource modesetting NVIDIA-0
+    #xrandr --auto
+#fi
 
 
 exec /home/afonso/.local/bin/xmonad
