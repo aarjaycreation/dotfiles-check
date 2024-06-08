@@ -9,9 +9,6 @@ vim.wo.relativenumber= true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.smartindent = true
---Move lines
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 --Change word definition
 vim.opt.iskeyword:append("-")
 vim.opt.iskeyword:append("_")
@@ -24,16 +21,12 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
---quickfix keybinds 
-vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
---buffer keybinds
-vim.keymap.set("n", "<A-h>", "<cmd>bp<CR>")
-vim.keymap.set("n", "<A-l>", "<cmd>bn<CR>")
 --Undo dir
+vim.opt.undodir = os.getenv("XDG_STATE_HOME") .. "/nvim/undodir"
 vim.opt.undofile = true
 --Backup dir
 vim.opt.backup = true
+vim.opt.backupdir = os.getenv("XDG_STATE_HOME") .. "/nvim/backupdir"
 --Org mode hide links
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = 'nc'
