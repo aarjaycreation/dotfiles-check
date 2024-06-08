@@ -1,7 +1,7 @@
 # Add paths
 export PATH="/usr/sbin:/sbin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-export PATH="/Users/afonso/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin:$PATH"
@@ -91,7 +91,7 @@ source $HOME/.config/zsh/themes/gruvbox_dark.zsh
 source $HOME/.config/zsh/overrides.zsh
 
 zvm_after_init_commands+=('[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh')
-plugins=(zsh-vi-mode git sudo macos tmux command-not-found web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting fzf-tab)
+plugins=(zsh-vi-mode git sudo macos tmux command-not-found web-search zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting fzf-tab zsh-abbr)
 
 
 #Completions
