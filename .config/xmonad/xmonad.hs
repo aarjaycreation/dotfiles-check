@@ -44,8 +44,7 @@ import Colors.Teal
 
 
 
-myTerminal      = "kitty"
-myTerminalTmux  = myTerminal ++ " -e tmux a"
+myTerminal      = "alacritty"
 myTextEditor    = "nvim"
 myWebBrowser    = "firefox"
 myModMask       = mod4Mask
@@ -70,7 +69,7 @@ myWorkspaceIndices = zip myWorkspaces [1..]
 
 myKeys :: [(String, X ())]
 myKeys =
-    [ ("M-x" ,spawn myTerminalTmux )
+    [ ("M-t" ,spawn myTerminal )
     , ("M-p", spawn "rofi -show drun -show-icons")
     , ("M-S-p", spawn "rofi -show p -modi p:rofi-power-menu")
     , ("M-s", spawn "selected=$(ls ~/scripts/|rofi -dmenu -p \"Run: \") && bash ~/.config/rofi/scripts/$selected")
@@ -83,14 +82,14 @@ myKeys =
     , ("<XF86MonBrightnessDown>", spawn "lux -s 10%")
     , ("M-n", spawn $ myTerminal ++  " -e nmtui")
     , ("M-q",  kill)
-    , ("M-S-<Space>", sendMessage NextLayout)
+    , ("M-<Space>", sendMessage NextLayout)
     , ("M-<Down>", windows W.focusDown)
     , ("M-<Up>", windows W.focusUp  )
     , ("M-m", windows W.focusMaster  )
     , ("M-<Return>", windows W.swapMaster)
     , ("M-h", sendMessage Shrink)
     , ("M-l", sendMessage Expand)
-    , ("M-t", withFocused $ windows . W.sink)
+    , ("M-S-t", withFocused $ windows . W.sink)
     , ("M-S-u", io (exitWith ExitSuccess))
     , ("M-u", spawn "xmonad --recompile; xmonad --restart")
     ]
@@ -123,7 +122,7 @@ myManageHook = composeAll
   , className =? "discord"        --> doShift (myWorkspaces !! 4)
   , title     =? "JetBrains Toolbox" --> doShift (myWorkspaces !! 3)
   , className =? "main" --> doFloat
-  , className =? "Mailspring"  --> doShift (myWorkspaces !! 5)
+  , className =? "thunderbird"  --> doShift (myWorkspaces !! 5)
   , className =? "Xmessage" --> doFloat
   , title     =? "Steam - News" --> doFloat
   , title     =? "Friends List" --> doFloat
@@ -133,19 +132,21 @@ myManageHook = composeAll
 myEventHook = ewmhDesktopsEventHook
 
 myStartupHook = do
+    spawnOnce "dunst &"
+    spawnOnce "kwalletd6"
     spawnOnce "pasystray"
     spawnOnce "nitrogen --restore &"
     spawnOnce "playerctld"
+    spawnOnce "qpwgraph"
     spawnOnce "picom &"
     setWMName "LG3D"
     spawnOnce "nm-applet"
+    spawnOnce "$HOME/.local/bin/desktopres"
     spawnOnce "xsetroot -cursor_name left_ptr"
     spawnOnce "killall trayer ;sleep 1 && trayer --monitor 0 --edge top --align right --margin 4 --widthtype request --padding 8 --iconspacing 12 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x2B2E37  --height 30 --distance 5 &"
-    spawnOnce "slimbookbattery --minimize"
-    spawnOnce "slimbookintelcontroller"
     spawnOnce "nextcloud"
     spawnOnOnce "web" myWebBrowser
-    spawnOnOnce "main" myTerminalTmux
+    spawnOnOnce "main" myTerminal
 
 
 mySB = statusBarProp "/home/afonso/.local/bin/xmobar /home/afonso/.config/xmobar/xmobarrc" (pure myXmobarPP)
@@ -163,6 +164,7 @@ myXmobarPP =  def
   where
    wsIconFull   = "  <fn=2>\xf111</fn>   "
 
+myLayoutHook = (Tall 1 (3/100) (0.5)) ||| (Mirror $ Tall 1 (3/100) (0.5))
 
 myConfig =  def
     {
@@ -174,7 +176,7 @@ myConfig =  def
     workspaces         = myWorkspaces,
     normalBorderColor  = myNormalBorderColor,
     focusedBorderColor = myFocusedBorderColor,
-    layoutHook         = avoidStruts $ smartBorders . smartSpacingWithEdge 5 $ layoutHook def,
+    layoutHook         = avoidStruts $ smartBorders $ myLayoutHook,
     manageHook         = manageSpawn <+> myManageHook <+> manageHook def,
     handleEventHook    = myEventHook <+> fullscreenEventHook,
     startupHook        = myStartupHook
