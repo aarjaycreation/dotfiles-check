@@ -43,3 +43,6 @@
 [submodule ".config/zsh/prompts/pure"]
 	path = .config/zsh/prompts/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule "/Users/afonso/.config/zsh/plugins/zsh-abbr"]
+	path = /Users/afonso/.config/zsh/plugins/zsh-abbr
+	url = https://github.com/olets/zsh-abbr
