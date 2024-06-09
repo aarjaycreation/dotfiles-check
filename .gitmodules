@@ -46,3 +46,12 @@
 [submodule "/Users/afonso/.config/zsh/plugins/zsh-abbr"]
 	path = /Users/afonso/.config/zsh/plugins/zsh-abbr
 	url = https://github.com/olets/zsh-abbr
+[submodule "/Users/afonso/.config/xmonad/xmonad-git"]
+	path = /Users/afonso/.config/xmonad/xmonad-git
+	url = https://github.com/xmonad/xmonad
+[submodule "/Users/afonso/.config/xmonad/xmonad-contrib-git"]
+	path = /Users/afonso/.config/xmonad/xmonad-contrib-git
+	url = https://github.com/xmonad/xmonad-contrib
+[submodule "/Users/afonso/.config/xmobar/xmobar-git"]
+	path = /Users/afonso/.config/xmobar/xmobar-git
+	url = https://codeberg.org/xmobar/xmobar

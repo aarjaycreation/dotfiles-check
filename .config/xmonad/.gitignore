@@ -2,8 +2,5 @@
 **/*.hi
 .ghc.*
 .stack-work
-stack.*
-xmonad-git
-xmonad-contrib-git
 xmonad.hi
 xmonad.o
