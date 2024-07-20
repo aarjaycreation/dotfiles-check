@@ -25,3 +25,5 @@ sourceall(){
     done <<< "$pids"
     set +e
 }
+
+alias routes="netstat -rn -f inet"

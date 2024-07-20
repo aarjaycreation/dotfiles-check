@@ -6,9 +6,11 @@ TRAPUSR1() {
 }
 if [[ $(uname) == "Darwin" ]]; then
     export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+else
+    export LIBVA_DRIVER_NAME=nvidia
 fi
-export LIBVA_DRIVER_NAME=nvidia
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_STATE_HOME="${HOME}/.local/state"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
