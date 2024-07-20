@@ -5,10 +5,11 @@ if [[ $# -eq 1 ]]; then
 else
     uni_projects=$(find ~/projects/University -mindepth 3 -maxdepth 3 -type d)
     personal_projects=$(find ~/projects/Personal -mindepth 1 -maxdepth 1 -type d)
+    work_projects=$(find ~/projects/Work -mindepth 1 -maxdepth 1 -type d)
     gits=$(find ~/gits -mindepth 1 -maxdepth 1 -type d)
     dotfiles=$(find ~/.config -mindepth 1 -maxdepth 1 -type d)
     #Merge the two lists
-    selected=$(echo -e "$uni_projects\n$personal_projects\n$dotfiles\n$gits" | fzf)
+    selected=$(echo -e "$uni_projects\n$personal_projects\n$work_projects\n$dotfiles\n$gits" | fzf)
 fi
 
 if [[ -z $selected ]]; then
