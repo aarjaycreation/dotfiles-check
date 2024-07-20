@@ -19,7 +19,7 @@ change_common(){
     #Change alacritty theme
     sed -i '' -e "s|import = \[\"~/.config/alacritty/themes/.*\"\]|import = [\"~/.config/alacritty/themes/${alacritty_theme_name}.toml\"]|g" ~/.config/alacritty/alacritty.toml
     #Change zsh theme
-    sed -i '' -e "s|source \$HOME/.config/zsh/themes/.*zsh|source \$HOME/.config/zsh/themes/${zsh_theme_name}.zsh|g" ~/.zshrc
+    sed -i '' -e "s|source \$ZDOTDIR/themes/.*zsh|source \$ZDOTDIR/themes/${zsh_theme_name}.zsh|g" ~/.zshrc
     #Reload zsh sessions
     pids=$(pgrep zsh)
     while IFS= read -r pid; do
