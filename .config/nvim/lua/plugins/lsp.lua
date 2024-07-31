@@ -111,7 +111,10 @@ return {
                         end,
                         settings = {
                             ltex = {
-                                language = "pt-PT",
+                                language = "en-GB",
+                            },
+                            additionalRules = {
+                                enablePickyRules = true,
                             },
                         },
                     })
@@ -190,7 +193,16 @@ return {
                 capabilities = capabilities,
                 filetypes = { 'haskell', 'lhaskell', 'cabal' },
             })
+
+            lspconfig["sourcekit"].setup({
+                capabilities = capabilities,
+            })
         end,
+    },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        lazy = false,   -- This plugin is already lazy
     },
     {
         "stevearc/conform.nvim",
@@ -202,6 +214,7 @@ return {
                     haskell = { "fourmolu" },
                     javascript = { "prettierd" },
                     markdown = { "mdformat" },
+                    rust = { "rustfmt" },
                     go = { "gofmt" },
                     json = { "jq" }
                 }

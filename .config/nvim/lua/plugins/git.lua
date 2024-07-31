@@ -6,4 +6,5 @@ return {
             require("blame").setup()
         end
     },
+
 }

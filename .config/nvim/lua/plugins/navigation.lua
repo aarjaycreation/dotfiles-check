@@ -33,12 +33,4 @@ return {
             },
         },
     },
-    {
-        "declancm/cinnamon.nvim",
-        event = "VeryLazy",
-        opts = {
-            scroll_limit = 10000,
-            always_scroll = true,
-        },
-    },
 }
