@@ -1,3 +1,0 @@
-abbr "i"="sudo pacman -S"
-abbr "r"="sudo pacman -Rns"
-abbr "s"="sudo pacman -Ss"

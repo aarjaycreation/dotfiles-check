@@ -28,7 +28,6 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_VERIFY
 
-
 #Set EDITOR AND READER
 export EDITOR=nvim
 export VISUAL=nvim
@@ -46,28 +45,25 @@ fpath+=$ZDOTDIR/prompts/pure
 autoload -U promptinit; promptinit
 prompt pure
 
-source $ZDOTDIR/dotfiles.zsh
-source $ZDOTDIR/qol.zsh
-source $ZDOTDIR/replacements.zsh
-source $ZDOTDIR/overrides.zsh
+source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/plugins.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/afonso/.miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/.miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/afonso/.miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/afonso/.miniforge3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/.miniforge3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/.miniforge3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/afonso/.miniforge3/bin:$PATH"
+        export PATH="$HOME/.miniforge3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/Users/afonso/.miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/Users/afonso/.miniforge3/etc/profile.d/mamba.sh"
+if [ -f "$HOME/.miniforge3/etc/profile.d/mamba.sh" ]; then
+    . "$HOME/.miniforge3/etc/profile.d/mamba.sh"
 fi
 
 # <<< conda initialize <<<
