@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Required parameters:
 # @raycast.schemaVersion 1
@@ -7,7 +7,9 @@
 # @raycast.argument1 { "type": "dropdown","placeholder":"Theme", "data": [{"title": "Catppuccin Frappe", "value": "catppuccin-frappe"},{"title": "Catppuccin Latte", "value": "catppuccin-latte"},{"title": "Gruvbox Dark", "value": "gruvbox-dark"},{"title": "Gruvbox Light", "value": "gruvbox-light"}]}
 #
 
-alacritty_theme_name=""
+#Ignore errors
+set +e
+terminal_theme_name=""
 zsh_theme_name=""
 background_color=""
 nvim_color_scheme=""
@@ -17,9 +19,9 @@ tmux_bar_focused_fg=""
 
 change_common(){
     #Change alacritty theme
-    sed -i '' -e "s|import = \[\"~/.config/alacritty/themes/.*\"\]|import = [\"~/.config/alacritty/themes/${alacritty_theme_name}.toml\"]|g" ~/.config/alacritty/alacritty.toml
+    sed -i '' -e "s|import = \[\"~/.config/alacritty/themes/.*\"\]|import = [\"~/.config/alacritty/themes/${terminal_theme_name}.toml\"]|g" ~/.config/alacritty/alacritty.toml
     #Change zsh theme
-    sed -i '' -e "s|source \$ZDOTDIR/themes/.*zsh|source \$ZDOTDIR/themes/${zsh_theme_name}.zsh|g" ~/.zshrc
+    sed -i '' -e "s|source \$ZDOTDIR/themes/.*zsh|source \$ZDOTDIR/themes/${zsh_theme_name}.zsh|g" "$ZDOTDIR"/.zshrc
     #Reload zsh sessions
     pids=$(pgrep zsh)
     while IFS= read -r pid; do
@@ -42,7 +44,7 @@ change_common(){
 
 case $1 in
     "catppuccin-latte")
-        alacritty_theme_name="catppuccin_latte"
+        terminal_theme_name="catppuccin_latte"
         zsh_theme_name="catppuccin_latte"
         nvim_color_scheme="catppuccin-latte"
         background_color="#eff1f5"
@@ -55,7 +57,7 @@ case $1 in
         ;;
 
     "catppuccin-frappe")
-        alacritty_theme_name="catppuccin_frappe"
+        terminal_theme_name="catppuccin_frappe"
         zsh_theme_name="catppuccin_frappe"
         nvim_color_scheme="catppuccin-frappe"
         background_color="#303446"
@@ -68,7 +70,7 @@ case $1 in
         ;;
 
     "gruvbox-dark")
-        alacritty_theme_name="gruvbox_dark"
+        terminal_theme_name="gruvbox_dark"
         zsh_theme_name="gruvbox_dark"
         nvim_color_scheme="gruvbox-material"
         background_color="#1d2021"
@@ -86,11 +88,14 @@ case $1 in
         nvim --server /tmp/nvim.pipe --remote-send ':lua vim.opt.background = "dark"<CR>' || true
         echo "vim.opt.background = 'dark'" >> ~/.config/nvim/lua/core/theme.lua
 
+        #Change kitty theme
+        kitten themes --reload-in=all Gruvbox Dark
+
         change_common
         ;;
 
     "gruvbox-light")
-        alacritty_theme_name="gruvbox_light"
+        terminal_theme_name="gruvbox_light"
         zsh_theme_name="gruvbox_light"
         nvim_color_scheme="gruvbox-material"
         background_color="#f2e5bc"
@@ -107,6 +112,9 @@ case $1 in
         echo "vim.g.gruvbox_material_foreground = 'original'" >> ~/.config/nvim/lua/core/theme.lua
         nvim --server /tmp/nvim.pipe --remote-send ':lua vim.opt.background = "light"<CR>' || true
         echo "vim.opt.background = 'light'" >> ~/.config/nvim/lua/core/theme.lua
+
+        #Change kitty theme
+        kitten themes --reload-in=all Gruvbox Light
 
         change_common
 
