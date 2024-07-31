@@ -1,5 +1,5 @@
 # Terminal and Applications
-cmd + alt - t : open -na alacritty
+cmd + alt - t : open -na kitty
 cmd + alt - b : open -a Firefox
 cmd + shift - v : ~/.config/skhd/scripts/menubar.sh
 
