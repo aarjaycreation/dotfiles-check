@@ -1,45 +1,27 @@
-[submodule ".config/zsh/plugins/.config/zsh/plugins/fast-syntax-highlighting"]
-	path = .config/zsh/plugins/.config/zsh/plugins/fast-syntax-highlighting
-	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
-[submodule ".config/zsh/plugins/fzf-tab"]
-	path = .config/zsh/plugins/fzf-tab
+[submodule "/Users/afonso/.config/zsh/plugins/fzf-tab"]
+	path = /Users/afonso/.config/zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
-[submodule ".config/zsh/plugins/zsh-autosuggestions"]
-	path = .config/zsh/plugins/zsh-autosuggestions
+[submodule "/Users/afonso/.config/zsh/plugins/zsh-autosuggestions"]
+	path = /Users/afonso/.config/zsh/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
-[submodule ".config/zsh/plugins/zsh-completions"]
-	path = .config/zsh/plugins/zsh-completions
+[submodule "/Users/afonso/.config/zsh/plugins/zsh-completions"]
+	path = /Users/afonso/.config/zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule ".config/zsh/plugins/zsh-history-substring-search"]
-	path = .config/zsh/plugins/zsh-history-substring-search
+[submodule "/Users/afonso/.config/zsh/plugins/zsh-history-substring-search"]
+	path = /Users/afonso/.config/zsh/plugins/zsh-history-substring-search
 	url = https://github.com/zsh-users/zsh-history-substring-search
-[submodule ".config/zsh/plugins/zsh-syntax-highlighting"]
-	path = .config/zsh/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".config/zsh/plugins/zsh-vi-mode"]
-	path = .config/zsh/plugins/zsh-vi-mode
+[submodule "/Users/afonso/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = /Users/afonso/.config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "/Users/afonso/.config/zsh/plugins/zsh-vi-mode"]
+	path = /Users/afonso/.config/zsh/plugins/zsh-vi-mode
 	url = https://github.com/jeffreytse/zsh-vi-mode
-[submodule ".config/tmux/plugins/tmux-continuum"]
-	path = .config/tmux/plugins/tmux-continuum
-	url = https://git::@github.com/tmux-plugins/tmux-continuum
-[submodule ".config/tmux/plugins/tmux-fzf"]
-	path = .config/tmux/plugins/tmux-fzf
-	url = https://git::@github.com/sainnhe/tmux-fzf
-[submodule ".config/tmux/plugins/tmux-resurrect"]
-	path = .config/tmux/plugins/tmux-resurrect
-	url = https://git::@github.com/tmux-plugins/tmux-resurrect
-[submodule ".config/tmux/plugins/tmux-sensible"]
-	path = .config/tmux/plugins/tmux-sensible
-	url = https://git::@github.com/tmux-plugins/tmux-sensible
-[submodule ".config/tmux/plugins/tpm"]
-	path = .config/tmux/plugins/tpm
+[submodule "/Users/afonso/.config/zsh/prompts/pure"]
+	path = /Users/afonso/.config/zsh/prompts/pure
+	url = https://github.com/sindresorhus/pure
+[submodule "/Users/afonso/.config/tmux/plugins/tpm"]
+	path = /Users/afonso/.config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule ".config/zsh/prompts/pure"]
-	path = .config/zsh/prompts/pure
-	url = https://github.com/sindresorhus/pure.git
-[submodule "/Users/afonso/.config/zsh/plugins/zsh-abbr"]
-	path = /Users/afonso/.config/zsh/plugins/zsh-abbr
-	url = https://github.com/olets/zsh-abbr
 [submodule "/Users/afonso/.config/xmonad/xmonad-git"]
 	path = /Users/afonso/.config/xmonad/xmonad-git
 	url = https://github.com/xmonad/xmonad
