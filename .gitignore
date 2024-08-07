@@ -1,0 +1,7 @@
+id_ed25519_sk
+id_ed25519_sk.pub
+touch_key
+touch_key.pub
+.session.vim
+known_hosts
+known_hosts.old
